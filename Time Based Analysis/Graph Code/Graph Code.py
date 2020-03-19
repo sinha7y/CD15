@@ -436,7 +436,7 @@ plt.legend(('1st try', '2nd try', '3rd try','4rd try','5rd try'),
            loc='upper right')
 plt.show()
 
-# Pitch input as a function of time
+# Pitch input (u) as a function of time
 
 plt.plot(t, x1_C1)
 plt.title('Pitch input; position control; no motion')
