@@ -2,6 +2,7 @@ import scipy.io
 import numpy as np
 import matplotlib.pyplot as plt
 import cmath
+import math
 
 # Read Matlab file
 datasubj1 = scipy.io.loadmat("ae2223I_measurement_data_subj1.mat") # Subject 1
@@ -16,6 +17,44 @@ datasubj6 = scipy.io.loadmat("ae2223I_measurement_data_subj6.mat") # Subject 6
 # _________________
 #  NM | C1  C2  C3
 #  M  | C4  C5  C6
+
+#-----------------------------------Functions----------------------------------------
+
+# RMS calcualtor given a 8192 by 5 array
+def RMS_calculate_8192x5(input_array):
+
+  RMS_array = ((np.sum((input_array**2), axis=0))/8192)**.5
+  return RMS_array
+
+# RMS calcualtor given a 1 by 5 array
+def RMS_calculate_1x5(input_array):
+
+  RMS_array = ((np.sum(input_array**2))/5)**.5
+  return RMS_array
+
+# Variance calculator given a 8192 by 5 array
+def VAR_calculate_8192x5(input_array):
+
+  total = [0, 0, 0, 0, 0]
+  mean = np.sum(input_array, axis=0)/8192
+  for row in input_array:
+    value = (row-mean)**2
+    total = total + value
+  Var = total/8192
+
+  return Var
+
+# Variance calculator given a 1 by 5 array
+def VAR_calculate_1x5(input_array):
+
+  total = 0
+  mean = np.sum(input_array)/5
+  for element in input_array:
+    value = (element-mean)**2
+    total = total + value
+  Var = total/5
+
+  return Var
 
 #-----------------------------------Subject 1----------------------------------------
 
@@ -337,11 +376,51 @@ fd6_C6 = data6_C6['fd'][0][0].reshape(8192,1)
 
 # ---------------------------- RMS and Variance --------------------------------
 
-e1_C1_RMS = 
+
+e1_C1_RMS = RMS_calculate_8192x5(e1_C1)
+e1_C1_VAR = VAR_calculate_8192x5(e1_C1)
+
+e1_C1_RMS_overall = RMS_calculate_1x5(e1_C1_RMS)
+e1_C1_VAR_overall = VAR_calculate_1x5(e1_C1_VAR)
+
+'''e2_C1_RMS = RMS_calculate_8192x5(e2_C2)
+e2_C1_VAR = VAR_calculate_8192x5(e2_C2)
+
+e2_C1_RMS_overall = RMS_calculate_1x5(e2_C1_RMS)
+e2_C1_VAR_overall = VAR_calculate_1x5(e2_C1_VAR)
+
+e3_C3_RMS = RMS_calculate_8192x5(e3_C3)
+e3_C3_VAR = VAR_calculate_8192x5(e3_C3)
+
+e3_C1_RMS_overall = RMS_calculate_1x5(e3_C3_RMS)
+e3_C1_VAR_overall = VAR_calculate_1x5(e3_C3_VAR)
+
+e4_C4_RMS = RMS_calculate_8192x5(e4_C4)
+e4_C4_VAR = VAR_calculate_8192x5(e4_C4)
+
+e4_C4_RMS_overall = RMS_calculate_1x5(e4_C4_RMS)
+e4_C4_VAR_overall = VAR_calculate_1x5(e4_C4_VAR)
+
+e2_C2_RMS = RMS_calculate_8192x5(e2_C2)
+e2_C2_VAR = VAR_calculate_8192x5(e2_C2)
+
+e1_C1_RMS_overall = RMS_calculate_1x5(e1_C1_RMS)
+e1_C1_VAR_overall = VAR_calculate_1x5(e1_C1_VAR)
+
+e2_C2_RMS = RMS_calculate_8192x5(e2_C2)
+e2_C2_VAR = VAR_calculate_8192x5(e2_C2)
+
+e1_C1_RMS_overall = RMS_calculate_1x5(e1_C1_RMS)
+e1_C1_VAR_overall = VAR_calculate_1x5(e1_C1_VAR)
+
+print(e1_C1_RMS)
+print(e1_C1_RMS_overall)
+print(e1_C1_VAR)
+print(e1_C1_VAR_overall)'''
 
 # ---------------------------- Plot --------------------------------
 
-'''
+
 # Error as a function of time
 plt.subplot(231)
 plt.plot(t, e1_C1)
@@ -571,4 +650,3 @@ plt.title('Disturbance forcing function; acceleration control; motion')
 plt.xlabel("t[s]")
 plt.ylabel("fd[N]")
 plt.show()
-'''
