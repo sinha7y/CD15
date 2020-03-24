@@ -380,10 +380,10 @@ fd6_C6 = data6_C6['fd'][0][0].reshape(8192,1)
 e1_C1_RMS = RMS_calculate_8192x5(e1_C1)
 e1_C1_VAR = VAR_calculate_8192x5(e1_C1)
 
-e1_C1_RMS_overall = RMS_calculate_1x5(e1_C1_RMS)
+''''e1_C1_RMS_overall = RMS_calculate_1x5(e1_C1_RMS)
 e1_C1_VAR_overall = VAR_calculate_1x5(e1_C1_VAR)
 
-'''e2_C1_RMS = RMS_calculate_8192x5(e2_C2)
+e2_C1_RMS = RMS_calculate_8192x5(e2_C2)
 e2_C1_VAR = VAR_calculate_8192x5(e2_C2)
 
 e2_C1_RMS_overall = RMS_calculate_1x5(e2_C1_RMS)
@@ -416,7 +416,7 @@ e1_C1_VAR_overall = VAR_calculate_1x5(e1_C1_VAR)
 print(e1_C1_RMS)
 print(e1_C1_RMS_overall)
 print(e1_C1_VAR)
-print(e1_C1_VAR_overall)'''
+print(e1_C1_VAR_overall)''''
 
 # ---------------------------- Plot --------------------------------
 
