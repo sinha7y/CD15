@@ -335,51 +335,57 @@ x6_C6 = data6_C6['x'][0][0].reshape(8192, 5)
 ft6_C6 = data6_C6['ft'][0][0].reshape(8192,1)
 fd6_C6 = data6_C6['fd'][0][0].reshape(8192,1)
 
+# ---------------------------- RMS and Variance --------------------------------
+
+e1_C1_RMS = 
+
 # ---------------------------- Plot --------------------------------
 
+'''
 # Error as a function of time
+plt.subplot(231)
 plt.plot(t, e1_C1)
-plt.title('Error signal; position control; no motion')
+plt.title('e; pos. control; no motion')
 plt.xlabel("t[s]")
 plt.ylabel("e[-]")
 plt.legend(('1st try', '2nd try', '3rd try','4rd try','5rd try'),
            loc='upper right')
-plt.show()
 
+plt.subplot(232)
 plt.plot(t, e1_C2)
-plt.title('Error signal; velocity control; no motion')
+plt.title('e; vel. control; no motion')
 plt.xlabel("t[s]")
 plt.ylabel("e[-]")
 plt.legend(('1st try', '2nd try', '3rd try','4rd try','5rd try'),
            loc='upper right')
-plt.show()
 
+plt.subplot(233)
 plt.plot(t, e1_C3)
-plt.title('Error signal; acceleration control; no motion')
+plt.title('e; acc. control; no motion')
 plt.xlabel("t[s]")
 plt.ylabel("e[-]")
 plt.legend(('1st try', '2nd try', '3rd try','4rd try','5rd try'),
            loc='upper right')
-plt.show()
 
+plt.subplot(234)
 plt.plot(t, e1_C4)
-plt.title('Error signal; position control; motion')
+plt.title('e; pos. control; motion')
 plt.xlabel("t[s]")
 plt.ylabel("e[-]")
 plt.legend(('1st try', '2nd try', '3rd try','4rd try','5rd try'),
            loc='upper right')
-plt.show()
 
+plt.subplot(235)
 plt.plot(t, e1_C5)
-plt.title('Error signal; velocity control; motion')
+plt.title('e; vel. control; motion')
 plt.xlabel("t[s]")
 plt.ylabel("e[-]")
 plt.legend(('1st try', '2nd try', '3rd try','4rd try','5rd try'),
            loc='upper right')
-plt.show()
 
+plt.subplot(236)
 plt.plot(t, e1_C6)
-plt.title('Error signal; acceleration control; motion')
+plt.title('e; acc. control; motion')
 plt.xlabel("t[s]")
 plt.ylabel("e[-]")
 plt.legend(('1st try', '2nd try', '3rd try','4rd try','5rd try'),
@@ -388,46 +394,47 @@ plt.show()
 
 # Human operator control input as a function of time
 
+plt.subplot(231)
 plt.plot(t, u1_C1)
 plt.title('Human input; position control; no motion')
 plt.xlabel("t[s]")
 plt.ylabel("u[-]")
 plt.legend(('1st try', '2nd try', '3rd try','4rd try','5rd try'),
            loc='upper right')
-plt.show()
 
+plt.subplot(232)
 plt.plot(t, u1_C2)
 plt.title('Human input; velocity control; no motion')
 plt.xlabel("t[s]")
 plt.ylabel("u[-]")
 plt.legend(('1st try', '2nd try', '3rd try','4rd try','5rd try'),
            loc='upper right')
-plt.show()
 
+plt.subplot(233)
 plt.plot(t, u1_C3)
 plt.title('Human input; acceleration control; no motion')
 plt.xlabel("t[s]")
 plt.ylabel("u[-]")
 plt.legend(('1st try', '2nd try', '3rd try','4rd try','5rd try'),
            loc='upper right')
-plt.show()
 
+plt.subplot(234)
 plt.plot(t, u1_C4)
 plt.title('Human input; position control; motion')
 plt.xlabel("t[s]")
 plt.ylabel("u[-]")
 plt.legend(('1st try', '2nd try', '3rd try','4rd try','5rd try'),
            loc='upper right')
-plt.show()
 
+plt.subplot(235)
 plt.plot(t, u1_C5)
 plt.title('Human input; velocity control; motion')
 plt.xlabel("t[s]")
 plt.ylabel("u[-]")
 plt.legend(('1st try', '2nd try', '3rd try','4rd try','5rd try'),
            loc='upper right')
-plt.show()
 
+plt.subplot(236)
 plt.plot(t, u1_C6)
 plt.title('Human input; acceleration control; motion')
 plt.xlabel("t[s]")
@@ -438,46 +445,47 @@ plt.show()
 
 # Pitch input (u) as a function of time
 
+plt.subplot(231)
 plt.plot(t, x1_C1)
 plt.title('Pitch input; position control; no motion')
 plt.xlabel("t[s]")
 plt.ylabel("x[m]")
 plt.legend(('1st try', '2nd try', '3rd try','4rd try','5rd try'),
            loc='upper right')
-plt.show()
 
+plt.subplot(232)
 plt.plot(t, x1_C2)
 plt.title('Pitch input; velocity control; no motion')
 plt.xlabel("t[s]")
 plt.ylabel("x[m/s]")
 plt.legend(('1st try', '2nd try', '3rd try','4rd try','5rd try'),
            loc='upper right')
-plt.show()
 
+plt.subplot(233)
 plt.plot(t, x1_C3)
 plt.title('Pitch input; acceleration control; no motion')
 plt.xlabel("t[s]")
 plt.ylabel("x[m/s2]")
 plt.legend(('1st try', '2nd try', '3rd try','4rd try','5rd try'),
            loc='upper right')
-plt.show()
 
+plt.subplot(234)
 plt.plot(t, x1_C4)
 plt.title('Pitch input; position control; motion')
 plt.xlabel("t[s]")
 plt.ylabel("x[m]")
 plt.legend(('1st try', '2nd try', '3rd try','4rd try','5rd try'),
            loc='upper right')
-plt.show()
 
+plt.subplot(235)
 plt.plot(t, x1_C5)
 plt.title('Pitch input; velocity control; motion')
 plt.xlabel("t[s]")
 plt.ylabel("x[m/s]")
 plt.legend(('1st try', '2nd try', '3rd try','4rd try','5rd try'),
            loc='upper right')
-plt.show()
 
+plt.subplot(236)
 plt.plot(t, x1_C6)
 plt.title('Pitch input; acceleration control; motion')
 plt.xlabel("t[s]")
@@ -488,36 +496,37 @@ plt.show()
 
 # Target forcing function as a function of time
 
+plt.subplot(231)
 plt.plot(t,ft1_C1)
 plt.title('Target forcing function; position control; no motion')
 plt.xlabel("t[s]")
 plt.ylabel("ft[N]")
-plt.show()
 
+plt.subplot(232)
 plt.plot(t, ft1_C2)
 plt.title('Target forcing function; velocity control; no motion')
 plt.xlabel("t[s]")
 plt.ylabel("ft[N]")
-plt.show()
 
+plt.subplot(233)
 plt.plot(t, ft1_C3)
 plt.title('Target forcing function; acceleration control; no motion')
 plt.xlabel("t[s]")
 plt.ylabel("ft[N]")
-plt.show()
 
+plt.subplot(234)
 plt.plot(t, ft1_C4)
 plt.title('Target forcing function; position control; motion')
 plt.xlabel("t[s]")
 plt.ylabel("ft[N]")
-plt.show()
 
+plt.subplot(235)
 plt.plot(t, ft1_C5)
 plt.title('Target forcing function; velocity control; motion')
 plt.xlabel("t[s]")
 plt.ylabel("ft[N]")
-plt.show()
 
+plt.subplot(236)
 plt.plot(t, ft1_C6)
 plt.title('Target forcing function; acceleration control; motion')
 plt.xlabel("t[s]")
@@ -526,38 +535,40 @@ plt.show()
 
 # Disturbance forcing function as a function of time
 
+plt.subplot(231)
 plt.plot(t,fd1_C1)
 plt.title('Disturbance forcing function; position control; no motion')
 plt.xlabel("t[s]")
 plt.ylabel("fd[N]")
-plt.show()
 
+plt.subplot(232)
 plt.plot(t, fd1_C2)
 plt.title('Disturbance forcing function; velocity control; no motion')
 plt.xlabel("t[s]")
 plt.ylabel("fd[N]")
-plt.show()
 
+plt.subplot(233)
 plt.plot(t, fd1_C3)
 plt.title('Disturbance forcing function; acceleration control; no motion')
 plt.xlabel("t[s]")
 plt.ylabel("fd[N]")
-plt.show()
 
+plt.subplot(234)
 plt.plot(t, fd1_C4)
 plt.title('Disturbance forcing function; position control; motion')
 plt.xlabel("t[s]")
 plt.ylabel("fd[N]")
-plt.show()
 
+plt.subplot(235)
 plt.plot(t, fd1_C5)
 plt.title('Disturbance forcing function; velocity control; motion')
 plt.xlabel("t[s]")
 plt.ylabel("fd[N]")
-plt.show()
 
+plt.subplot(236)
 plt.plot(t, fd1_C6)
 plt.title('Disturbance forcing function; acceleration control; motion')
 plt.xlabel("t[s]")
 plt.ylabel("fd[N]")
 plt.show()
+'''
