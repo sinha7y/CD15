@@ -1,10 +1,11 @@
 import scipy.io
 import numpy as np
 import matplotlib.pyplot as plt
+import cmath
 
 
 # Read Matlab file
-datasubj1 = scipy.io.loadmat("ae2223I_measurement_data_subj1.mat")
+datasubj1 = scipy.io.loadmat("ae2223I_measurement_data_subj6.mat")
 #print(sorted(datasubj1.keys()))
 
 # Note:
@@ -78,54 +79,79 @@ Hpe_FC_C6  = data_C6['Hpe_FC'][0][0]
 Hpxd_FC_C6 = data_C6['Hpxd_FC'][0][0]
 
 
-# ---------------------------- Plots --------------------------------
+
 
 # --------------- Magnitude plots ------------------
+# plt.title("Magnitude plots - Position (C1+C4)")
+# plt.loglog(w_FC, abs(Hpe_FC_C1), color='r', linestyle='-', marker='o', markersize='4', label='No motion')
+# plt.loglog(w_FC, abs(Hpe_FC_C4), color='#967BB6', linestyle='-', marker='o', markersize='4', label='Motion')
+# plt.xlabel("ω [rad/s]")
+# plt.ylabel("$|H_{pe}(jω)|$")
+# plt.legend(loc='lower left')
+# plt.grid(True, which="both")
+# plt.show()
+#
+# plt.title("Magnitude plots - Velocity (C2+C5)")
+# plt.loglog(w_FC, abs(Hpe_FC_C2), color='b', linestyle='-', marker='o', markersize='4', label='No motion')
+# plt.loglog(w_FC, abs(Hpe_FC_C5), color='#86D7FF', linestyle='-', marker='o', markersize='4', label='Motion')
+# plt.xlabel("ω [rad/s]")
+# plt.ylabel("$|H_{pe}(jω)|$")
+# plt.legend(loc='upper left')
+# plt.grid(True, which="both")
+# plt.show()
+#
+# plt.title("Magnitude plots - Acceleration (C3+C6)")
+# plt.loglog(w_FC, abs(Hpe_FC_C3), color='g', linestyle='-', marker='o', markersize='4', label='No motion')
+# plt.loglog(w_FC, abs(Hpe_FC_C6), color='#0FF64D', linestyle='-', marker='o', markersize='4', label='Motion')
+# plt.xlabel("ω [rad/s]")
+# plt.ylabel("$|H_{pe}(jω)|$")
+# plt.legend(loc='upper left')
+# plt.grid(True, which="both")
+# plt.show()
+
+
+# ---------------------------- Plots --------------------------------
+
+
+# --------------- Magnitude plot ------------------
+plt.subplot(121)
 plt.title("Magnitude plots - Position (C1+C4)")
-plt.loglog(w_FC, abs(Hpe_FC_C1), color='r', linestyle='-', marker='o', markersize='4', label='No motion')
-plt.loglog(w_FC, abs(Hpe_FC_C4), color='#967BB6', linestyle='-', marker='o', markersize='4', label='Motion')
+plt.loglog(w_FC, abs(Hpe_FC_C1), color='#967BB6', linestyle='-', marker='o', markersize='4', label='No motion')
+plt.loglog(w_FC, abs(Hpe_FC_C4), color='r', linestyle='-', marker='o', markersize='4', label='Motion')
 plt.xlabel("ω [rad/s]")
 plt.ylabel("$|H_{pe}(jω)|$")
 plt.legend(loc='lower left')
 plt.grid(True, which="both")
-plt.show()
 
-plt.title("Magnitude plots - Velocity (C2+C5)")
-plt.loglog(w_FC, abs(Hpe_FC_C2), color='b', linestyle='-', marker='o', markersize='4', label='No motion')
-plt.loglog(w_FC, abs(Hpe_FC_C5), color='#86D7FF', linestyle='-', marker='o', markersize='4', label='Motion')
-plt.xlabel("ω [rad/s]")
-plt.ylabel("$|H_{pe}(jω)|$")
-plt.legend(loc='upper left')
-plt.grid(True, which="both")
-plt.show()
-
-plt.title("Magnitude plots - Acceleration (C3+C6)")
-plt.loglog(w_FC, abs(Hpe_FC_C3), color='g', linestyle='-', marker='o', markersize='4', label='No motion')
-plt.loglog(w_FC, abs(Hpe_FC_C6), color='#0FF64D', linestyle='-', marker='o', markersize='4', label='Motion')
-plt.xlabel("ω [rad/s]")
-plt.ylabel("$|H_{pe}(jω)|$")
-plt.legend(loc='upper left')
-plt.grid(True, which="both")
-plt.show()
-
-# ------------------------------- Angle plots --------------------------------
-
+# ------------------------------- Angle plot --------------------------------
 # Loop to manually unwrap the phase array
 angle_C4 = np.angle(Hpxd_FC_C4)
-
 for i in range(len(angle_C4)-1):
     if abs(angle_C4[i] - angle_C4[i+1]) >= np.pi:
         angle_C4[i+1] = angle_C4[i+1] - 2*np.pi
 
+
+plt.subplot(122)
 plt.title("Phase plot - Position (C4)")
-plt.semilogx(w_FC, np.unwrap(np.angle(Hpxd_FC_C4), discont=2 * np.pi), color='b', linestyle='-', marker='o', markersize='4', label='Not unwrapped')
-plt.semilogx(w_FC, angle_C4, color='r', linestyle='-', marker='o', markersize='4', label='Manually unwrapped')
+#plt.semilogx(w_FC, np.rad2deg(np.unwrap(np.angle(Hpxd_FC_C4), discont=2 * np.pi)), color='b', linestyle='-', marker='o', markersize='4', label='Not unwrapped')
+plt.semilogx(w_FC, np.rad2deg(angle_C4), color='r', linestyle='-', marker='o', markersize='4', label='Measured data')
 plt.xlabel("ω [rad/s]")
 plt.ylabel(u"\u2220"+"$H_{pxd}(jω)$ [deg]")
 plt.grid(True, which="both")
 plt.legend(loc='lower left')
 plt.show()
 
+# --------------- Magnitude plot ------------------
+plt.subplot(121)
+plt.title("Magnitude plots - Velocity (C2+C5)")
+plt.loglog(w_FC, abs(Hpe_FC_C2), color='#86D7FF', linestyle='-', marker='o', markersize='4', label='No motion')
+plt.loglog(w_FC, abs(Hpe_FC_C5), color='b', linestyle='-', marker='o', markersize='4', label='Motion')
+plt.xlabel("ω [rad/s]")
+plt.ylabel("$|H_{pe}(jω)|$")
+plt.legend(loc='upper left')
+plt.grid(True, which="both")
+
+# ------------------------------- Angle plot --------------------------------
 # Loop to manually unwrap the phase array
 angle_C5 = np.angle(Hpxd_FC_C5)
 
@@ -133,15 +159,43 @@ for i in range(len(angle_C5)-1):
     if abs(angle_C5[i] - angle_C5[i+1]) >= np.pi:
         angle_C5[i+1] = angle_C5[i+1] - 2*np.pi
 
+plt.subplot(122)
 plt.title("Phase plot - Velocity (C5)")
-plt.semilogx(w_FC, np.unwrap(np.angle(Hpxd_FC_C5)), color='r', linestyle='-', marker='o', markersize='4', label='Not unwrapped')
-plt.semilogx(w_FC, angle_C5, color='b', linestyle='-', marker='o', markersize='4', label='Manually unwrapped')
+#plt.semilogx(w_FC, np.rad2deg(np.unwrap(np.angle(Hpxd_FC_C5))), color='r', linestyle='-', marker='o', markersize='4', label='Not unwrapped')
+plt.semilogx(w_FC, np.rad2deg(angle_C5), color='b', linestyle='-', marker='o', markersize='4', label='Measured data')
 plt.xlabel("ω [rad/s]")
 plt.ylabel(u"\u2220"+"$H_{pxd}(jω)$ [deg]")
 plt.grid(True, which="both")
 plt.legend(loc='lower left')
+#plt.tight_layout()
 plt.show()
 
+# ------------------ Precision Model ------------------
+# Variables:
+K_p = 0.07              # Pilot gain
+T_L = 2.1               # Lead time constant
+T_I = 0.08              # Lag time constant
+t_e = 0.3               # Effective time delay
+w_nm = 15.0              # Neuromuscular frequency
+damping_ratio = 0.30    # Neuromuscular damping ratio
+
+j = complex(0, 1)       # Define j
+
+# Model:
+Y_p = K_p * (T_L*w_FC*j + 1)/(T_I*w_FC*j + 1) * np.exp(-w_FC*j*t_e) * (1 / ((w_FC*j/w_nm)*(w_FC*j/w_nm) + (2*damping_ratio*w_FC*j / w_nm) + 1))
+
+# --------------- Magnitude plot ------------------
+plt.subplot(121)
+plt.title("Magnitude plots - Acceleration (C3+C6)")
+plt.loglog(w_FC, abs(Hpe_FC_C3), color='#0FF64D', linestyle='-', marker='o', markersize='4', label='No motion')
+plt.loglog(w_FC, abs(Hpe_FC_C6), color='g', linestyle='-', marker='o', markersize='4', label='Motion')
+plt.loglog(w_FC, abs(Y_p), color='black', linestyle='-', marker='o', markersize='4', label='Precision model')
+plt.xlabel("ω [rad/s]")
+plt.ylabel("$|H_{pe}(jω)|$")
+plt.legend(loc='upper left')
+plt.grid(True, which="both")
+
+# ------------------------------- Angle plot --------------------------------
 # Loop to manually unwrap the phase array
 angle_C6 = np.angle(Hpxd_FC_C6)
 
@@ -149,11 +203,19 @@ for i in range(len(angle_C6)-1):
     if abs(angle_C6[i] - angle_C6[i+1]) >= np.pi:
         angle_C6[i+1] = angle_C6[i+1] - 2*np.pi
 
+angle_y_p = np.angle(Y_p)
+for i in range(len(angle_y_p)-1):
+    if abs(angle_y_p[i] - angle_y_p[i+1]) >= np.pi:
+        angle_y_p[i+1] = angle_y_p[i+1] - 2*np.pi
+
+plt.subplot(122)
 plt.title("Phase plot - Acceleration (C6)")
-plt.semilogx(w_FC, np.unwrap(np.angle(Hpxd_FC_C6)), color='r', linestyle='-', marker='o', markersize='4', label='Not unwrapped')
-plt.semilogx(w_FC, angle_C6, color='g', linestyle='-', marker='o', markersize='4', label='Manually unwrapped')
+#plt.semilogx(w_FC, np.rad2deg(np.unwrap(np.angle(Hpxd_FC_C6))), color='r', linestyle='-', marker='o', markersize='4', label='Not unwrapped')
+plt.semilogx(w_FC, np.rad2deg(angle_C6), color='g', linestyle='-', marker='o', markersize='4', label='Measured data')
+plt.semilogx(w_FC, np.rad2deg(angle_y_p), color='black', linestyle='-', marker='o', markersize='4', label='Precision model')
 plt.xlabel("ω [rad/s]")
 plt.ylabel(u"\u2220"+"$H_{pxd}(jω)$ [deg]")
 plt.grid(True, which="both")
 plt.legend(loc='lower left')
+#plt.tight_layout()
 plt.show()
