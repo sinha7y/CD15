@@ -431,7 +431,7 @@ fd6_C6 = data6_C6['fd'][0][0].reshape(8192,1)
 e1_C1_RMS = RMS_calculate_8192x5(e1_C1)
 e1_C1_VAR = VAR_calculate_8192x5(e1_C1)
 
-''''e1_C1_RMS_overall = RMS_calculate_1x5(e1_C1_RMS)
+'''e1_C1_RMS_overall = RMS_calculate_1x5(e1_C1_RMS)
 e1_C1_VAR_overall = VAR_calculate_1x5(e1_C1_VAR)
 
 e2_C1_RMS = RMS_calculate_8192x5(e2_C2)
@@ -467,7 +467,7 @@ e1_C1_VAR_overall = VAR_calculate_1x5(e1_C1_VAR)
 print(e1_C1_RMS)
 print(e1_C1_RMS_overall)
 print(e1_C1_VAR)
-print(e1_C1_VAR_overall)''''
+print(e1_C1_VAR_overall)'''
 
 # --------------------------- Maximum and Minimum --------------------------------
 
@@ -513,6 +513,7 @@ e1_C6_max = maximum(e1_C6,t)
 e1_C6_min = minimum(e1_C6,t)
 print(e1_C6_max,e1_C6_min)
 """
+
 u1_C1_max = maximum(u1_C1,t)
 u1_C1_min = minimum(u1_C1,t)
 print(u1_C1_max,u1_C1_min)
@@ -528,8 +529,8 @@ plt.plot(b2,a2,'o')
 a3=[]
 b3=[]
 for i in range (5):
-  a3.append(e1_C1_min[i][0])
-  b3.append(e1_C1_min[i][1])
+  a3.append(u1_C1_min[i][0])
+  b3.append(u1_C1_min[i][1])
 plt.subplot(324)
 plt.title("Human input minimum values")
 plt.plot(b3,a3,'o')  
@@ -902,4 +903,4 @@ plt.show()
 <<<<<<< HEAD
 =======
 """
->>>>>>> 0d82b29d03f8d470977ac863dbfac941c2cecbd9
+
