@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Read Matlab file
-datasubj1 = scipy.io.loadmat("ae2223I_measurement_data_subj6.mat")
+datasubj1 = scipy.io.loadmat("ae2223I_measurement_data_subj1.mat")
 
 # Note:
 #     | P   V   A
@@ -171,8 +171,9 @@ for i in range(len(angle_C1_Hpe) - 1):
 def costfunction_nomotion(variables):
     J = 0  # Define cost function J
     W = 1  # Weight
+    # Precision model function for H_pe
     Y_precision = Y_p(variables[0], variables[1], variables[2], variables[3], variables[4],
-                     variables[5])  # Precision model function
+                      variables[5])
 
     # Unwrap angle of precision model (has to be done inside function, since Y_precision changes each iteration and affects cost function)
     angle_y_p = np.angle(Y_precision)
@@ -183,8 +184,8 @@ def costfunction_nomotion(variables):
     # Sum each element (response and model at each frequency) to get the cost
     for i in range(len(w_FC)):
         # Function only takes an array of variables instead of individual variables
-        J += W * (abs(Hpe_FC_C1[i]) - abs(Y_precision[i])) ** 2 + W * (angle_C1_Hpe[i] - angle_y_p[i]) ** 2
-
+        #J += W * (abs(Hpe_FC_C1[i]) - abs(Y_precision[i])) ** 2 + W * (angle_C1_Hpe[i] - angle_y_p[i]) ** 2
+        J += W * abs((Hpe_FC_C1[i] - Y_precision[i]) ** 2)
     return J
 
 
@@ -199,26 +200,35 @@ def costfunction_motion(variables):
     J = 0        # Define cost function J
     W_abs = 1    # Weight
     W_angle = 1  # Weight
-    Y_precision = Y_p(variables[0], variables[1], variables[2], variables[3], variables[4],
-                     variables[5])  # Precision model function
+    # Precision model function for H_pe
+    Y_precision_Hpe = Y_p(variables[0], variables[1], variables[2], variables[3], variables[4],
+                          variables[5])
+    # Precision model function for H_pxd
+    Y_precision_Hpxd = Y_p(variables[6], variables[7], variables[8], variables[9], variables[4],
+                           variables[5])
 
-    # Unwrap angle of precision model (has to be done inside function, since Y_precision changes each iteration and affects cost function)
-    angle_y_p = np.angle(Y_precision)
-    for i in range(len(angle_y_p) - 1):
-        if abs(angle_y_p[i] - angle_y_p[i + 1]) >= np.pi:
-            angle_y_p[i + 1] = angle_y_p[i + 1] - 2 * np.pi
+    # # Unwrap angle of precision model (has to be done inside function, since Y_precision changes each iteration and affects cost function)
+    # angle_y_p_Hpe = np.angle(Y_precision_Hpe)
+    # for i in range(len(angle_y_p_Hpe) - 1):
+    #     if abs(angle_y_p_Hpe[i] - angle_y_p_Hpe[i + 1]) >= np.pi:
+    #         angle_y_p_Hpe[i + 1] = angle_y_p_Hpe[i + 1] - 2 * np.pi
+    #
+    # angle_y_p_Hpxd = np.angle(Y_precision_Hpxd)
+    # for i in range(len(angle_y_p_Hpxd) - 1):
+    #     if abs(angle_y_p_Hpxd[i] - angle_y_p_Hpxd[i + 1]) >= np.pi:
+    #         angle_y_p_Hpxd[i + 1] = angle_y_p_Hpxd[i + 1] - 2 * np.pi
 
     # Sum each element (response and model at each frequency) to get the cost
     for i in range(len(w_FC)):
         # Function only takes an array of variables instead of individual variables
-        J += W_abs * (abs(Hpe_FC_C4[i]) - abs(Y_precision[i])) ** 2 + W_angle * (angle_C4_Hpe[i] - angle_y_p[i]) ** 2
-
+        #J += W_abs * (abs(Hpe_FC_C4[i]) - abs(Y_precision[i])) ** 2 + W_angle * (angle_C4_Hpe[i] - angle_y_p[i]) ** 2
+        J += W_abs * abs((Hpe_FC_C4[i] - Y_precision_Hpe[i]) ** 2) + abs((Hpxd_FC_C4[i] - Y_precision_Hpxd[i]) ** 2)
     return J
 
 
 # Initial guess NO MOTION:
-K_p_nomotion = 3  # Pilot gain
-T_L_nomotion = 0.1  # Lead time constant
+K_p_nomotion = 3     # Pilot gain
+T_L_nomotion = 0.1   # Lead time constant
 T_I_nomotion = 1.58  # Lag time constant
 t_e_nomotion = 0.10  # Effective time delay
 w_nm_nomotion = 8.0  # Neuromuscular frequency
@@ -227,13 +237,17 @@ guess_position_Hpe_nomotion = [K_p_nomotion, T_L_nomotion, T_I_nomotion, t_e_nom
                                damping_ratio_nomotion]
 
 # Initial guess MOTION:
-K_p_motion = 2  # Pilot gain
-T_L_motion = 0.2  # Lead time constant
-T_I_motion = 1.85  # Lag time constant
-t_e_motion = 0.20  # Effective time delay
-w_nm_motion = 7.0  # Neuromuscular frequency
-damping_ratio_motion = 0.20  # Neuromuscular damping ratio
-guess_position_Hpe_motion = [K_p_motion, T_L_motion, T_I_motion, t_e_motion, w_nm_motion, damping_ratio_motion]
+K_p_motion_Hpe = 2     # Pilot gain for H_pe
+T_L_motion_Hpe = 0.2   # Lead time constant for H_pe
+T_I_motion_Hpe = 1.85  # Lag time constant for H_pe
+t_e_motion_Hpe = 0.20  # Effective time delay for H_pe
+w_nm_motion = 7.0      # Neuromuscular frequency (SAME FOR H_pe and H_pxd)
+damping_ratio_motion = 0.20  # Neuromuscular damping ratio (SAME FOR H_pe and H_pxd)
+K_p_motion_Hpxd = 2     # Pilot gain for H_pxd
+T_L_motion_Hpxd = 0.2   # Lead time constant for H_pxd
+T_I_motion_Hpxd = 1.85  # Lag time constant for H_pxd
+t_e_motion_Hpxd = 0.20  # Effective time delay for H_pxd
+guess_position_Hpe_motion = [K_p_motion_Hpe, T_L_motion_Hpe, T_I_motion_Hpe, t_e_motion_Hpe, w_nm_motion, damping_ratio_motion, K_p_motion_Hpxd, T_L_motion_Hpxd, T_I_motion_Hpxd, t_e_motion_Hpxd]
 
 # Optimise the function, Y_p_position_Hpe is initial guess
 minimumcost_nomotion = scipy.optimize.fmin(costfunction_nomotion, guess_position_Hpe_nomotion, retall=True)
@@ -242,7 +256,7 @@ minimumcost_motion = scipy.optimize.fmin(costfunction_motion, guess_position_Hpe
 length = max(len(minimumcost_nomotion[1]), len(minimumcost_motion[1]))
 
 # Loop through the cost function iterations to plot the progress of the fitting (plot once every 30 iterations)
-for i in range(0, length, 30):  # [::30]:
+for i in range(0, length, 30):
     # Account for different number of iterations
     # No motion
     if i >= len(minimumcost_nomotion[1]):
@@ -257,6 +271,8 @@ for i in range(0, length, 30):  # [::30]:
                                      minimumcost_nomotion[1][h][3], minimumcost_nomotion[1][h][4], minimumcost_nomotion[1][h][5])
     Y_p_position_Hpe_motion = Y_p(minimumcost_motion[1][k][0], minimumcost_motion[1][k][1], minimumcost_motion[1][k][2],
                                   minimumcost_motion[1][k][3], minimumcost_motion[1][k][4], minimumcost_motion[1][k][5])
+    # Y_p_position_Hpxd_motion = Y_p(minimumcost_motion[1][k][6], minimumcost_motion[1][k][7], minimumcost_motion[1][k][8],
+    #                                minimumcost_motion[1][k][9], minimumcost_motion[1][k][4], minimumcost_motion[1][k][5])
 
     # Delete previous plot at each iteration
     plt.clf()
@@ -354,6 +370,40 @@ plt.show()
 
 # --------------------------- Cost function and optimisation H_pxd ----------------------
 
+
+# def costfunction_motion(variables):
+#     J = 0        # Define cost function J
+#     W_abs = 20   # Weight absolute value
+#     W_angle = 1  # Weight angle
+#     Y_precision = Y_p(variables[0], variables[1], variables[2], variables[3], variables[4],
+#                       variables[5])
+#
+#     # Unwrap angle of precision model (has to be done inside function, since Y_precision changes each iteration and affects cost function)
+#     angle_y_p = np.angle(Y_precision)
+#     for i in range(len(angle_y_p) - 1):
+#         if abs(angle_y_p[i] - angle_y_p[i + 1]) >= np.pi:
+#             angle_y_p[i + 1] = angle_y_p[i + 1] - 2 * np.pi
+#
+#     # Sum each element (response and model at each frequency) to get the cost
+#     for i in range(len(w_FC)):
+#         # Function only takes an array of variables instead of individual variables
+#         #J += W_abs * (abs(Hpxd_FC_C4[i]) - abs(Y_precision[i])) ** 2 + W_angle * (angle_C4_Hpxd[i] - angle_y_p[i]) ** 2
+#         J += W_abs * abs((Hpxd_FC_C4[i] - Y_precision[i]) ** 2)
+#     return J
+#
+#
+# # Initial guess MOTION:
+# K_p_motion = 0.6   # Pilot gain
+# T_L_motion = 0.1   # Lead time constant
+# T_I_motion = 2.00  # Lag time constant
+# t_e_motion = 0.10  # Effective time delay
+# w_nm_motion = 8.0  # Neuromuscular frequency
+# damping_ratio_motion = 0.10  # Neuromuscular damping ratio
+# guess_position_Hpxd_motion = [K_p_motion, T_L_motion, T_I_motion, t_e_motion, w_nm_motion, damping_ratio_motion]
+
+# Optimise the function, Y_p_position_Hpe is initial guess
+#minimumcost_motion = scipy.optimize.fmin(costfunction_motion, guess_position_Hpxd_motion, retall=True)
+
 # Loop to manually unwrap the phase array
 angle_C4_Hpxd = np.angle(Hpxd_FC_C4)
 
@@ -361,44 +411,12 @@ for i in range(len(angle_C4_Hpxd) - 1):
     if abs(angle_C4_Hpxd[i] - angle_C4_Hpxd[i + 1]) >= np.pi:
         angle_C4_Hpxd[i + 1] = angle_C4_Hpxd[i + 1] - 2 * np.pi
 
-
-def costfunction_motion(variables):
-    J = 0        # Define cost function J
-    W_abs = 20   # Weight absolute value
-    W_angle = 1  # Weight angle
-    Y_precision = Y_p(variables[0], variables[1], variables[2], variables[3], variables[4],
-                      variables[5])
-
-    # Unwrap angle of precision model (has to be done inside function, since Y_precision changes each iteration and affects cost function)
-    angle_y_p = np.angle(Y_precision)
-    for i in range(len(angle_y_p) - 1):
-        if abs(angle_y_p[i] - angle_y_p[i + 1]) >= np.pi:
-            angle_y_p[i + 1] = angle_y_p[i + 1] - 2 * np.pi
-
-    # Sum each element (response and model at each frequency) to get the cost
-    for i in range(len(w_FC)):
-        # Function only takes an array of variables instead of individual variables
-        J += W_abs * (abs(Hpxd_FC_C4[i]) - abs(Y_precision[i])) ** 2 + W_angle * (angle_C4_Hpxd[i] - angle_y_p[i]) ** 2
-
-    return J
-
-
-# Initial guess MOTION:
-K_p_motion = 0.6  # Pilot gain
-T_L_motion = 0.1  # Lead time constant
-T_I_motion = 2.00  # Lag time constant
-t_e_motion = 0.10  # Effective time delay
-w_nm_motion = 8.0  # Neuromuscular frequency
-damping_ratio_motion = 0.10  # Neuromuscular damping ratio
-guess_position_Hpxd_motion = [K_p_motion, T_L_motion, T_I_motion, t_e_motion, w_nm_motion, damping_ratio_motion]
-
-# Optimise the function, Y_p_position_Hpe is initial guess
-minimumcost_motion = scipy.optimize.fmin(costfunction_motion, guess_position_Hpxd_motion, retall=True)
-
 # Loop through the cost function iterations to plot the progress of the fitting (plot once every 30 iterations)
-for iteration in minimumcost_motion[1][::30]:
-    Y_p_position_Hpxd_motion = Y_p(iteration[0], iteration[1], iteration[2], iteration[3], iteration[4], iteration[5])
+# for iteration in minimumcost_motion[1][::30]:
+for k in range(0, len(minimumcost_motion[1]), 30):
 
+    Y_p_position_Hpxd_motion = Y_p(minimumcost_motion[1][k][6], minimumcost_motion[1][k][7], minimumcost_motion[1][k][8],
+                                   minimumcost_motion[1][k][9], minimumcost_motion[1][k][4], minimumcost_motion[1][k][5])
     # Delete previous plot at each iteration
     plt.clf()
 
@@ -523,8 +541,8 @@ def costfunction_nomotion(variables):
     # Sum each element (response and model at each frequency) to get the cost
     for i in range(len(w_FC)):
         # Function only takes an array of variables instead of individual variables
-        J += W_abs * (abs(Hpe_FC_C2[i]) - abs(Y_precision[i])) ** 2 + W_angle * (angle_C2_Hpe[i] - angle_y_p[i]) ** 2
-
+        #J += W_abs * (abs(Hpe_FC_C2[i]) - abs(Y_precision[i])) ** 2 + W_angle * (angle_C2_Hpe[i] - angle_y_p[i]) ** 2
+        J += W_abs * abs((Hpe_FC_C2[i] - Y_precision[i]) ** 2)
     return J
 
 angle_C5_Hpe = np.angle(Hpe_FC_C5)
@@ -538,20 +556,26 @@ def costfunction_motion(variables):
     J = 0        # Define cost function J
     W_abs = 1    # Weight
     W_angle = 1  # Weight
-    Y_precision = Y_p(variables[0], variables[1], variables[2], variables[3], variables[4],
-                     variables[5])  # Precision model function
 
-    # Unwrap angle of precision model (has to be done inside function, since Y_precision changes each iteration and affects cost function)
-    angle_y_p = np.angle(Y_precision)
-    for i in range(len(angle_y_p) - 1):
-        if abs(angle_y_p[i] - angle_y_p[i + 1]) >= np.pi:
-            angle_y_p[i + 1] = angle_y_p[i + 1] - 2 * np.pi
+    # Precision model function for H_pe
+    Y_precision_Hpe = Y_p(variables[0], variables[1], variables[2], variables[3], variables[4],
+                          variables[5])
+    # Precision model function for H_pxd
+    Y_precision_Hpxd = Y_p(variables[6], variables[7], variables[8], variables[9], variables[4],
+                           variables[5])
+
+    # # Unwrap angle of precision model (has to be done inside function, since Y_precision changes each iteration and affects cost function)
+    # angle_y_p = np.angle(Y_precision)
+    # for i in range(len(angle_y_p) - 1):
+    #     if abs(angle_y_p[i] - angle_y_p[i + 1]) >= np.pi:
+    #         angle_y_p[i + 1] = angle_y_p[i + 1] - 2 * np.pi
 
     # Sum each element (response and model at each frequency) to get the cost
     for i in range(len(w_FC)):
         # Function only takes an array of variables instead of individual variables
-        J += W_abs * (abs(Hpe_FC_C5[i]) - abs(Y_precision[i])) ** 2 + W_angle * (angle_C5_Hpe[i] - angle_y_p[i]) ** 2
-
+        #J += W_abs * (abs(Hpe_FC_C5[i]) - abs(Y_precision[i])) ** 2 + W_angle * (angle_C5_Hpe[i] - angle_y_p[i]) ** 2
+        #J += W_abs * abs((Hpe_FC_C5[i] - Y_precision[i]) ** 2)
+        J += W_abs * abs((Hpe_FC_C5[i] - Y_precision_Hpe[i]) ** 2) + abs((Hpxd_FC_C5[i] - Y_precision_Hpxd[i]) ** 2)
     return J
 
 
@@ -566,14 +590,18 @@ guess_velocity_Hpe_nomotion = [K_p_nomotion, T_L_nomotion, T_I_nomotion, t_e_nom
                                damping_ratio_nomotion]
 
 # Initial guess MOTION:
-K_p_motion = 0.09               # Pilot gain
-T_L_motion = 3.1                # Lead time constant
-T_I_motion = 0.10               # Lag time constant
-t_e_motion = 0.2                # Effective time delay
-w_nm_motion = 14.0              # Neuromuscular frequency
-damping_ratio_motion = 0.40     # Neuromuscular damping ratio
-guess_velocity_Hpe_motion = [K_p_motion, T_L_motion, T_I_motion, t_e_motion, w_nm_motion,
-                             damping_ratio_motion]
+K_p_motion_Hpe = 0.09   # Pilot gain for H_pe
+T_L_motion_Hpe = 3.1    # Lead time constant for H_pe
+T_I_motion_Hpe = 0.10   # Lag time constant for H_pe
+t_e_motion_Hpe = 0.20   # Effective time delay for H_pe
+w_nm_motion = 14.0      # Neuromuscular frequency (SAME FOR H_pe and H_pxd)
+damping_ratio_motion = 0.40  # Neuromuscular damping ratio (SAME FOR H_pe and H_pxd)
+K_p_motion_Hpxd = 0.07  # Pilot gain for H_pxd
+T_L_motion_Hpxd = 2.1   # Lead time constant for H_pxd
+T_I_motion_Hpxd = 0.08  # Lag time constant for H_pxd
+t_e_motion_Hpxd = 0.3   # Effective time delay for H_pxd
+guess_velocity_Hpe_motion = [K_p_motion_Hpe, T_L_motion_Hpe, T_I_motion_Hpe, t_e_motion_Hpe, w_nm_motion, damping_ratio_motion, K_p_motion_Hpxd, T_L_motion_Hpxd, T_I_motion_Hpxd, t_e_motion_Hpxd]
+
 
 # Optimise the function, Y_p_position_Hpe is initial guess
 minimumcost_nomotion = scipy.optimize.fmin(costfunction_nomotion, guess_velocity_Hpe_nomotion, retall=True)
@@ -697,6 +725,39 @@ plt.show()
 
 # --------------------------- Cost function and optimisation H_pxd ----------------------
 
+# def costfunction_motion(variables):
+#     J = 0         # Define cost function J
+#     W_abs = 1     # Weight absolute value
+#     W_angle = 1   # Weight angle
+#     Y_precision = Y_p(variables[0], variables[1], variables[2], variables[3], variables[4],
+#                      variables[5])
+#
+#     # Unwrap angle of precision model (has to be done inside function, since Y_precision changes each iteration and affects cost function)
+#     angle_y_p = np.angle(Y_precision)
+#     for i in range(len(angle_y_p) - 1):
+#         if abs(angle_y_p[i] - angle_y_p[i + 1]) >= np.pi:
+#             angle_y_p[i + 1] = angle_y_p[i + 1] - 2 * np.pi
+#
+#     # Sum each element (response and model at each frequency) to get the cost
+#     for i in range(len(w_FC)):
+#         # Function only takes an array of variables instead of individual variables
+#         #J += W_abs * (abs(Hpxd_FC_C5[i]) - abs(Y_precision[i])) ** 2 + W_angle * (angle_C5_Hpxd[i] - angle_y_p[i]) ** 2
+#         J += W_abs * abs((Hpxd_FC_C5[i] - Y_precision[i]) ** 2)
+#     return J
+#
+# # Initial guess MOTION:
+# K_p_motion = 0.07   # Pilot gain
+# T_L_motion = 2.1    # Lead time constant
+# T_I_motion = 0.08   # Lag time constant
+# t_e_motion = 0.3    # Effective time delay
+# w_nm_motion = 15.0  # Neuromuscular frequency
+# damping_ratio_motion = 0.30  # Neuromuscular damping ratio
+# guess_velocity_Hpxd_motion = [K_p_motion, T_L_motion, T_I_motion, t_e_motion, w_nm_motion, damping_ratio_motion]
+#
+#
+# # Optimise the function, Y_p_position_Hpe is initial guess
+# minimumcost_motion = scipy.optimize.fmin(costfunction_motion, guess_velocity_Hpxd_motion, retall=True)
+
 # Loop to manually unwrap the phase array
 angle_C5_Hpxd = np.angle(Hpxd_FC_C5)
 
@@ -705,43 +766,14 @@ for i in range(len(angle_C5_Hpxd) - 1):
         angle_C5_Hpxd[i + 1] = angle_C5_Hpxd[i + 1] - 2 * np.pi
 
 
-def costfunction_motion(variables):
-    J = 0         # Define cost function J
-    W_abs = 1     # Weight absolute value
-    W_angle = 1   # Weight angle
-    Y_precision = Y_p(variables[0], variables[1], variables[2], variables[3], variables[4],
-                     variables[5])
-
-    # Unwrap angle of precision model (has to be done inside function, since Y_precision changes each iteration and affects cost function)
-    angle_y_p = np.angle(Y_precision)
-    for i in range(len(angle_y_p) - 1):
-        if abs(angle_y_p[i] - angle_y_p[i + 1]) >= np.pi:
-            angle_y_p[i + 1] = angle_y_p[i + 1] - 2 * np.pi
-
-    # Sum each element (response and model at each frequency) to get the cost
-    for i in range(len(w_FC)):
-        # Function only takes an array of variables instead of individual variables
-        J += W_abs * (abs(Hpxd_FC_C5[i]) - abs(Y_precision[i])) ** 2 + W_angle * (angle_C5_Hpxd[i] - angle_y_p[i]) ** 2
-
-    return J
-
-# Initial guess MOTION:
-K_p_motion = 0.07  # Pilot gain
-T_L_motion = 2.1  # Lead time constant
-T_I_motion = 0.08  # Lag time constant
-t_e_motion = 0.3  # Effective time delay
-w_nm_motion = 15.0  # Neuromuscular frequency
-damping_ratio_motion = 0.30  # Neuromuscular damping ratio
-guess_velocity_Hpxd_motion = [K_p_motion, T_L_motion, T_I_motion, t_e_motion, w_nm_motion, damping_ratio_motion]
-
-
-# Optimise the function, Y_p_position_Hpe is initial guess
-minimumcost_motion = scipy.optimize.fmin(costfunction_motion, guess_velocity_Hpxd_motion, retall=True)
-
 # Loop through the cost function iterations to plot the progress of the fitting (plot once every 30 iterations)
-for iteration in minimumcost_motion[1][::30]:
-    Y_p_velocity_Hpxd_motion = Y_p(iteration[0], iteration[1], iteration[2], iteration[3], iteration[4], iteration[5])
-
+# for iteration in minimumcost_motion[1][::30]:
+#     Y_p_velocity_Hpxd_motion = Y_p(iteration[0], iteration[1], iteration[2], iteration[3], iteration[4], iteration[5])
+for k in range(0, len(minimumcost_motion[1]), 30):
+    Y_p_velocity_Hpxd_motion = Y_p(minimumcost_motion[1][k][6], minimumcost_motion[1][k][7],
+                                   minimumcost_motion[1][k][8],
+                                   minimumcost_motion[1][k][9], minimumcost_motion[1][k][4],
+                                   minimumcost_motion[1][k][5])
     # Delete previous plot at each iteration
     plt.clf()
 
@@ -866,8 +898,8 @@ def costfunction_nomotion(variables):
     # Sum each element (response and model at each frequency) to get the cost
     for i in range(len(w_FC)):
         # Function only takes an array of variables instead of individual variables
-        J += W_abs * (abs(Hpe_FC_C3[i]) - abs(Y_precision[i])) ** 2 + W_angle * (angle_C3_Hpe[i] - angle_y_p[i]) ** 2
-
+        #J += W_abs * (abs(Hpe_FC_C3[i]) - abs(Y_precision[i])) ** 2 + W_angle * (angle_C3_Hpe[i] - angle_y_p[i]) ** 2
+        J += W_abs * abs((Hpe_FC_C3[i] - Y_precision[i]) ** 2)
     return J
 
 angle_C6_Hpe = np.angle(Hpe_FC_C6)
@@ -881,19 +913,26 @@ def costfunction_motion(variables):
     J = 0        # Define cost function J
     W_abs = 1    # Weight
     W_angle = 1  # Weight
-    Y_precision = Y_p(variables[0], variables[1], variables[2], variables[3], variables[4],
-                      variables[5])  # Precision model function
 
-    # Unwrap angle of precision model (has to be done inside function, since Y_precision changes each iteration and affects cost function)
-    angle_y_p = np.angle(Y_precision)
-    for i in range(len(angle_y_p) - 1):
-        if abs(angle_y_p[i] - angle_y_p[i + 1]) >= np.pi:
-            angle_y_p[i + 1] = angle_y_p[i + 1] - 2 * np.pi
+    # Precision model function for H_pe
+    Y_precision_Hpe = Y_p(variables[0], variables[1], variables[2], variables[3], variables[4],
+                          variables[5])
+    # Precision model function for H_pxd
+    Y_precision_Hpxd = Y_p(variables[6], variables[7], variables[8], variables[9], variables[4],
+                           variables[5])
+
+    # # Unwrap angle of precision model (has to be done inside function, since Y_precision changes each iteration and affects cost function)
+    # angle_y_p = np.angle(Y_precision)
+    # for i in range(len(angle_y_p) - 1):
+    #     if abs(angle_y_p[i] - angle_y_p[i + 1]) >= np.pi:
+    #         angle_y_p[i + 1] = angle_y_p[i + 1] - 2 * np.pi
 
     # Sum each element (response and model at each frequency) to get the cost
     for i in range(len(w_FC)):
         # Function only takes an array of variables instead of individual variables
-        J += W_abs * (abs(Hpe_FC_C6[i]) - abs(Y_precision[i])) ** 2 + W_angle * (angle_C6_Hpe[i] - angle_y_p[i]) ** 2
+        # J += W_abs * (abs(Hpe_FC_C6[i]) - abs(Y_precision[i])) ** 2 + W_angle * (angle_C6_Hpe[i] - angle_y_p[i]) ** 2
+        # J += W_abs * abs((Hpe_FC_C6[i] - Y_precision[i]) ** 2)
+        J += W_abs * abs((Hpe_FC_C6[i] - Y_precision_Hpe[i]) ** 2) + abs((Hpxd_FC_C6[i] - Y_precision_Hpxd[i]) ** 2)
 
     return J
 
@@ -909,16 +948,19 @@ guess_acceleration_Hpe_nomotion = [K_p_nomotion, T_L_nomotion, T_I_nomotion, t_e
                                    damping_ratio_nomotion]
 
 # Initial guess MOTION:
-K_p_motion = 0.08               # Pilot gain
-T_L_motion = 2.3                # Lead time constant
-T_I_motion = 0.09               # Lag time constant
-t_e_motion = 0.2                # Effective time delay
-w_nm_motion = 14.0              # Neuromuscular frequency
-damping_ratio_motion = 0.35     # Neuromuscular damping ratio
-guess_acceleration_Hpe_motion = [K_p_motion, T_L_motion, T_I_motion, t_e_motion, w_nm_motion,
-                                 damping_ratio_motion]
+K_p_motion_Hpe = 0.08   # Pilot gain for H_pe
+T_L_motion_Hpe = 2.3    # Lead time constant for H_pe
+T_I_motion_Hpe = 0.09   # Lag time constant for H_pe
+t_e_motion_Hpe = 0.20   # Effective time delay for H_pe
+w_nm_motion = 14.0      # Neuromuscular frequency (SAME FOR H_pe and H_pxd)
+damping_ratio_motion = 0.35  # Neuromuscular damping ratio (SAME FOR H_pe and H_pxd)
+K_p_motion_Hpxd = 0.02  # Pilot gain for H_pxd
+T_L_motion_Hpxd = 3.1   # Lead time constant for H_pxd
+T_I_motion_Hpxd = 0.50  # Lag time constant for H_pxd
+t_e_motion_Hpxd = 0.1   # Effective time delay for H_pxd
+guess_acceleration_Hpe_motion = [K_p_motion_Hpe, T_L_motion_Hpe, T_I_motion_Hpe, t_e_motion_Hpe, w_nm_motion, damping_ratio_motion, K_p_motion_Hpxd, T_L_motion_Hpxd, T_I_motion_Hpxd, t_e_motion_Hpxd]
 
-# Optimise the function, Y_p_position_Hpe is initial guess
+# Optimisation function
 minimumcost_nomotion = scipy.optimize.fmin(costfunction_nomotion, guess_acceleration_Hpe_nomotion, retall=True)
 minimumcost_motion = scipy.optimize.fmin(costfunction_motion, guess_acceleration_Hpe_motion, retall=True)
 
@@ -1041,6 +1083,41 @@ plt.show()
 
 # --------------------------- Cost function and optimisation H_pxd ----------------------
 
+
+# def costfunction_motion(variables):
+#     J = 0         # Define cost function J
+#     W_abs = 1     # Weight absolute value
+#     W_angle = 1   # Weight angle
+#     Y_precision = Y_p(variables[0], variables[1], variables[2], variables[3], variables[4],
+#                       variables[5])
+#
+#     # Unwrap angle of precision model (has to be done inside function, since Y_precision changes each iteration and affects cost function)
+#     angle_y_p = np.angle(Y_precision)
+#     for i in range(len(angle_y_p) - 1):
+#         if abs(angle_y_p[i] - angle_y_p[i + 1]) >= np.pi:
+#             angle_y_p[i + 1] = angle_y_p[i + 1] - 2 * np.pi
+#
+#     # Sum each element (response and model at each frequency) to get the cost
+#     for i in range(len(w_FC)):
+#         # Function only takes an array of variables instead of individual variables
+#         #J += W_abs * (abs(Hpxd_FC_C6[i]) - abs(Y_precision[i])) ** 2 + W_angle * (angle_C6_Hpxd[i] - angle_y_p[i]) ** 2
+#         J += W_abs * abs((Hpxd_FC_C6[i] - Y_precision[i])**2)
+#     return J
+#
+# # Initial guess MOTION:
+# K_p_motion = 0.02            # Pilot gain
+# T_L_motion = 3.1             # Lead time constant
+# T_I_motion = 0.5             # Lag time constant
+# t_e_motion = 0.1             # Effective time delay
+# w_nm_motion = 15.0           # Neuromuscular frequency
+# damping_ratio_motion = 0.30  # Neuromuscular damping ratio
+# guess_acceleration_Hpxd_motion = [K_p_motion, T_L_motion, T_I_motion, t_e_motion, w_nm_motion, damping_ratio_motion]
+#
+#
+# # Optimise the function, Y_p_position_Hpe is initial guess
+# minimumcost_motion = scipy.optimize.fmin(costfunction_motion, guess_acceleration_Hpxd_motion, retall=True)
+
+
 # Loop to manually unwrap the phase array
 angle_C6_Hpxd = np.angle(Hpxd_FC_C6)
 
@@ -1049,42 +1126,12 @@ for i in range(len(angle_C6_Hpxd) - 1):
         angle_C6_Hpxd[i + 1] = angle_C6_Hpxd[i + 1] - 2 * np.pi
 
 
-def costfunction_motion(variables):
-    J = 0         # Define cost function J
-    W_abs = 1     # Weight absolute value
-    W_angle = 1   # Weight angle
-    Y_precision = Y_p(variables[0], variables[1], variables[2], variables[3], variables[4],
-                     variables[5])
-
-    # Unwrap angle of precision model (has to be done inside function, since Y_precision changes each iteration and affects cost function)
-    angle_y_p = np.angle(Y_precision)
-    for i in range(len(angle_y_p) - 1):
-        if abs(angle_y_p[i] - angle_y_p[i + 1]) >= np.pi:
-            angle_y_p[i + 1] = angle_y_p[i + 1] - 2 * np.pi
-
-    # Sum each element (response and model at each frequency) to get the cost
-    for i in range(len(w_FC)):
-        # Function only takes an array of variables instead of individual variables
-        J += W_abs * (abs(Hpxd_FC_C6[i]) - abs(Y_precision[i])) ** 2 + W_angle * (angle_C6_Hpxd[i] - angle_y_p[i]) ** 2
-
-    return J
-
-# Initial guess MOTION:
-K_p_motion = 0.02            # Pilot gain
-T_L_motion = 3.1             # Lead time constant
-T_I_motion = 0.5             # Lag time constant
-t_e_motion = 0.1             # Effective time delay
-w_nm_motion = 15.0           # Neuromuscular frequency
-damping_ratio_motion = 0.30  # Neuromuscular damping ratio
-guess_acceleration_Hpxd_motion = [K_p_motion, T_L_motion, T_I_motion, t_e_motion, w_nm_motion, damping_ratio_motion]
-
-
-# Optimise the function, Y_p_position_Hpe is initial guess
-minimumcost_motion = scipy.optimize.fmin(costfunction_motion, guess_acceleration_Hpxd_motion, retall=True)
-
 # Loop through the cost function iterations to plot the progress of the fitting (plot once every 30 iterations)
-for iteration in minimumcost_motion[1][::30]:
-    Y_p_acceleration_Hpxd_motion = Y_p(iteration[0], iteration[1], iteration[2], iteration[3], iteration[4], iteration[5])
+# for iteration in minimumcost_motion[1][::30]:
+#     Y_p_acceleration_Hpxd_motion = Y_p(iteration[0], iteration[1], iteration[2], iteration[3], iteration[4], iteration[5])
+for k in range(0, len(minimumcost_motion[1]), 30):
+    Y_p_acceleration_Hpxd_motion = Y_p(minimumcost_motion[1][k][6], minimumcost_motion[1][k][7], minimumcost_motion[1][k][8],
+                                       minimumcost_motion[1][k][9], minimumcost_motion[1][k][4], minimumcost_motion[1][k][5])
 
     # Delete previous plot at each iteration
     plt.clf()
