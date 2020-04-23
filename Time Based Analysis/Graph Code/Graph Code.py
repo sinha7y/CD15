@@ -3,6 +3,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import cmath
 import math
+from scipy.signal import correlate
+
 
 # Read Matlab file
 datasubj1 = scipy.io.loadmat("ae2223I_measurement_data_subj1.mat") # Subject 1
@@ -443,6 +445,7 @@ x6_C6 = data6_C6['x'][0][0].reshape(8192, 5)
 ft6_C6 = data6_C6['ft'][0][0].reshape(8192,1)
 fd6_C6 = data6_C6['fd'][0][0].reshape(8192,1)
 
+"""
 # ---------------------------- RMS and Variance for Error "e" --------------------------------
 
 # --- Subject 1 ---
@@ -1069,7 +1072,7 @@ print("RMS of vehicle output in scenario 3 is:",x_C3_RMS,"VAR is:", x_C3_VAR)
 print("RMS of vehicle output in scenario 4 is:",x_C4_RMS,"VAR is:", x_C4_VAR)
 print("RMS of vehicle output in scenario 5 is:",x_C5_RMS,"VAR is:", x_C5_VAR)
 print("RMS of vehicle output in scenario 6 is:",x_C6_RMS,"VAR is:", x_C6_VAR)
-
+"""
 
 # --------------------------- Maximum and Minimum --------------------------------
 '''
@@ -1298,6 +1301,7 @@ plt.ylabel("e[-]")
 plt.legend(('1st try', '2nd try', '3rd try','4rd try','5rd try'),
            loc='upper right')
 plt.show()
+
 # Human operator control input as a function of time
 plt.subplot(231)
 plt.plot(t, u1_C1)
@@ -1342,6 +1346,7 @@ plt.ylabel("u[-]")
 plt.legend(('1st try', '2nd try', '3rd try','4rd try','5rd try'),
            loc='upper right')
 plt.show()
+
 # Pitch input (u) as a function of time
 plt.subplot(231)
 plt.plot(t, x1_C1)
@@ -1386,6 +1391,7 @@ plt.ylabel("x[m/s2]")
 plt.legend(('1st try', '2nd try', '3rd try','4rd try','5rd try'),
            loc='upper right')
 plt.show()
+
 # Target forcing function as a function of time
 plt.subplot(231)
 plt.plot(t,ft1_C1)
@@ -1418,6 +1424,7 @@ plt.title('Target forcing function; acceleration control; motion')
 plt.xlabel("t[s]")
 plt.ylabel("ft[N]")
 plt.show()
+
 # Disturbance forcing function as a function of time
 plt.subplot(231)
 plt.plot(t,fd1_C1)
@@ -1453,4 +1460,127 @@ plt.show()
 <<<<<<< HEAD
 =======
 """
+
+
+#------------------------- TIME RESPONSE DELAY ---------------------------------
+#Find the delay in ft (forcing function) and u (pilot output)
+"""
+# Target forcing function as a function of time
+#plt.subplot(121)
+plt.plot(t,ft1_C1,5)
+plt.title('Target forcing function; position control; no motion')
+plt.xlabel("t[s]")
+plt.ylabel("ft[N]")
+plt.show()
+
+plt.subplot(232)
+plt.plot(t, ft1_C2)
+plt.title('Target forcing function; velocity control; no motion')
+plt.xlabel("t[s]")
+plt.ylabel("ft[N]")
+plt.subplot(233)
+plt.plot(t, ft1_C3)
+plt.title('Target forcing function; acceleration control; no motion')
+plt.xlabel("t[s]")
+plt.ylabel("ft[N]")
+plt.subplot(234)
+plt.plot(t, ft1_C4)
+plt.title('Target forcing function; position control; motion')
+plt.xlabel("t[s]")
+plt.ylabel("ft[N]")
+plt.subplot(235)
+plt.plot(t, ft1_C5)
+plt.title('Target forcing function; velocity control; motion')
+plt.xlabel("t[s]")
+plt.ylabel("ft[N]")
+plt.subplot(236)
+plt.plot(t, ft1_C6)
+plt.title('Target forcing function; acceleration control; motion')
+plt.xlabel("t[s]")
+plt.ylabel("ft[N]")
+plt.show()
+"""
+# Human operator control input as a function of time
+plt.subplot(121)
+plt.plot(t, u1_C1)
+plt.plot(t, ft1_C1)
+plt.title('Human input; position control; no motion')
+plt.xlabel("t[s]")
+plt.ylabel("u[-]")
+plt.legend(('1st try', '2nd try', '3rd try','4rd try','5rd try'),
+           loc='upper right')
+
+"""
+plt.subplot(232)
+plt.plot(t, u1_C2)
+plt.title('Human input; velocity control; no motion')
+plt.xlabel("t[s]")
+plt.ylabel("u[-]")
+plt.legend(('1st try', '2nd try', '3rd try','4rd try','5rd try'),
+           loc='upper right')
+plt.subplot(233)
+plt.plot(t, u1_C3)
+plt.title('Human input; acceleration control; no motion')
+plt.xlabel("t[s]")
+plt.ylabel("u[-]")
+plt.legend(('1st try', '2nd try', '3rd try','4rd try','5rd try'),
+           loc='upper right')
+plt.subplot(234)
+plt.plot(t, u1_C4)
+plt.title('Human input; position control; motion')
+plt.xlabel("t[s]")
+plt.ylabel("u[-]")
+plt.legend(('1st try', '2nd try', '3rd try','4rd try','5rd try'),
+           loc='upper right')
+plt.subplot(235)
+plt.plot(t, u1_C5)
+plt.title('Human input; velocity control; motion')
+plt.xlabel("t[s]")
+plt.ylabel("u[-]")
+plt.legend(('1st try', '2nd try', '3rd try','4rd try','5rd try'),
+           loc='upper right')
+plt.subplot(236)
+plt.plot(t, u1_C6)
+plt.title('Human input; acceleration control; motion')
+plt.xlabel("t[s]")
+plt.ylabel("u[-]")
+plt.legend(('1st try', '2nd try', '3rd try','4rd try','5rd try'),
+           loc='upper right')
+plt.show()
+
+"""
+
+samples = 512
+length = int(len(ft1_C1))
+
+n = length/samples
+ttab = []
+slopetab = []
+averagetab = []
+ytab = []
+
+for i in range(0, length, int(n)):
+    x = ft1_C1[int(i):int(i) + int(n)]
+    y = t[int(i):int(i) + int(n)]
+    z = e1_C1[int(i):int(i) + int(n)]
+
+    slope = (x[-1]-x[0])/(y[-1]-y[0])
+    slopetab.append(slope)
+
+    average_error = sum(z)/int(n)
+
+    averagetab.append(average_error)
+
+    time_delay = abs(average_error)/abs(slope)
+
+    ttab.append(time_delay)
+    p = time_delay
+    ytab.extend(p for r in range(16))
+
+plt.subplot(122)    
+plt.plot(t, ytab)
+plt.show()
+
+
 #>>>>>>> 0d82b29d03f8d470977ac863dbfac941c2cecbd9
+
