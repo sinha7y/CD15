@@ -37,58 +37,44 @@ for i in range(6):
 
 #-------------------------------Definitions---------------------------------
 
-def maximum(a,t):
+def peak(a,b,c):
+    const = (b-a)/0.1
+    cst = (c-b)/0.1
+    if (np.sign(const)!=np.sign(cst)):
+        return True
+    else:
+        return False
 
-  a=np.zeros((5,2))
-  for j in range (5):
-    maxim=0
-    timp=0
-    for i in range (len(matrix)):
-      if (matrix[i][j]>maxim):
-        maxim=matrix[i][j]
-        timp=t[i]
-    a[j][0]=maxim
-    a[j][1]=timp
-  
-  return (a)
+#-----------------------------Peaks of input function-----------------------------------------
 
-def minimum(a,t):
+for i in range(6):
+    for j in range(6):
+        tabel1=[]
+        for k in range(5):
+            peaks=0
+            for l in range(8190):
+                if peak(a[j][i][2][l][k],a[j][i][2][l+1][k],a[j][i][2][l+2][k])==True:
+                    peaks+=1
+            tabel1.append(peaks)
+        print(tabel1)
 
-  a=np.zeros((5,2))
-  for j in range (5):
-    minim=100000
-    timp=0
-    for i in range (len(matrix)):
-      if (matrix[i][j]<minim):
-        minim=matrix[i][j]
-        timp=t[i]
-    a[j][0]=minim
-    a[j][1]=timp
-  
-  return (a)
+#-----------------------------Maximum and minimum of error function----------------------------------------
 
-def steepest_change(a,t):
-  a=np.zeros((5,3))
-  for j in range (5):
-    maxim=0
-    change=0
-    timp=0
-    for i in range (len(matrix)-2):
-      slope1 = (matrix[i+1][j]-matrix[i][j])/0.01
-      slope2 = (matrix[i+2][j]-matrix[i+1][j])/0.01
-      slope = abs(slope2-slope1)
-      if (slope>change):
-        change=slope
-        timp=t[i]
-      if (abs(slope1)>maxim):
-        maxim=slope1
-    a[j][0]=change
-    a[j][1]=timp
-    a[j][2]=maxim
-
-  return(a)
-
-#--------------------------------Maximum-----------------------------------------
-
-        
+for i in range(6):
+    for j in range(6):
+        tabelmax=[]
+        tabelmin=[]
+        for k in range(5):
+            maximum=0
+            minimum=0
+            for l in range(8190):
+                if maximum<a[j][i][0][l][k]:
+                    maximum=a[j][i][0][l][k]
+                if minimum>a[j][i][0][l][k]:
+                    minimum=a[j][i][0][l][k]
+            tabelmax.append(maximum)
+            tabelmin.append(minimum)
+        print(tabelmax)
+        print(tabelmin)
+    
 
