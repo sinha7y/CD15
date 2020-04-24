@@ -1502,8 +1502,8 @@ plt.show()
 """
 # Human operator control input as a function of time
 plt.subplot(121)
-plt.plot(t, u1_C1)
-plt.plot(t, ft1_C1)
+plt.plot(t, u1_C2)
+plt.plot(t, ft1_C2)
 plt.title('Human input; position control; no motion')
 plt.xlabel("t[s]")
 plt.ylabel("u[-]")
@@ -1550,8 +1550,8 @@ plt.show()
 
 """
 
-samples = 512
-length = int(len(ft1_C1))
+samples = 4096
+length = int(len(ft1_C2))
 
 n = length/samples
 ttab = []
@@ -1560,9 +1560,9 @@ averagetab = []
 ytab = []
 
 for i in range(0, length, int(n)):
-    x = ft1_C1[int(i):int(i) + int(n)]
+    x = ft1_C2[int(i):int(i) + int(n)]
     y = t[int(i):int(i) + int(n)]
-    z = e1_C1[int(i):int(i) + int(n)]
+    z = e1_C2[int(i):int(i) + int(n)]
 
     slope = (x[-1]-x[0])/(y[-1]-y[0])
     slopetab.append(slope)
@@ -1574,9 +1574,11 @@ for i in range(0, length, int(n)):
     time_delay = abs(average_error)/abs(slope)
 
     ttab.append(time_delay)
-    p = time_delay
-    ytab.extend(p for r in range(16))
+    p = time_delay/1000
+    ytab.extend(p for r in range(2))
 
+average_time_delay = (sum(ytab)/81.92)
+print(average_time_delay)
 plt.subplot(122)    
 plt.plot(t, ytab)
 plt.show()
