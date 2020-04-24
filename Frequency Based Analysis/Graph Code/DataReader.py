@@ -3,6 +3,7 @@ import scipy.optimize
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 # Read Matlab file
 datasubj1 = scipy.io.loadmat("ae2223I_measurement_data_subj1.mat")
 
@@ -249,6 +250,8 @@ T_I_motion_Hpxd = 1.85  # Lag time constant for H_pxd
 t_e_motion_Hpxd = 0.20  # Effective time delay for H_pxd
 guess_position_Hpe_motion = [K_p_motion_Hpe, T_L_motion_Hpe, T_I_motion_Hpe, t_e_motion_Hpe, w_nm_motion, damping_ratio_motion, K_p_motion_Hpxd, T_L_motion_Hpxd, T_I_motion_Hpxd, t_e_motion_Hpxd]
 
+# NOTE: Guess is called H_pe, but contains also H_pxd
+
 # Optimise the function, Y_p_position_Hpe is initial guess
 minimumcost_nomotion = scipy.optimize.fmin(costfunction_nomotion, guess_position_Hpe_nomotion, retall=True)
 minimumcost_motion = scipy.optimize.fmin(costfunction_motion, guess_position_Hpe_motion, retall=True)
@@ -278,7 +281,7 @@ for i in range(0, length, 30):
     plt.clf()
 
     # -------------- Magnitude plot H_pe ------------------
-    plt.subplot(121)
+    plt.subplot(131)
     plt.title("Magnitude plot - $H_{pe}(jω)$ - Position (C1+C4)")
     plt.loglog(w_FC, abs(Hpe_FC_C1), color='#7A5195', linestyle='-', marker='x', markersize='6', label='No motion')
     plt.loglog(w_FC, abs(Y_p_position_Hpe_no_motion), color='#003f5c', linestyle='-', marker='x', markersize='6',
@@ -288,7 +291,7 @@ for i in range(0, length, 30):
                label='Precision Model - Motion')
     plt.xlabel("ω [rad/s]")
     plt.ylabel("$|H_{pe}(jω)|$")
-    plt.legend(loc='lower left')
+    leg = plt.legend(loc='lower left', fontsize=7)
     plt.grid(True, which="both")
 
     # ------- Angle plots ------
@@ -303,7 +306,7 @@ for i in range(0, length, 30):
         if abs(angle_y_p_motion[m] - angle_y_p_motion[m + 1]) >= np.pi:
             angle_y_p_motion[m + 1] = angle_y_p_motion[m + 1] - 2 * np.pi
 
-    plt.subplot(122)
+    plt.subplot(132)
     plt.title("Phase plot - $H_{pe}(jω)$ - Position (C1+C4)")
     plt.semilogx(w_FC, np.rad2deg(angle_C1_Hpe), color='#7A5195', linestyle='-', marker='x', markersize='6',
                  label='No motion')
@@ -316,10 +319,65 @@ for i in range(0, length, 30):
     plt.xlabel("ω [rad/s]")
     plt.ylabel(u"\u2220" + "$H_{pe}(jω)$ [deg]")
     plt.grid(True, which="both")
-    plt.legend(loc='lower left')
+    plt.legend(loc='lower left', fontsize=10)
+
+    plt.subplot(133)
+    plt.axis('off')
+
+    plt.title("Precision model parameters")
+    plt.text(0.5, 0.9, "Iteration #" + str(max(h, k)), horizontalalignment='center', verticalalignment='center', fontsize=9, fontweight='bold', fontstyle='italic')
+
+    plt.text(0., 0.7, r'$\mathbf{K_p}$', horizontalalignment='center', verticalalignment='center')
+    plt.text(0., 0.6, r'$\mathbf{T_L}$', horizontalalignment='center', verticalalignment='center')
+    plt.text(0., 0.5, r'$\mathbf{T_I}$', horizontalalignment='center', verticalalignment='center')
+    plt.text(0., 0.4, r'$\mathbf{\tau_e}$', horizontalalignment='center', verticalalignment='center')
+    plt.text(0., 0.3, r'$\mathbf{\omega_{nm}}$', horizontalalignment='center', verticalalignment='center')
+    plt.text(0., 0.2, r'$\mathbf{\zeta_{nm}}$', horizontalalignment='center', verticalalignment='center')
+
+    plt.text(0.7, 0.825, "Initial", horizontalalignment='center', verticalalignment='center', fontsize=10,
+             fontweight='bold')
+    plt.text(0.7, 0.8, "guess", horizontalalignment='center', verticalalignment='center', fontsize=10,
+             fontweight='bold')
+    plt.text(0.7, 0.775, "no motion", horizontalalignment='center', verticalalignment='center', fontsize=10,
+             fontweight='bold')
+
+    plt.text(0.7, 0.7, guess_position_Hpe_nomotion[0], horizontalalignment='center', verticalalignment='center', fontsize=10)
+    plt.text(0.7, 0.6, guess_position_Hpe_nomotion[1], horizontalalignment='center', verticalalignment='center', fontsize=10)
+    plt.text(0.7, 0.5, guess_position_Hpe_nomotion[2], horizontalalignment='center', verticalalignment='center', fontsize=10)
+    plt.text(0.7, 0.4, guess_position_Hpe_nomotion[3], horizontalalignment='center', verticalalignment='center', fontsize=10)
+    plt.text(0.7, 0.3, guess_position_Hpe_nomotion[4], horizontalalignment='center', verticalalignment='center', fontsize=10)
+    plt.text(0.7, 0.2, guess_position_Hpe_nomotion[5], horizontalalignment='center', verticalalignment='center', fontsize=10)
+
+    plt.text(1, 0.825, "Initial", horizontalalignment='center', verticalalignment='center', fontsize=10, fontweight='bold')
+    plt.text(1, 0.8, "guess", horizontalalignment='center', verticalalignment='center', fontsize=10, fontweight='bold')
+    plt.text(1, 0.775, "motion", horizontalalignment='center', verticalalignment='center', fontsize=10, fontweight='bold')
+
+    plt.text(1, 0.7, guess_position_Hpe_motion[0], horizontalalignment='center', verticalalignment='center', fontsize=10)
+    plt.text(1, 0.6, guess_position_Hpe_motion[1], horizontalalignment='center', verticalalignment='center', fontsize=10)
+    plt.text(1, 0.5, guess_position_Hpe_motion[2], horizontalalignment='center', verticalalignment='center', fontsize=10)
+    plt.text(1, 0.4, guess_position_Hpe_motion[3], horizontalalignment='center', verticalalignment='center', fontsize=10)
+    plt.text(1, 0.3, guess_position_Hpe_motion[4], horizontalalignment='center', verticalalignment='center', fontsize=10)
+    plt.text(1, 0.2, guess_position_Hpe_motion[5], horizontalalignment='center', verticalalignment='center', fontsize=10)
+
+    plt.text(0.2, 0.8, "No motion", horizontalalignment='center', verticalalignment='center', fontsize=10, fontweight='bold')
+    plt.text(0.2, 0.7, round(minimumcost_nomotion[1][h][0], 3), horizontalalignment='center', verticalalignment='center')
+    plt.text(0.2, 0.6, round(minimumcost_nomotion[1][h][1], 3), horizontalalignment='center', verticalalignment='center')
+    plt.text(0.2, 0.5, round(minimumcost_nomotion[1][h][2], 3), horizontalalignment='center', verticalalignment='center')
+    plt.text(0.2, 0.4, round(minimumcost_nomotion[1][h][3], 3), horizontalalignment='center', verticalalignment='center')
+    plt.text(0.2, 0.3, round(minimumcost_nomotion[1][h][4], 3), horizontalalignment='center', verticalalignment='center')
+    plt.text(0.2, 0.2, round(minimumcost_nomotion[1][h][5], 3), horizontalalignment='center', verticalalignment='center')
+
+    plt.text(0.45, 0.8, "Motion", horizontalalignment='center', verticalalignment='center', fontsize=10, fontweight='bold')
+    plt.text(0.45, 0.7, round(minimumcost_motion[1][k][0], 3), horizontalalignment='center', verticalalignment='center')
+    plt.text(0.45, 0.6, round(minimumcost_motion[1][k][1], 3), horizontalalignment='center', verticalalignment='center')
+    plt.text(0.45, 0.5, round(minimumcost_motion[1][k][2], 3), horizontalalignment='center', verticalalignment='center')
+    plt.text(0.45, 0.4, round(minimumcost_motion[1][k][3], 3), horizontalalignment='center', verticalalignment='center')
+    plt.text(0.45, 0.3, round(minimumcost_motion[1][k][4], 3), horizontalalignment='center', verticalalignment='center')
+    plt.text(0.45, 0.2, round(minimumcost_motion[1][k][5], 3), horizontalalignment='center', verticalalignment='center')
 
     plt.pause(0.001)
 
+plt.text(0.5, 0.1, "Iteration finished", horizontalalignment='center', verticalalignment='center', bbox=dict(facecolor='red', alpha=0.5))
 plt.show()
 
 # --------------------------------- POSITION H_pxd ----------------------------
@@ -421,7 +479,7 @@ for k in range(0, len(minimumcost_motion[1]), 30):
     plt.clf()
 
     # ---------- Magnitude plot H_pxd -----------
-    plt.subplot(121)
+    plt.subplot(131)
     plt.title("Magnitude plot - $H_{pxd}(jω)$ - Position (C4)")
     plt.loglog(w_FC, abs(Hpxd_FC_C4), color='#EF5675', linestyle='-', marker='o', markersize='4', label='Motion')
     plt.loglog(w_FC, abs(Y_p_position_Hpxd_motion), color='#FFA600', linestyle='-', marker='o', markersize='4',
@@ -438,7 +496,7 @@ for k in range(0, len(minimumcost_motion[1]), 30):
         if abs(angle_y_p_motion[i] - angle_y_p_motion[i + 1]) >= np.pi:
             angle_y_p_motion[i + 1] = angle_y_p_motion[i + 1] - 2 * np.pi
 
-    plt.subplot(122)
+    plt.subplot(132)
     plt.title("Phase plot - $H_{pxd}(jω)$ - Position (C4)")
     plt.semilogx(w_FC, np.rad2deg(angle_C4_Hpxd), color='#EF5675', linestyle='-', marker='o', markersize='4', label='Motion')
     plt.semilogx(w_FC, np.rad2deg(angle_y_p_motion), color='#FFA600', linestyle='-', marker='o', markersize='4',
@@ -448,8 +506,49 @@ for k in range(0, len(minimumcost_motion[1]), 30):
     plt.grid(True, which="both")
     plt.legend(loc='lower left')
 
+    plt.subplot(133)
+    plt.axis('off')
+
+    plt.title("Precision model parameters")
+    plt.text(0.5, 0.9, "Iteration #" + str(k), horizontalalignment='center', verticalalignment='center',
+             fontsize=9, fontweight='bold', fontstyle='italic')
+
+    plt.text(0.2, 0.7, r'$\mathbf{K_p}$', horizontalalignment='center', verticalalignment='center')
+    plt.text(0.2, 0.6, r'$\mathbf{T_L}$', horizontalalignment='center', verticalalignment='center')
+    plt.text(0.2, 0.5, r'$\mathbf{T_I}$', horizontalalignment='center', verticalalignment='center')
+    plt.text(0.2, 0.4, r'$\mathbf{\tau_e}$', horizontalalignment='center', verticalalignment='center')
+    plt.text(0.2, 0.3, r'$\mathbf{\omega_{nm}}$', horizontalalignment='center', verticalalignment='center')
+    plt.text(0.2, 0.2, r'$\mathbf{\zeta_{nm}}$', horizontalalignment='center', verticalalignment='center')
+
+    plt.text(0.8, 0.825, "Initial", horizontalalignment='center', verticalalignment='center', fontsize=10,
+             fontweight='bold')
+    plt.text(0.8, 0.8, "guess", horizontalalignment='center', verticalalignment='center', fontsize=10, fontweight='bold')
+
+    plt.text(0.8, 0.7, guess_position_Hpe_motion[6], horizontalalignment='center', verticalalignment='center',
+             fontsize=10)
+    plt.text(0.8, 0.6, guess_position_Hpe_motion[7], horizontalalignment='center', verticalalignment='center',
+             fontsize=10)
+    plt.text(0.8, 0.5, guess_position_Hpe_motion[8], horizontalalignment='center', verticalalignment='center',
+             fontsize=10)
+    plt.text(0.8, 0.4, guess_position_Hpe_motion[9], horizontalalignment='center', verticalalignment='center',
+             fontsize=10)
+    plt.text(0.8, 0.3, guess_position_Hpe_motion[4], horizontalalignment='center', verticalalignment='center',
+             fontsize=10)
+    plt.text(0.8, 0.2, guess_position_Hpe_motion[5], horizontalalignment='center', verticalalignment='center',
+             fontsize=10)
+
+    plt.text(0.5, 0.8, "Motion", horizontalalignment='center', verticalalignment='center', fontsize=10,
+             fontweight='bold')
+    plt.text(0.5, 0.7, round(minimumcost_motion[1][k][6], 3), horizontalalignment='center', verticalalignment='center')
+    plt.text(0.5, 0.6, round(minimumcost_motion[1][k][7], 3), horizontalalignment='center', verticalalignment='center')
+    plt.text(0.5, 0.5, round(minimumcost_motion[1][k][8], 3), horizontalalignment='center', verticalalignment='center')
+    plt.text(0.5, 0.4, round(minimumcost_motion[1][k][9], 3), horizontalalignment='center', verticalalignment='center')
+    plt.text(0.5, 0.3, round(minimumcost_motion[1][k][4], 3), horizontalalignment='center', verticalalignment='center')
+    plt.text(0.5, 0.2, round(minimumcost_motion[1][k][5], 3), horizontalalignment='center', verticalalignment='center')
+
     plt.pause(0.001)
 
+plt.text(0.5, 0.1, "Iteration finished", horizontalalignment='center', verticalalignment='center', bbox=dict(facecolor='red', alpha=0.5))
 plt.show()
 
 """
@@ -602,6 +701,7 @@ T_I_motion_Hpxd = 0.08  # Lag time constant for H_pxd
 t_e_motion_Hpxd = 0.3   # Effective time delay for H_pxd
 guess_velocity_Hpe_motion = [K_p_motion_Hpe, T_L_motion_Hpe, T_I_motion_Hpe, t_e_motion_Hpe, w_nm_motion, damping_ratio_motion, K_p_motion_Hpxd, T_L_motion_Hpxd, T_I_motion_Hpxd, t_e_motion_Hpxd]
 
+# NOTE: Guess is called H_pe, but contains also H_pxd
 
 # Optimise the function, Y_p_position_Hpe is initial guess
 minimumcost_nomotion = scipy.optimize.fmin(costfunction_nomotion, guess_velocity_Hpe_nomotion, retall=True)
@@ -630,7 +730,7 @@ for i in range(0, length, 30):  # [::30]:
     plt.clf()
 
     # -------------- Magnitude plot H_pe ------------------
-    plt.subplot(121)
+    plt.subplot(131)
     plt.title("Magnitude plots - $H_{pe}(jω)$ - Velocity (C2+C5)")
     plt.loglog(w_FC, abs(Hpe_FC_C2), color='#7A5195', linestyle='-', marker='x', markersize='6', label='No motion')
     plt.loglog(w_FC, abs(Y_p_velocity_Hpe_no_motion), color='#003f5c', linestyle='-', marker='x', markersize='6',
@@ -655,7 +755,7 @@ for i in range(0, length, 30):  # [::30]:
         if abs(angle_y_p_motion[m] - angle_y_p_motion[m + 1]) >= np.pi:
             angle_y_p_motion[m + 1] = angle_y_p_motion[m + 1] - 2 * np.pi
 
-    plt.subplot(122)
+    plt.subplot(132)
     plt.title("Phase plot - $H_{pe}(jω)$ - Velocity (C2+C5)")
     plt.semilogx(w_FC, np.rad2deg(angle_C2_Hpe), color='#7A5195', linestyle='-', marker='x', markersize='6',
                  label='No motion')
@@ -670,8 +770,86 @@ for i in range(0, length, 30):  # [::30]:
     plt.grid(True, which="both")
     plt.legend(loc='lower left')
 
+    plt.subplot(133)
+    plt.axis('off')
+
+    plt.title("Precision model parameters")
+    plt.text(0.5, 0.9, "Iteration #" + str(max(h, k)), horizontalalignment='center', verticalalignment='center',
+             fontsize=9, fontweight='bold', fontstyle='italic')
+
+    plt.text(0., 0.7, r'$\mathbf{K_p}$', horizontalalignment='center', verticalalignment='center')
+    plt.text(0., 0.6, r'$\mathbf{T_L}$', horizontalalignment='center', verticalalignment='center')
+    plt.text(0., 0.5, r'$\mathbf{T_I}$', horizontalalignment='center', verticalalignment='center')
+    plt.text(0., 0.4, r'$\mathbf{\tau_e}$', horizontalalignment='center', verticalalignment='center')
+    plt.text(0., 0.3, r'$\mathbf{\omega_{nm}}$', horizontalalignment='center', verticalalignment='center')
+    plt.text(0., 0.2, r'$\mathbf{\zeta_{nm}}$', horizontalalignment='center', verticalalignment='center')
+
+    plt.text(0.7, 0.825, "Initial", horizontalalignment='center', verticalalignment='center', fontsize=10,
+             fontweight='bold')
+    plt.text(0.7, 0.8, "guess", horizontalalignment='center', verticalalignment='center', fontsize=10,
+             fontweight='bold')
+    plt.text(0.7, 0.775, "no motion", horizontalalignment='center', verticalalignment='center', fontsize=10,
+             fontweight='bold')
+
+    plt.text(0.7, 0.7, guess_velocity_Hpe_nomotion[0], horizontalalignment='center', verticalalignment='center',
+             fontsize=10)
+    plt.text(0.7, 0.6, guess_velocity_Hpe_nomotion[1], horizontalalignment='center', verticalalignment='center',
+             fontsize=10)
+    plt.text(0.7, 0.5, guess_velocity_Hpe_nomotion[2], horizontalalignment='center', verticalalignment='center',
+             fontsize=10)
+    plt.text(0.7, 0.4, guess_velocity_Hpe_nomotion[3], horizontalalignment='center', verticalalignment='center',
+             fontsize=10)
+    plt.text(0.7, 0.3, guess_velocity_Hpe_nomotion[4], horizontalalignment='center', verticalalignment='center',
+             fontsize=10)
+    plt.text(0.7, 0.2, guess_velocity_Hpe_nomotion[5], horizontalalignment='center', verticalalignment='center',
+             fontsize=10)
+
+    plt.text(1, 0.825, "Initial", horizontalalignment='center', verticalalignment='center', fontsize=10,
+             fontweight='bold')
+    plt.text(1, 0.8, "guess", horizontalalignment='center', verticalalignment='center', fontsize=10, fontweight='bold')
+    plt.text(1, 0.775, "motion", horizontalalignment='center', verticalalignment='center', fontsize=10,
+             fontweight='bold')
+
+    plt.text(1, 0.7, guess_velocity_Hpe_motion[0], horizontalalignment='center', verticalalignment='center',
+             fontsize=10)
+    plt.text(1, 0.6, guess_velocity_Hpe_motion[1], horizontalalignment='center', verticalalignment='center',
+             fontsize=10)
+    plt.text(1, 0.5, guess_velocity_Hpe_motion[2], horizontalalignment='center', verticalalignment='center',
+             fontsize=10)
+    plt.text(1, 0.4, guess_velocity_Hpe_motion[3], horizontalalignment='center', verticalalignment='center',
+             fontsize=10)
+    plt.text(1, 0.3, guess_velocity_Hpe_motion[4], horizontalalignment='center', verticalalignment='center',
+             fontsize=10)
+    plt.text(1, 0.2, guess_velocity_Hpe_motion[5], horizontalalignment='center', verticalalignment='center',
+             fontsize=10)
+
+    plt.text(0.2, 0.8, "No motion", horizontalalignment='center', verticalalignment='center', fontsize=10,
+             fontweight='bold')
+    plt.text(0.2, 0.7, round(minimumcost_nomotion[1][h][0], 3), horizontalalignment='center',
+             verticalalignment='center')
+    plt.text(0.2, 0.6, round(minimumcost_nomotion[1][h][1], 3), horizontalalignment='center',
+             verticalalignment='center')
+    plt.text(0.2, 0.5, round(minimumcost_nomotion[1][h][2], 3), horizontalalignment='center',
+             verticalalignment='center')
+    plt.text(0.2, 0.4, round(minimumcost_nomotion[1][h][3], 3), horizontalalignment='center',
+             verticalalignment='center')
+    plt.text(0.2, 0.3, round(minimumcost_nomotion[1][h][4], 3), horizontalalignment='center',
+             verticalalignment='center')
+    plt.text(0.2, 0.2, round(minimumcost_nomotion[1][h][5], 3), horizontalalignment='center',
+             verticalalignment='center')
+
+    plt.text(0.45, 0.8, "Motion", horizontalalignment='center', verticalalignment='center', fontsize=10,
+             fontweight='bold')
+    plt.text(0.45, 0.7, round(minimumcost_motion[1][k][0], 3), horizontalalignment='center', verticalalignment='center')
+    plt.text(0.45, 0.6, round(minimumcost_motion[1][k][1], 3), horizontalalignment='center', verticalalignment='center')
+    plt.text(0.45, 0.5, round(minimumcost_motion[1][k][2], 3), horizontalalignment='center', verticalalignment='center')
+    plt.text(0.45, 0.4, round(minimumcost_motion[1][k][3], 3), horizontalalignment='center', verticalalignment='center')
+    plt.text(0.45, 0.3, round(minimumcost_motion[1][k][4], 3), horizontalalignment='center', verticalalignment='center')
+    plt.text(0.45, 0.2, round(minimumcost_motion[1][k][5], 3), horizontalalignment='center', verticalalignment='center')
+
     plt.pause(0.001)
 
+plt.text(0.5, 0.1, "Iteration finished", horizontalalignment='center', verticalalignment='center', bbox=dict(facecolor='red', alpha=0.5))
 plt.show()
 
 
@@ -778,7 +956,7 @@ for k in range(0, len(minimumcost_motion[1]), 30):
     plt.clf()
 
     # ---------- Magnitude plot H_pxd -----------
-    plt.subplot(121)
+    plt.subplot(131)
     plt.title("Magnitude plot - $H_{pxd}(jω)$ - Velocity (C5)")
     plt.loglog(w_FC, abs(Hpxd_FC_C5), color='#EF5675', linestyle='-', marker='o', markersize='4', label='Motion')
     plt.loglog(w_FC, abs(Y_p_velocity_Hpxd_motion), color='#FFA600', linestyle='-', marker='o', markersize='4',
@@ -795,7 +973,7 @@ for k in range(0, len(minimumcost_motion[1]), 30):
         if abs(angle_y_p_motion[i] - angle_y_p_motion[i + 1]) >= np.pi:
             angle_y_p_motion[i + 1] = angle_y_p_motion[i + 1] - 2 * np.pi
 
-    plt.subplot(122)
+    plt.subplot(132)
     plt.title("Phase plot - $H_{pxd}(jω)$ - Velocity (C5)")
     plt.semilogx(w_FC, np.rad2deg(angle_C5_Hpxd), color='#EF5675', linestyle='-', marker='o', markersize='4', label='Motion')
     plt.semilogx(w_FC, np.rad2deg(angle_y_p_motion), color='#FFA600', linestyle='-', marker='o', markersize='4',
@@ -805,8 +983,50 @@ for k in range(0, len(minimumcost_motion[1]), 30):
     plt.grid(True, which="both")
     plt.legend(loc='lower left')
 
+    plt.subplot(133)
+    plt.axis('off')
+
+    plt.title("Precision model parameters")
+    plt.text(0.5, 0.9, "Iteration #" + str(k), horizontalalignment='center', verticalalignment='center',
+             fontsize=9, fontweight='bold', fontstyle='italic')
+
+    plt.text(0.2, 0.7, r'$\mathbf{K_p}$', horizontalalignment='center', verticalalignment='center')
+    plt.text(0.2, 0.6, r'$\mathbf{T_L}$', horizontalalignment='center', verticalalignment='center')
+    plt.text(0.2, 0.5, r'$\mathbf{T_I}$', horizontalalignment='center', verticalalignment='center')
+    plt.text(0.2, 0.4, r'$\mathbf{\tau_e}$', horizontalalignment='center', verticalalignment='center')
+    plt.text(0.2, 0.3, r'$\mathbf{\omega_{nm}}$', horizontalalignment='center', verticalalignment='center')
+    plt.text(0.2, 0.2, r'$\mathbf{\zeta_{nm}}$', horizontalalignment='center', verticalalignment='center')
+
+    plt.text(0.8, 0.825, "Initial", horizontalalignment='center', verticalalignment='center', fontsize=10,
+             fontweight='bold')
+    plt.text(0.8, 0.8, "guess", horizontalalignment='center', verticalalignment='center', fontsize=10,
+             fontweight='bold')
+
+    plt.text(0.8, 0.7, guess_velocity_Hpe_motion[6], horizontalalignment='center', verticalalignment='center',
+             fontsize=10)
+    plt.text(0.8, 0.6, guess_velocity_Hpe_motion[7], horizontalalignment='center', verticalalignment='center',
+             fontsize=10)
+    plt.text(0.8, 0.5, guess_velocity_Hpe_motion[8], horizontalalignment='center', verticalalignment='center',
+             fontsize=10)
+    plt.text(0.8, 0.4, guess_velocity_Hpe_motion[9], horizontalalignment='center', verticalalignment='center',
+             fontsize=10)
+    plt.text(0.8, 0.3, guess_velocity_Hpe_motion[4], horizontalalignment='center', verticalalignment='center',
+             fontsize=10)
+    plt.text(0.8, 0.2, guess_velocity_Hpe_motion[5], horizontalalignment='center', verticalalignment='center',
+             fontsize=10)
+
+    plt.text(0.5, 0.8, "Motion", horizontalalignment='center', verticalalignment='center', fontsize=10,
+             fontweight='bold')
+    plt.text(0.5, 0.7, round(minimumcost_motion[1][k][6], 3), horizontalalignment='center', verticalalignment='center')
+    plt.text(0.5, 0.6, round(minimumcost_motion[1][k][7], 3), horizontalalignment='center', verticalalignment='center')
+    plt.text(0.5, 0.5, round(minimumcost_motion[1][k][8], 3), horizontalalignment='center', verticalalignment='center')
+    plt.text(0.5, 0.4, round(minimumcost_motion[1][k][9], 3), horizontalalignment='center', verticalalignment='center')
+    plt.text(0.5, 0.3, round(minimumcost_motion[1][k][4], 3), horizontalalignment='center', verticalalignment='center')
+    plt.text(0.5, 0.2, round(minimumcost_motion[1][k][5], 3), horizontalalignment='center', verticalalignment='center')
+
     plt.pause(0.001)
 
+plt.text(0.5, 0.1, "Iteration finished", horizontalalignment='center', verticalalignment='center', bbox=dict(facecolor='red', alpha=0.5))
 plt.show()
 
 
@@ -960,6 +1180,8 @@ T_I_motion_Hpxd = 0.50  # Lag time constant for H_pxd
 t_e_motion_Hpxd = 0.1   # Effective time delay for H_pxd
 guess_acceleration_Hpe_motion = [K_p_motion_Hpe, T_L_motion_Hpe, T_I_motion_Hpe, t_e_motion_Hpe, w_nm_motion, damping_ratio_motion, K_p_motion_Hpxd, T_L_motion_Hpxd, T_I_motion_Hpxd, t_e_motion_Hpxd]
 
+# NOTE: Guess is called H_pe, but contains also H_pxd
+
 # Optimisation function
 minimumcost_nomotion = scipy.optimize.fmin(costfunction_nomotion, guess_acceleration_Hpe_nomotion, retall=True)
 minimumcost_motion = scipy.optimize.fmin(costfunction_motion, guess_acceleration_Hpe_motion, retall=True)
@@ -987,7 +1209,7 @@ for i in range(0, length, 30):  # [::30]:
     plt.clf()
 
     # -------------- Magnitude plot H_pe ------------------
-    plt.subplot(121)
+    plt.subplot(131)
     plt.title("Magnitude plots - $H_{pe}(jω)$ - Acceleration (C3+C6)")
     plt.loglog(w_FC, abs(Hpe_FC_C3), color='#7A5195', linestyle='-', marker='x', markersize='6', label='No motion')
     plt.loglog(w_FC, abs(Y_p_acceleration_Hpe_no_motion), color='#003f5c', linestyle='-', marker='x', markersize='6',
@@ -1012,7 +1234,7 @@ for i in range(0, length, 30):  # [::30]:
         if abs(angle_y_p_motion[m] - angle_y_p_motion[m + 1]) >= np.pi:
             angle_y_p_motion[m + 1] = angle_y_p_motion[m + 1] - 2 * np.pi
 
-    plt.subplot(122)
+    plt.subplot(132)
     plt.title("Phase plot - $H_{pe}(jω)$ - Acceleration (C3+C6)")
     plt.semilogx(w_FC, np.rad2deg(angle_C3_Hpe), color='#7A5195', linestyle='-', marker='x', markersize='6',
                  label='No motion')
@@ -1027,8 +1249,86 @@ for i in range(0, length, 30):  # [::30]:
     plt.grid(True, which="both")
     plt.legend(loc='lower left')
 
+    plt.subplot(133)
+    plt.axis('off')
+
+    plt.title("Precision model parameters")
+    plt.text(0.5, 0.9, "Iteration #" + str(max(h, k)), horizontalalignment='center', verticalalignment='center',
+             fontsize=9, fontweight='bold', fontstyle='italic')
+
+    plt.text(0., 0.7, r'$\mathbf{K_p}$', horizontalalignment='center', verticalalignment='center')
+    plt.text(0., 0.6, r'$\mathbf{T_L}$', horizontalalignment='center', verticalalignment='center')
+    plt.text(0., 0.5, r'$\mathbf{T_I}$', horizontalalignment='center', verticalalignment='center')
+    plt.text(0., 0.4, r'$\mathbf{\tau_e}$', horizontalalignment='center', verticalalignment='center')
+    plt.text(0., 0.3, r'$\mathbf{\omega_{nm}}$', horizontalalignment='center', verticalalignment='center')
+    plt.text(0., 0.2, r'$\mathbf{\zeta_{nm}}$', horizontalalignment='center', verticalalignment='center')
+
+    plt.text(0.7, 0.825, "Initial", horizontalalignment='center', verticalalignment='center', fontsize=10,
+             fontweight='bold')
+    plt.text(0.7, 0.8, "guess", horizontalalignment='center', verticalalignment='center', fontsize=10,
+             fontweight='bold')
+    plt.text(0.7, 0.775, "no motion", horizontalalignment='center', verticalalignment='center', fontsize=10,
+             fontweight='bold')
+
+    plt.text(0.7, 0.7, guess_acceleration_Hpe_nomotion[0], horizontalalignment='center', verticalalignment='center',
+             fontsize=10)
+    plt.text(0.7, 0.6, guess_acceleration_Hpe_nomotion[1], horizontalalignment='center', verticalalignment='center',
+             fontsize=10)
+    plt.text(0.7, 0.5, guess_acceleration_Hpe_nomotion[2], horizontalalignment='center', verticalalignment='center',
+             fontsize=10)
+    plt.text(0.7, 0.4, guess_acceleration_Hpe_nomotion[3], horizontalalignment='center', verticalalignment='center',
+             fontsize=10)
+    plt.text(0.7, 0.3, guess_acceleration_Hpe_nomotion[4], horizontalalignment='center', verticalalignment='center',
+             fontsize=10)
+    plt.text(0.7, 0.2, guess_acceleration_Hpe_nomotion[5], horizontalalignment='center', verticalalignment='center',
+             fontsize=10)
+
+    plt.text(1, 0.825, "Initial", horizontalalignment='center', verticalalignment='center', fontsize=10,
+             fontweight='bold')
+    plt.text(1, 0.8, "guess", horizontalalignment='center', verticalalignment='center', fontsize=10, fontweight='bold')
+    plt.text(1, 0.775, "motion", horizontalalignment='center', verticalalignment='center', fontsize=10,
+             fontweight='bold')
+
+    plt.text(1, 0.7, guess_velocity_Hpe_motion[0], horizontalalignment='center', verticalalignment='center',
+             fontsize=10)
+    plt.text(1, 0.6, guess_velocity_Hpe_motion[1], horizontalalignment='center', verticalalignment='center',
+             fontsize=10)
+    plt.text(1, 0.5, guess_velocity_Hpe_motion[2], horizontalalignment='center', verticalalignment='center',
+             fontsize=10)
+    plt.text(1, 0.4, guess_velocity_Hpe_motion[3], horizontalalignment='center', verticalalignment='center',
+             fontsize=10)
+    plt.text(1, 0.3, guess_velocity_Hpe_motion[4], horizontalalignment='center', verticalalignment='center',
+             fontsize=10)
+    plt.text(1, 0.2, guess_velocity_Hpe_motion[5], horizontalalignment='center', verticalalignment='center',
+             fontsize=10)
+
+    plt.text(0.2, 0.8, "No motion", horizontalalignment='center', verticalalignment='center', fontsize=10,
+             fontweight='bold')
+    plt.text(0.2, 0.7, round(minimumcost_nomotion[1][h][0], 3), horizontalalignment='center',
+             verticalalignment='center')
+    plt.text(0.2, 0.6, round(minimumcost_nomotion[1][h][1], 3), horizontalalignment='center',
+             verticalalignment='center')
+    plt.text(0.2, 0.5, round(minimumcost_nomotion[1][h][2], 3), horizontalalignment='center',
+             verticalalignment='center')
+    plt.text(0.2, 0.4, round(minimumcost_nomotion[1][h][3], 3), horizontalalignment='center',
+             verticalalignment='center')
+    plt.text(0.2, 0.3, round(minimumcost_nomotion[1][h][4], 3), horizontalalignment='center',
+             verticalalignment='center')
+    plt.text(0.2, 0.2, round(minimumcost_nomotion[1][h][5], 3), horizontalalignment='center',
+             verticalalignment='center')
+
+    plt.text(0.45, 0.8, "Motion", horizontalalignment='center', verticalalignment='center', fontsize=10,
+             fontweight='bold')
+    plt.text(0.45, 0.7, round(minimumcost_motion[1][k][0], 3), horizontalalignment='center', verticalalignment='center')
+    plt.text(0.45, 0.6, round(minimumcost_motion[1][k][1], 3), horizontalalignment='center', verticalalignment='center')
+    plt.text(0.45, 0.5, round(minimumcost_motion[1][k][2], 3), horizontalalignment='center', verticalalignment='center')
+    plt.text(0.45, 0.4, round(minimumcost_motion[1][k][3], 3), horizontalalignment='center', verticalalignment='center')
+    plt.text(0.45, 0.3, round(minimumcost_motion[1][k][4], 3), horizontalalignment='center', verticalalignment='center')
+    plt.text(0.45, 0.2, round(minimumcost_motion[1][k][5], 3), horizontalalignment='center', verticalalignment='center')
+
     plt.pause(0.001)
 
+plt.text(0.5, 0.1, "Iteration finished", horizontalalignment='center', verticalalignment='center', bbox=dict(facecolor='red', alpha=0.5))
 plt.show()
 
 
@@ -1137,7 +1437,7 @@ for k in range(0, len(minimumcost_motion[1]), 30):
     plt.clf()
 
     # ---------- Magnitude plot H_pxd -----------
-    plt.subplot(121)
+    plt.subplot(131)
     plt.title("Magnitude plot - $H_{pxd}(jω)$ - Acceleration (C6)")
     plt.loglog(w_FC, abs(Hpxd_FC_C6), color='#EF5675', linestyle='-', marker='o', markersize='4', label='Motion')
     plt.loglog(w_FC, abs(Y_p_acceleration_Hpxd_motion), color='#FFA600', linestyle='-', marker='o', markersize='4',
@@ -1154,7 +1454,7 @@ for k in range(0, len(minimumcost_motion[1]), 30):
         if abs(angle_y_p_motion[i] - angle_y_p_motion[i + 1]) >= np.pi:
             angle_y_p_motion[i + 1] = angle_y_p_motion[i + 1] - 2 * np.pi
 
-    plt.subplot(122)
+    plt.subplot(132)
     plt.title("Phase plot - $H_{pxd}(jω)$ - Acceleration (C6)")
     plt.semilogx(w_FC, np.rad2deg(angle_C6_Hpxd), color='#EF5675', linestyle='-', marker='o', markersize='4', label='Motion')
     plt.semilogx(w_FC, np.rad2deg(angle_y_p_motion), color='#FFA600', linestyle='-', marker='o', markersize='4',
@@ -1164,8 +1464,50 @@ for k in range(0, len(minimumcost_motion[1]), 30):
     plt.grid(True, which="both")
     plt.legend(loc='lower left')
 
+    plt.subplot(133)
+    plt.axis('off')
+
+    plt.title("Precision model parameters")
+    plt.text(0.5, 0.9, "Iteration #" + str(k), horizontalalignment='center', verticalalignment='center',
+             fontsize=9, fontweight='bold', fontstyle='italic')
+
+    plt.text(0.2, 0.7, r'$\mathbf{K_p}$', horizontalalignment='center', verticalalignment='center')
+    plt.text(0.2, 0.6, r'$\mathbf{T_L}$', horizontalalignment='center', verticalalignment='center')
+    plt.text(0.2, 0.5, r'$\mathbf{T_I}$', horizontalalignment='center', verticalalignment='center')
+    plt.text(0.2, 0.4, r'$\mathbf{\tau_e}$', horizontalalignment='center', verticalalignment='center')
+    plt.text(0.2, 0.3, r'$\mathbf{\omega_{nm}}$', horizontalalignment='center', verticalalignment='center')
+    plt.text(0.2, 0.2, r'$\mathbf{\zeta_{nm}}$', horizontalalignment='center', verticalalignment='center')
+
+    plt.text(0.8, 0.825, "Initial", horizontalalignment='center', verticalalignment='center', fontsize=10,
+             fontweight='bold')
+    plt.text(0.8, 0.8, "guess", horizontalalignment='center', verticalalignment='center', fontsize=10,
+             fontweight='bold')
+
+    plt.text(0.8, 0.7, guess_acceleration_Hpe_motion[6], horizontalalignment='center', verticalalignment='center',
+             fontsize=10)
+    plt.text(0.8, 0.6, guess_acceleration_Hpe_motion[7], horizontalalignment='center', verticalalignment='center',
+             fontsize=10)
+    plt.text(0.8, 0.5, guess_acceleration_Hpe_motion[8], horizontalalignment='center', verticalalignment='center',
+             fontsize=10)
+    plt.text(0.8, 0.4, guess_acceleration_Hpe_motion[9], horizontalalignment='center', verticalalignment='center',
+             fontsize=10)
+    plt.text(0.8, 0.3, guess_acceleration_Hpe_motion[4], horizontalalignment='center', verticalalignment='center',
+             fontsize=10)
+    plt.text(0.8, 0.2, guess_acceleration_Hpe_motion[5], horizontalalignment='center', verticalalignment='center',
+             fontsize=10)
+
+    plt.text(0.5, 0.8, "Motion", horizontalalignment='center', verticalalignment='center', fontsize=10,
+             fontweight='bold')
+    plt.text(0.5, 0.7, round(minimumcost_motion[1][k][6], 3), horizontalalignment='center', verticalalignment='center')
+    plt.text(0.5, 0.6, round(minimumcost_motion[1][k][7], 3), horizontalalignment='center', verticalalignment='center')
+    plt.text(0.5, 0.5, round(minimumcost_motion[1][k][8], 3), horizontalalignment='center', verticalalignment='center')
+    plt.text(0.5, 0.4, round(minimumcost_motion[1][k][9], 3), horizontalalignment='center', verticalalignment='center')
+    plt.text(0.5, 0.3, round(minimumcost_motion[1][k][4], 3), horizontalalignment='center', verticalalignment='center')
+    plt.text(0.5, 0.2, round(minimumcost_motion[1][k][5], 3), horizontalalignment='center', verticalalignment='center')
+
     plt.pause(0.001)
 
+plt.text(0.5, 0.1, "Iteration finished", horizontalalignment='center', verticalalignment='center', bbox=dict(facecolor='red', alpha=0.5))
 plt.show()
 
 
