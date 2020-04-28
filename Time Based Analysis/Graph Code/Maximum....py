@@ -143,6 +143,7 @@ for i in range(6):
 vectornames=['pos. control; no motion','vel. control; no motion','acc. control; no motion','pos. control; motion','vel. control; motion','acc. control; motion']
 
 #Peaks
+print("Average number of stick movements for every case")
 for i in range(6):
     vectorpeaks=[]
     tpeak=[]
@@ -158,10 +159,12 @@ for i in range(6):
     plt.title(vectornames[i])
     plt.ylabel("u[-]")
     print(vectornames[i],np.average(vectorpeaks))
-    
+plt.suptitle('Number of peaks for the human input function',fontsize=14)
 plt.show()
 
+
 #Maximum and minimum
+print("Average of the maximum absolute error for every case")
 for i in range(6):
     vectormax=[]
     tmax=[]
@@ -181,10 +184,11 @@ for i in range(6):
     plt.ylabel("e[-]")
     vectormax=np.absolute(vectormax)
     print(vectornames[i],np.average(vectormax))
-    
+plt.suptitle('Maximum and minimum of the error function',fontsize=14)    
 plt.show()
 
 #Slope input
+print("Average of the slope of human input function for every case")
 for i in range(6):
     vectorslope=[]
     for j in range(6):
@@ -196,10 +200,11 @@ for i in range(6):
     plt.title(vectornames[i])
     plt.ylabel("u[-]")
     print(vectornames[i],np.average(vectorslope))
-    
+plt.suptitle('Average slope for the human input function',fontsize=14)     
 plt.show()
 
 #Slope output
+print("Average of the slope of output function for every case")
 for i in range(6):
     vectorslopex=[]
     for j in range(6):
@@ -211,7 +216,5 @@ for i in range(6):
     plt.title(vectornames[i])
     plt.ylabel("x[-]")
     print(vectornames[i],np.average(vectorslopex))
-    
+plt.suptitle('Average slope for the output function',fontsize=14)      
 plt.show()
-
-
