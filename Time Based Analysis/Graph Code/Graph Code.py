@@ -76,6 +76,57 @@ def VAR_calculate_1x6(input_array):
 
   return Var
 
+def maximum(matrix,t):
+
+  a=np.zeros((5,2))
+  for j in range (5):
+    maxim=0
+    timp=0
+    for i in range (len(matrix)):
+      if (matrix[i][j]>maxim):
+        maxim=matrix[i][j]
+        timp=t[i]
+    a[j][0]=maxim
+    a[j][1]=timp
+  
+  return (a)
+
+def minimum(matrix,t):
+
+  a=np.zeros((5,2))
+  for j in range (5):
+    minim=100000
+    timp=0
+    for i in range (len(matrix)):
+      if (matrix[i][j]<minim):
+        minim=matrix[i][j]
+        timp=t[i]
+    a[j][0]=minim
+    a[j][1]=timp
+  
+  return (a)
+
+def steepest_change(matrix,t):
+  a=np.zeros((5,3))
+  for j in range (5):
+    maxim=0
+    change=0
+    timp=0
+    for i in range (len(matrix)-2):
+      slope1 = (matrix[i+1][j]-matrix[i][j])/0.01
+      slope2 = (matrix[i+2][j]-matrix[i+1][j])/0.01
+      slope = abs(slope2-slope1)
+      if (slope>change):
+        change=slope
+        timp=t[i]
+      if (abs(slope1)>maxim):
+        maxim=slope1
+    a[j][0]=change
+    a[j][1]=timp
+    a[j][2]=maxim
+
+  return(a)
+
 #-----------------------------------Subject 1----------------------------------------
 
 # ---------------------------------- Variables ---------------------------------
@@ -1023,7 +1074,186 @@ print("RMS of vehicle output in scenario 5 is:",x_C5_RMS,"VAR is:", x_C5_VAR)
 print("RMS of vehicle output in scenario 6 is:",x_C6_RMS,"VAR is:", x_C6_VAR)
 """
 
-
+# --------------------------- Maximum and Minimum --------------------------------
+'''
+e1_C1_max = maximum(e1_C1,t)
+e1_C1_min = minimum(e1_C1,t)
+print(e1_C1_max,e1_C1_min)
+a=[]
+b=[]
+for i in range (5):
+  a.append(e1_C1_max[i][0])
+  b.append(e1_C1_max[i][1])
+plt.subplot(321)
+plt.title("Error signal maximum values")
+plt.plot(b,a,'o')
+a1=[]
+b1=[]
+for i in range (5):
+  a1.append(e1_C1_min[i][0])
+  b1.append(e1_C1_min[i][1])
+plt.subplot(322)
+plt.title("Error signal minimum values")
+plt.plot(b1,a1,'o')  
+"""
+e1_C2_max = maximum(e1_C2,t)
+e1_C2_min = minimum(e1_C2,t)
+print(e1_C2_max,e1_C2_min)
+e1_C3_max = maximum(e1_C3,t)
+e1_C3_min = minimum(e1_C3,t)
+print(e1_C3_max,e1_C3_min)
+e1_C4_max = maximum(e1_C4,t)
+e1_C4_min = minimum(e1_C4,t)
+print(e1_C4_max,e1_C4_min)
+e1_C5_max = maximum(e1_C5,t)
+e1_C5_min = minimum(e1_C5,t)
+print(e1_C5_max,e1_C5_min)
+e1_C6_max = maximum(e1_C6,t)
+e1_C6_min = minimum(e1_C6,t)
+print(e1_C6_max,e1_C6_min)
+"""
+u1_C1_max = maximum(u1_C1,t)
+u1_C1_min = minimum(u1_C1,t)
+print(u1_C1_max,u1_C1_min)
+a2=[]
+b2=[]
+for i in range (5):
+  a2.append(u1_C1_max[i][0])
+  b2.append(u1_C1_max[i][1])
+plt.subplot(323)
+plt.title("Human input maximum values")
+plt.plot(b2,a2,'o')
+a3=[]
+b3=[]
+for i in range (5):
+  a3.append(e1_C1_min[i][0])
+  b3.append(e1_C1_min[i][1])
+plt.subplot(324)
+plt.title("Human input minimum values")
+plt.plot(b3,a3,'o')  
+"""
+u1_C2_max = maximum(u1_C2,t)
+u1_C2_min = minimum(u1_C2,t)
+print(u1_C2_max,u1_C2_min)
+u1_C3_max = maximum(u1_C3,t)
+u1_C3_min = minimum(u1_C3,t)
+print(u1_C3_max,u1_C3_min)
+u1_C4_max = maximum(u1_C4,t)
+u1_C4_min = minimum(u1_C4,t)
+print(u1_C4_max,u1_C4_min)
+u1_C5_max = maximum(u1_C5,t)
+u1_C5_min = minimum(u1_C5,t)
+print(u1_C5_max,u1_C5_min)
+u1_C6_max = maximum(u1_C6,t)
+u1_C6_min = minimum(u1_C6,t)
+print(u1_C6_max,u1_C6_min)
+"""
+x1_C1_max = maximum(x1_C1,t)
+x1_C1_min = minimum(x1_C1,t)
+print(x1_C1_max,x1_C1_min)
+a4=[]
+b4=[]
+for i in range (5):
+  a4.append(x1_C1_max[i][0])
+  b4.append(x1_C1_max[i][1])
+plt.subplot(325)
+plt.title("Pitch input maximum values")
+plt.plot(b4,a4,'o')
+a5=[]
+b5=[]
+for i in range (5):
+  a5.append(x1_C1_min[i][0])
+  b5.append(x1_C1_min[i][1])
+plt.subplot(326)
+plt.title("Pitch input minimum values")
+plt.plot(b5,a5,'o')
+plt.show()
+"""
+x1_C2_max = maximum(x1_C2,t)
+x1_C2_min = minimum(x1_C2,t)
+print(x1_C2_max,x1_C2_min)
+x1_C3_max = maximum(x1_C3,t)
+x1_C3_min = minimum(x1_C3,t)
+print(x1_C3_max,x1_C3_min)
+x1_C4_max = maximum(x1_C4,t)
+x1_C4_min = minimum(x1_C4,t)
+print(x1_C4_max,x1_C4_min)
+x1_C5_max = maximum(x1_C5,t)
+x1_C5_min = minimum(x1_C5,t)
+print(x1_C5_max,x1_C5_min)
+x1_C6_max = maximum(x1_C6,t)
+x1_C6_min = minimum(x1_C6,t)
+print(x1_C6_max,x1_C6_min)
+"""
+# --------------------------- Steepest and Maximum Change ----------------------------
+e1_C1_change = steepest_change(e1_C1,t)
+print(e1_C1_change)
+a=[]
+b=[]
+c=[]
+for i in range (5):
+  a.append(e1_C1_change[i][0])
+  b.append(e1_C1_change[i][1])
+  c.append(e1_C1_change[i][2])
+plt.subplot(321)
+plt.title("Error signal steepest change values")
+plt.plot(b,a,'o')
+plt.subplot(322)
+plt.title("Error signal maximum slope values")
+plt.plot(b,c,'o')
+"""
+e1_C2_change = steepest_change(e1_C2,t)
+e1_C3_change = steepest_change(e1_C3,t)
+e1_C4_change = steepest_change(e1_C4,t)
+e1_C5_change = steepest_change(e1_C5,t)
+e1_C6_change = steepest_change(e1_C6,t)
+"""
+u1_C1_change = steepest_change(u1_C1,t)
+print(u1_C1_change)
+a1=[]
+b1=[]
+c1=[]
+for i in range (5):
+  a1.append(u1_C1_change[i][0])
+  b1.append(u1_C1_change[i][1])
+  c1.append(u1_C1_change[i][2])
+plt.subplot(323)
+plt.title("Human input steepest change values")
+plt.plot(b1,a1,'o')
+plt.subplot(324)
+plt.title("Human input maximum slope values")
+plt.plot(b1,c1,'o')
+"""
+u1_C2_change = steepest_change(u1_C2,t)
+u1_C3_change = steepest_change(u1_C3,t)
+u1_C4_change = steepest_change(u1_C4,t)
+u1_C5_change = steepest_change(u1_C5,t)
+u1_C6_change = steepest_change(u1_C6,t)
+"""
+x1_C1_change = steepest_change(x1_C1,t)
+print(x1_C1_change)
+a2=[]
+b2=[]
+c2=[]
+for i in range (5):
+  a2.append(x1_C1_change[i][0])
+  b2.append(x1_C1_change[i][1])
+  c2.append(x1_C1_change[i][2])
+plt.subplot(325)
+plt.title("Pitch input steepest change values")
+plt.plot(b2,a2,'o')
+plt.subplot(326)
+plt.title("Pitch input maximum slope values")
+plt.plot(b2,c2,'o')
+plt.show()
+"""
+x1_C2_change = steepest_change(x1_C2,t)
+x1_C3_change = steepest_change(x1_C3,t)
+x1_C4_change = steepest_change(x1_C4,t)
+x1_C5_change = steepest_change(x1_C5,t)
+x1_C6_change = steepest_change(x1_C6,t)
+"""
+'''
 # ---------------------------- Plot --------------------------------
 
 """
@@ -1237,51 +1467,152 @@ plt.show()
 
 
 # Human operator control input and forcign function as a function of time
-plt.subplot(131)
-plt.plot(t, u1_C2)
-plt.plot(t, ft1_C2)
-plt.title('Human input; position control; no motion')
-plt.xlabel("t[s]")
-plt.ylabel("u[-]")
-plt.legend(('1st try', '2nd try', '3rd try','4rd try','5rd try'),
-           loc='upper right')
+#plt.subplot(131)
+#plt.plot(t, u1_C2)
+#plt.plot(t, ft1_C2)
+#plt.title('Human input; position control; no motion')
+#plt.xlabel("t[s]")
+#plt.ylabel("u[-]")
+#plt.legend(('1st try', '2nd try', '3rd try','4rd try','5rd try'),
+#           loc='upper right')
 
 # Time delay calculations
 samples = 4096  #number of steps
-length = int(len(ft1_C2))
+length = int(len(ft1_C1))
 
-n = length/samples
+s = length/samples
 
-slopetab = []
-average_error_tab = []
-time_delay_tab = []
+slopetab1 = []
+average_error_tab1 = []
+time_delay_tab1 = []
 
-for i in range(0, length, int(n)):
-    y = ft1_C2[int(i):int(i) + int(n)]
-    x = t[int(i):int(i) + int(n)]
-    z = e1_C2[int(i):int(i) + int(n)]
+slopetab2 = []
+average_error_tab2 = []
+time_delay_tab2 = []
 
-    slope = (y[-1]-y[0])/(x[-1]-x[0])
-    slopetab.append(slope)
+slopetab3 = []
+average_error_tab3 = []
+time_delay_tab3 = []
 
-    average_error = sum(z)/len(z)
+slopetab4 = []
+average_error_tab4 = []
+time_delay_tab4 = []
 
-    average_error_tab.append(average_error)
+slopetab5 = []
+average_error_tab5 = []
+time_delay_tab5 = []
 
-    time_delay = abs(average_error)/abs(slope)
+slopetab6 = []
+average_error_tab6 = []
+time_delay_tab6 = []
 
-    p = time_delay
-    time_delay_tab.extend(p for r in range(2))
+for i in range(0, length, int(s)):
+    a = ft1_C1[int(i):int(i) + int(s)]
+    b = t[int(i):int(i) + int(s)]
+    c = e1_C1[int(i):int(i) + int(s)]
 
-average_time_delay = (sum(time_delay_tab)/8192)
-print(average_time_delay)
+    d = ft1_C2[int(i):int(i) + int(s)]
+    e = t[int(i):int(i) + int(s)]
+    f = e1_C2[int(i):int(i) + int(s)]
+
+    g = ft1_C3[int(i):int(i) + int(s)]
+    h = t[int(i):int(i) + int(s)]
+    i = e1_C3[int(i):int(i) + int(s)]
+
+    #j = ft1_C4[int(i):int(i) + int(s)]
+    #k = t[int(i):int(i) + int(s)]
+    #l = e1_C4[int(i):int(i) + int(s)]
+
+    #m = ft1_C5[int(i):int(i) + int(s)]
+    #n = t[int(i):int(i) + int(s)]
+    #o = e1_C5[int(i):int(i) + int(s)]
+
+    #p = ft1_C6[int(i):int(i) + int(s)]
+    #q = t[int(i):int(i) + int(s)]
+    #r = e1_C6[int(i):int(i) + int(s)]
+
+    slope1 = (a[-1]-a[0])/(b[-1]-b[0])
+    slopetab1.append(slope1)
+    slope2 = (d[-1]-d[0])/(e[-1]-e[0])
+    slopetab2.append(slope2)
+    slope3 = (g[-1]-g[0])/(h[-1]-h[0])
+    slopetab3.append(slope3)
+    #slope4 = (j[-1]-j[0])/(k[-1]-k[0])
+    #slopetab4.append(slope4)
+    #slope5 = (m[-1]-m[0])/(n[-1]-n[0])
+    #slopetab5.append(slope5)
+    #slope6 = (p[-1]-p[0])/(q[-1]-q[0])
+    #slopetab6.append(slope6)
+
+
+    average_error1 = sum(c)/len(c)
+    average_error_tab1.append(average_error1)
+    average_error2 = sum(f)/len(f)
+    average_error_tab2.append(average_error2)
+    average_error3 = sum(i)/len(i)
+    average_error_tab3.append(average_error3)
+    #average_error4 = sum(l)/len(l)
+    #average_error_tab4.append(average_error4)
+    #average_error5 = sum(o)/len(o)
+    #average_error_tab5.append(average_error5)
+    #average_error6 = sum(r)/len(r)
+    #average_error_tab6.append(average_error6)
+
+
+    time_delay1 = abs(average_error1)/abs(slope1)
+    time_delay_tab1.extend(time_delay1 for r in range(2))
+    time_delay2 = abs(average_error2)/abs(slope2)
+    time_delay_tab2.extend(time_delay2 for r in range(2))
+    time_delay3 = abs(average_error3)/abs(slope3)
+    time_delay_tab3.extend(time_delay3 for r in range(2))
+
+    #time_delay4 = abs(average_error4)/abs(slope4)
+    #time_delay_tab4.extend(time_delay4 for r in range(2))
+    #time_delay5 = abs(average_error5)/abs(slope5)
+    #time_delay_tab5.extend(time_delay5 for r in range(2))
+    #time_delay6 = abs(average_error6)/abs(slope6)
+    #time_delay_tab6.extend(time_delay6 for r in range(2))
+
+average_time_delay1 = (sum(time_delay_tab1)/8192)
+average_time_delay2 = (sum(time_delay_tab2)/8192)
+average_time_delay3 = (sum(time_delay_tab3)/8192)
+
+#average_time_delay4 = (sum(time_delay_tab4)/8192)
+#average_time_delay5 = (sum(time_delay_tab5)/8192)
+#average_time_delay6 = (sum(time_delay_tab6)/8192)
+
+print(average_time_delay1)
+print(average_time_delay2)
+print(average_time_delay3)
+
+#print(average_time_delay4)
+#print(average_time_delay5)
+#print(average_time_delay6)
+
+plt.subplot(131)    
+plt.plot(t, time_delay_tab1)
+plt.xlabel("t[s]")
+plt.ylabel("time_delay_tab1")
 plt.subplot(132)    
-plt.plot(t, time_delay_tab)
-plt.subplot(133)
-plt.plot(t, e1_C2)
+plt.plot(t, time_delay_tab2)
+plt.xlabel("t[s]")
+plt.ylabel("time_delay_tab2")
+plt.subplot(133)    
+plt.plot(t, time_delay_tab3)
+plt.xlabel("t[s]")
+plt.ylabel("time_delay_tab3")
+#plt.subplot(234)    
+#plt.plot(t, time_delay_tab4)
+#plt.xlabel("t[s]")
+#plt.ylabel("time_delay_tab4")
+#plt.subplot(235)    
+#plt.plot(t, time_delay_tab5)
+#plt.xlabel("t[s]")
+#plt.ylabel("time_delay_tab5")
+#plt.subplot(236)    
+#plt.plot(t, time_delay_tab6)
+#plt.xlabel("t[s]")
+#plt.ylabel("time_delay_tab6")
 plt.show()
-
-
-
 #>>>>>>> 0d82b29d03f8d470977ac863dbfac941c2cecbd9
 
