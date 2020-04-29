@@ -58,7 +58,7 @@ for i in range(6):
         for k in range(5):
             peaks=0
             for l in range(8190):
-                if peak(a[j][i][1][l][k],a[j][i][1][l+1][k],a[j][i][1][l+2][k])==True:
+                if peak(a[j][i][0][l][k],a[j][i][0][l+1][k],a[j][i][0][l+2][k])==True:
                     peaks+=1
             tabel1.append(peaks)
         matrix1[o]=tabel1
@@ -218,3 +218,9 @@ for i in range(6):
     print(vectornames[i],np.average(vectorslopex))
 plt.suptitle('Average slope for the output function',fontsize=14)      
 plt.show()
+
+
+plt.plot(ft)
+plt.show()
+
+
