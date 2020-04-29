@@ -1468,20 +1468,21 @@ plt.show()
 
 # Human operator control input and forcign function as a function of time
 #plt.subplot(131)
-#plt.plot(t, u1_C2)
-#plt.plot(t, ft1_C2)
-#plt.title('Human input; position control; no motion')
-#plt.xlabel("t[s]")
-#plt.ylabel("u[-]")
-#plt.legend(('1st try', '2nd try', '3rd try','4rd try','5rd try'),
-#           loc='upper right')
-
+plt.plot(t, u1_C2)
+plt.plot(t, ft1_C2)
+plt.title('Human input; position control; no motion')
+plt.xlabel("t[s]")
+plt.ylabel("u[-]")
+plt.legend(('1st try', '2nd try', '3rd try','4rd try','5rd try'),
+           loc='upper right')
+plt.show()
+"""
 # Time delay calculations
 samples = 4096  #number of steps
 length = int(len(ft1_C1))
 
 s = length/samples
-
+   #NECESSARY TABS
 slopetab1 = []
 average_error_tab1 = []
 time_delay_tab1 = []
@@ -1507,6 +1508,7 @@ average_error_tab6 = []
 time_delay_tab6 = []
 
 for i in range(0, length, int(s)):
+           #SPLITTING THE LISTS
     a = ft1_C1[int(i):int(i) + int(s)]
     b = t[int(i):int(i) + int(s)]
     c = e1_C1[int(i):int(i) + int(s)]
@@ -1531,6 +1533,7 @@ for i in range(0, length, int(s)):
     #q = t[int(i):int(i) + int(s)]
     #r = e1_C6[int(i):int(i) + int(s)]
 
+              #SLOPE CALCULATIONS
     slope1 = (a[-1]-a[0])/(b[-1]-b[0])
     slopetab1.append(slope1)
     slope2 = (d[-1]-d[0])/(e[-1]-e[0])
@@ -1544,7 +1547,7 @@ for i in range(0, length, int(s)):
     #slope6 = (p[-1]-p[0])/(q[-1]-q[0])
     #slopetab6.append(slope6)
 
-
+               #AVERAGE ERROR
     average_error1 = sum(c)/len(c)
     average_error_tab1.append(average_error1)
     average_error2 = sum(f)/len(f)
@@ -1558,7 +1561,7 @@ for i in range(0, length, int(s)):
     #average_error6 = sum(r)/len(r)
     #average_error_tab6.append(average_error6)
 
-
+                #TIME DELAY
     time_delay1 = abs(average_error1)/abs(slope1)
     time_delay_tab1.extend(time_delay1 for r in range(2))
     time_delay2 = abs(average_error2)/abs(slope2)
@@ -1573,6 +1576,7 @@ for i in range(0, length, int(s)):
     #time_delay6 = abs(average_error6)/abs(slope6)
     #time_delay_tab6.extend(time_delay6 for r in range(2))
 
+                 #AVERAGE TIME DELAY
 average_time_delay1 = (sum(time_delay_tab1)/8192)
 average_time_delay2 = (sum(time_delay_tab2)/8192)
 average_time_delay3 = (sum(time_delay_tab3)/8192)
@@ -1588,6 +1592,8 @@ print(average_time_delay3)
 #print(average_time_delay4)
 #print(average_time_delay5)
 #print(average_time_delay6)
+
+                  #THE PLOTS
 
 plt.subplot(131)    
 plt.plot(t, time_delay_tab1)
@@ -1616,3 +1622,4 @@ plt.ylabel("time_delay_tab3")
 plt.show()
 #>>>>>>> 0d82b29d03f8d470977ac863dbfac941c2cecbd9
 
+"""
