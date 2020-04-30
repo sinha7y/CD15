@@ -1,8 +1,7 @@
 import scipy.io
 import numpy as np
 import matplotlib.pyplot as plt
-import cmath
-import math
+import pandas as pd
 
 #----------------------------Initialisation---------------------------------------
 
@@ -144,6 +143,7 @@ vectornames=['pos. control; no motion','vel. control; no motion','acc. control; 
 
 #Peaks
 print("Average number of stick movements for every case")
+matrix11=[]
 for i in range(6):
     vectorpeaks=[]
     tpeak=[]
@@ -153,7 +153,8 @@ for i in range(6):
             vectorpeaks.append(matrix1[6*j+i][k])
             f+=1
             tpeak.append(f)
-    constant=231+i               
+    constant=231+i
+    matrix11.append(vectorpeaks)
     plt.subplot(constant)
     plt.plot(tpeak, vectorpeaks,'r+')
     plt.title(vectornames[i])
@@ -162,6 +163,8 @@ for i in range(6):
 plt.suptitle('Number of peaks for the human input function',fontsize=14)
 plt.show()
 
+plt.boxplot(np.transpose(matrix11))
+plt.show()
 
 #Maximum and minimum
 print("Average of the maximum absolute error for every case")
