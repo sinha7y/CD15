@@ -1468,8 +1468,2908 @@ plt.show()
 
 # Human operator control input and forcign function as a function of time
 #plt.subplot(131)
-plt.plot(t, u1_C2)
-plt.plot(t, ft1_C2)
+
+scattertab1 = []
+scattertab2 = []
+scattertab3 = []
+scattertab4 = []
+scattertab5 = []
+scattertab6 = []
+
+#-----------------------Pilot 1----------------------#
+print("Pilot 1")
+aa1= u1_C1[:,0]
+ba1= u1_C1[:,1]
+ca1= u1_C1[:,2]
+da1= u1_C1[:,3]
+ea1= u1_C1[:,4]
+
+aa2= u1_C2[:,0]
+ba2= u1_C2[:,1]
+ca2= u1_C2[:,2]
+da2= u1_C2[:,3]
+ea2= u1_C2[:,4]
+
+aa3= u1_C3[:,0]
+ba3= u1_C3[:,1]
+ca3= u1_C3[:,2]
+da3= u1_C3[:,3]
+ea3= u1_C3[:,4]
+
+aa4= u1_C4[:,0]
+ba4= u1_C4[:,1]
+ca4= u1_C4[:,2]
+da4= u1_C4[:,3]
+ea4= u1_C4[:,4]
+
+aa5= u1_C5[:,0]
+ba5= u1_C5[:,1]
+ca5= u1_C5[:,2]
+da5= u1_C5[:,3]
+ea5= u1_C5[:,4]
+
+aa6= u1_C6[:,0]
+ba6= u1_C6[:,1]
+ca6= u1_C6[:,2]
+da6= u1_C6[:,3]
+ea6= u1_C6[:,4]
+
+
+ft1ttab = [59,309,577,755,1182,2000,2207,2844,3041,3201,3357,3444,3799,4036,4472,5022,5458,5981,6294,6944,7188,7921]
+
+ftab =    [135,385,643,805,1240,2063,2280,2900,3114,3268,3407,3546,3908,4090,4570,5112,5554,6050,6391,7063,7270,8008]
+#gatab =    [117,380,629,823,1226,2045,2246,2887,3074,3271,3416,3472,3884,4110,4523,5104,5499,6066,6357,7016,7246,7985]                                       
+#hatab =    [111,375,627,844,1234,2127,2247,2944,3092,3343,3428,3498,3984,4126,4541,5132,5500,6081,6449,7002,7248,7995]
+#iatab =    [115,381,633,843,1220,2084,2251,2917,3091,3267,3434,3499,3887,4149,4550,5136,5552,6081,6427,7041,7269,8001]
+#jatab =    [115,381,633,843,1220,2084,2251,2917,3091,3267,3434,3499,3887,4149,4550,5136,5552,6081,6427,7041,7269,8001]
+#katab =    [115,381,633,843,1220,2084,2251,2917,3091,3267,3434,3499,3887,4149,4550,5136,5552,6081,6427,7041,7269,8001]
+
+ua11ttab = []
+ua12ttab = []
+ua13ttab = []
+ua14ttab = []
+ua15ttab = []
+
+ua21ttab = []
+ua22ttab = []
+ua23ttab = []
+ua24ttab = []
+ua25ttab = []
+
+ua31ttab = []
+ua32ttab = []
+ua33ttab = []
+ua34ttab = []
+ua35ttab = []
+
+ua41ttab = []
+ua42ttab = []
+ua43ttab = []
+ua44ttab = []
+ua45ttab = []
+
+ua51ttab = []
+ua52ttab = []
+ua53ttab = []
+ua54ttab = []
+ua55ttab = []
+
+ua61ttab = []
+ua62ttab = []
+ua63ttab = []
+ua64ttab = []
+ua65ttab = []
+
+for n in range(len(ft1ttab)):
+
+  if ft1ttab[n] == 59 or ft1ttab[n] == 309 or ft1ttab[n] == 2207 or ft1ttab[n] == 2844 or ft1ttab[n] == 3444 or ft1ttab[n] == 4036 or ft1ttab[n] == 5458 or ft1ttab[n] == 7921:
+    k1a = np.min(aa1[ft1ttab[n]:ftab[n]])
+    l1a = np.min(ba1[ft1ttab[n]:ftab[n]])
+    m1a = np.min(ca1[ft1ttab[n]:ftab[n]])
+    o1a = np.min(da1[ft1ttab[n]:ftab[n]])
+    p1a = np.min(ea1[ft1ttab[n]:ftab[n]])
+
+    k2a = np.min(aa2[ft1ttab[n]:ftab[n]])
+    l2a = np.min(ba2[ft1ttab[n]:ftab[n]])
+    m2a = np.min(ca2[ft1ttab[n]:ftab[n]])
+    o2a = np.min(da2[ft1ttab[n]:ftab[n]])
+    p2a = np.min(ea2[ft1ttab[n]:ftab[n]])
+
+    k3a = np.min(aa3[ft1ttab[n]:ftab[n]])
+    l3a = np.min(ba3[ft1ttab[n]:ftab[n]])
+    m3a = np.min(ca3[ft1ttab[n]:ftab[n]])
+    o3a = np.min(da3[ft1ttab[n]:ftab[n]])
+    p3a = np.min(ea3[ft1ttab[n]:ftab[n]])
+
+    k4a = np.min(aa4[ft1ttab[n]:ftab[n]])
+    l4a = np.min(ba4[ft1ttab[n]:ftab[n]])
+    m4a = np.min(ca4[ft1ttab[n]:ftab[n]])
+    o4a = np.min(da4[ft1ttab[n]:ftab[n]])
+    p4a = np.min(ea4[ft1ttab[n]:ftab[n]])
+
+    k5a = np.min(aa5[ft1ttab[n]:ftab[n]])
+    l5a = np.min(ba5[ft1ttab[n]:ftab[n]])
+    m5a = np.min(ca5[ft1ttab[n]:ftab[n]])
+    o5a = np.min(da5[ft1ttab[n]:ftab[n]])
+    p5a = np.min(ea5[ft1ttab[n]:ftab[n]])
+
+    k6a = np.min(aa6[ft1ttab[n]:ftab[n]])
+    l6a = np.min(ba6[ft1ttab[n]:ftab[n]])
+    m6a = np.min(ca6[ft1ttab[n]:ftab[n]])
+    o6a = np.min(da6[ft1ttab[n]:ftab[n]])
+    p6a = np.min(ea6[ft1ttab[n]:ftab[n]])
+
+    kaa = (np.where(aa1 == k1a)[0]).tolist()
+    laa = (np.where(ba1 == l1a)[0]).tolist()
+    maa = (np.where(ca1 == m1a)[0]).tolist()
+    oaa = (np.where(da1 == o1a)[0]).tolist()
+    paa = (np.where(ea1 == p1a)[0]).tolist()
+
+    kba = (np.where(aa2 == k2a)[0]).tolist()
+    lba = (np.where(ba2 == l2a)[0]).tolist()
+    mba = (np.where(ca2 == m2a)[0]).tolist()
+    oba = (np.where(da2 == o2a)[0]).tolist()
+    pba = (np.where(ea2 == p2a)[0]).tolist()
+
+    kca = (np.where(aa3 == k3a)[0]).tolist()
+    lca = (np.where(ba3 == l3a)[0]).tolist()
+    mca = (np.where(ca3 == m3a)[0]).tolist()
+    oca = (np.where(da3 == o3a)[0]).tolist()
+    pca = (np.where(ea3 == p3a)[0]).tolist()
+
+    kda = (np.where(aa4 == k4a)[0]).tolist()
+    lda = (np.where(ba4 == l4a)[0]).tolist()
+    mda = (np.where(ca4 == m4a)[0]).tolist()
+    oda = (np.where(da4 == o4a)[0]).tolist()
+    pda = (np.where(ea4 == p4a)[0]).tolist()
+
+    kea = (np.where(aa5 == k5a)[0]).tolist()
+    lea = (np.where(ba5 == l5a)[0]).tolist()
+    mea = (np.where(ca5 == m5a)[0]).tolist()
+    oea = (np.where(da5 == o5a)[0]).tolist()
+    pea = (np.where(ea5 == p5a)[0]).tolist()
+
+    kfa = (np.where(aa6 == k6a)[0]).tolist()
+    lfa = (np.where(ba6 == l6a)[0]).tolist()
+    mfa = (np.where(ca6 == m6a)[0]).tolist()
+    ofa = (np.where(da6 == o6a)[0]).tolist()
+    pfa = (np.where(ea6 == p6a)[0]).tolist()
+
+    ua11ttab.extend(kaa)
+    ua12ttab.extend(laa)
+    ua13ttab.extend(maa)
+    ua14ttab.extend(oaa)
+    ua15ttab.extend(paa)
+
+    ua21ttab.extend(kba)
+    ua22ttab.extend(lba)
+    ua23ttab.extend(mba)
+    ua24ttab.extend(oba)
+    ua25ttab.extend(pba)
+
+    ua31ttab.extend(kca)
+    ua32ttab.extend(lca)
+    ua33ttab.extend(mca)
+    ua34ttab.extend(oca)
+    ua35ttab.extend(pca)
+
+    ua41ttab.extend(kda)
+    ua42ttab.extend(lda)
+    ua43ttab.extend(mda)
+    ua44ttab.extend(oda)
+    ua45ttab.extend(pda)
+
+    ua51ttab.extend(kea)
+    ua52ttab.extend(lea)
+    ua53ttab.extend(mea)
+    ua54ttab.extend(oea)
+    ua55ttab.extend(pea)
+
+    ua61ttab.extend(kfa)
+    ua62ttab.extend(lfa)
+    ua63ttab.extend(mfa)
+    ua64ttab.extend(ofa)
+    ua65ttab.extend(pfa)
+
+  if ft1ttab[n] == 577 or ft1ttab[n] == 755 or ft1ttab[n] == 1182 or ft1ttab[n] == 2000 or ft1ttab[n] == 3041 or ft1ttab[n] == 3201 or ft1ttab[n] == 3357 or ft1ttab[n] == 3799 or ft1ttab[n] == 4472 or ft1ttab[n] == 5022 or ft1ttab[n] == 5981 or ft1ttab[n] == 6294 or ft1ttab[n] == 6944 or ft1ttab[n] == 7188:
+    k1a = np.min(aa1[ft1ttab[n]:ftab[n]])
+    l1a = np.min(ba1[ft1ttab[n]:ftab[n]])
+    m1a = np.min(ca1[ft1ttab[n]:ftab[n]])
+    o1a = np.min(da1[ft1ttab[n]:ftab[n]])
+    p1a = np.min(ea1[ft1ttab[n]:ftab[n]])
+
+    k2a = np.min(aa2[ft1ttab[n]:ftab[n]])
+    l2a = np.min(ba2[ft1ttab[n]:ftab[n]])
+    m2a = np.min(ca2[ft1ttab[n]:ftab[n]])
+    o2a = np.min(da2[ft1ttab[n]:ftab[n]])
+    p2a = np.min(ea2[ft1ttab[n]:ftab[n]])
+
+    k3a = np.min(aa3[ft1ttab[n]:ftab[n]])
+    l3a = np.min(ba3[ft1ttab[n]:ftab[n]])
+    m3a = np.min(ca3[ft1ttab[n]:ftab[n]])
+    o3a = np.min(da3[ft1ttab[n]:ftab[n]])
+    p3a = np.min(ea3[ft1ttab[n]:ftab[n]])
+
+    k4a = np.min(aa4[ft1ttab[n]:ftab[n]])
+    l4a = np.min(ba4[ft1ttab[n]:ftab[n]])
+    m4a = np.min(ca4[ft1ttab[n]:ftab[n]])
+    o4a = np.min(da4[ft1ttab[n]:ftab[n]])
+    p4a = np.min(ea4[ft1ttab[n]:ftab[n]])
+
+    k5a = np.min(aa5[ft1ttab[n]:ftab[n]])
+    l5a = np.min(ba5[ft1ttab[n]:ftab[n]])
+    m5a = np.min(ca5[ft1ttab[n]:ftab[n]])
+    o5a = np.min(da5[ft1ttab[n]:ftab[n]])
+    p5a = np.min(ea5[ft1ttab[n]:ftab[n]])
+
+    k6a = np.min(aa6[ft1ttab[n]:ftab[n]])
+    l6a = np.min(ba6[ft1ttab[n]:ftab[n]])
+    m6a = np.min(ca6[ft1ttab[n]:ftab[n]])
+    o6a = np.min(da6[ft1ttab[n]:ftab[n]])
+    p6a = np.min(ea6[ft1ttab[n]:ftab[n]])
+
+    kaa = (np.where(aa1 == k1a)[0]).tolist()
+    laa = (np.where(ba1 == l1a)[0]).tolist()
+    maa = (np.where(ca1 == m1a)[0]).tolist()
+    oaa = (np.where(da1 == o1a)[0]).tolist()
+    paa = (np.where(ea1 == p1a)[0]).tolist()
+
+    kba = (np.where(aa2 == k2a)[0]).tolist()
+    lba = (np.where(ba2 == l2a)[0]).tolist()
+    mba = (np.where(ca2 == m2a)[0]).tolist()
+    oba = (np.where(da2 == o2a)[0]).tolist()
+    pba = (np.where(ea2 == p2a)[0]).tolist()
+
+    kca = (np.where(aa3 == k3a)[0]).tolist()
+    lca = (np.where(ba3 == l3a)[0]).tolist()
+    mca = (np.where(ca3 == m3a)[0]).tolist()
+    oca = (np.where(da3 == o3a)[0]).tolist()
+    pca = (np.where(ea3 == p3a)[0]).tolist()
+
+    kda = (np.where(aa4 == k4a)[0]).tolist()
+    lda = (np.where(ba4 == l4a)[0]).tolist()
+    mda = (np.where(ca4 == m4a)[0]).tolist()
+    oda = (np.where(da4 == o4a)[0]).tolist()
+    pda = (np.where(ea4 == p4a)[0]).tolist()
+
+    kea = (np.where(aa5 == k5a)[0]).tolist()
+    lea = (np.where(ba5 == l5a)[0]).tolist()
+    mea = (np.where(ca5 == m5a)[0]).tolist()
+    oea = (np.where(da5 == o5a)[0]).tolist()
+    pea = (np.where(ea5 == p5a)[0]).tolist()
+
+    kfa = (np.where(aa6 == k6a)[0]).tolist()
+    lfa = (np.where(ba6 == l6a)[0]).tolist()
+    mfa = (np.where(ca6 == m6a)[0]).tolist()
+    ofa = (np.where(da6 == o6a)[0]).tolist()
+    pfa = (np.where(ea6 == p6a)[0]).tolist()
+
+    ua11ttab.extend(kaa)
+    ua12ttab.extend(laa)
+    ua13ttab.extend(maa)
+    ua14ttab.extend(oaa)
+    ua15ttab.extend(paa)
+
+    ua21ttab.extend(kba)
+    ua22ttab.extend(lba)
+    ua23ttab.extend(mba)
+    ua24ttab.extend(oba)
+    ua25ttab.extend(pba)
+
+    ua31ttab.extend(kca)
+    ua32ttab.extend(lca)
+    ua33ttab.extend(mca)
+    ua34ttab.extend(oca)
+    ua35ttab.extend(pca)
+
+    ua41ttab.extend(kda)
+    ua42ttab.extend(lda)
+    ua43ttab.extend(mda)
+    ua44ttab.extend(oda)
+    ua45ttab.extend(pda)
+
+    ua51ttab.extend(kea)
+    ua52ttab.extend(lea)
+    ua53ttab.extend(mea)
+    ua54ttab.extend(oea)
+    ua55ttab.extend(pea)
+
+    ua61ttab.extend(kfa)
+    ua62ttab.extend(lfa)
+    ua63ttab.extend(mfa)
+    ua64ttab.extend(ofa)
+    ua65ttab.extend(pfa)
+
+ua11ttab.remove(1523)
+
+
+qa1tab = []
+ra1tab = []
+sa1tab = []
+ta1tab = []
+ua1tab = []
+
+qa2tab = []
+ra2tab = []
+sa2tab = []
+ta2tab = []
+ua2tab = []
+
+qa3tab = []
+ra3tab = []
+sa3tab = []
+ta3tab = []
+ua3tab = []
+
+qa4tab = []
+ra4tab = []
+sa4tab = []
+ta4tab = []
+ua4tab = []
+
+qa5tab = []
+ra5tab = []
+sa5tab = []
+ta5tab = []
+ua5tab = []
+
+qa6tab = []
+ra6tab = []
+sa6tab = []
+ta6tab = []
+ua6tab = []
+
+for i in range(len(ft1ttab)):
+  va1 = abs(ft1ttab[i] - ua11ttab[i])
+  wa1 = abs(ft1ttab[i] - ua12ttab[i])
+  xa1 = abs(ft1ttab[i] - ua13ttab[i])
+  ya1 = abs(ft1ttab[i] - ua14ttab[i])
+  za1 = abs(ft1ttab[i] - ua15ttab[i])
+
+  va2 = abs(ft1ttab[i] - ua21ttab[i])
+  wa2 = abs(ft1ttab[i] - ua22ttab[i])
+  xa2 = abs(ft1ttab[i] - ua23ttab[i])
+  ya2 = abs(ft1ttab[i] - ua24ttab[i])
+  za2 = abs(ft1ttab[i] - ua25ttab[i])
+
+  va3 = abs(ft1ttab[i] - ua31ttab[i])
+  wa3 = abs(ft1ttab[i] - ua32ttab[i])
+  xa3 = abs(ft1ttab[i] - ua33ttab[i])
+  ya3 = abs(ft1ttab[i] - ua34ttab[i])
+  za3 = abs(ft1ttab[i] - ua35ttab[i])
+
+  va4 = abs(ft1ttab[i] - ua41ttab[i])
+  wa4 = abs(ft1ttab[i] - ua42ttab[i])
+  xa4 = abs(ft1ttab[i] - ua43ttab[i])
+  ya4 = abs(ft1ttab[i] - ua44ttab[i])
+  za4 = abs(ft1ttab[i] - ua45ttab[i])
+
+  va5 = abs(ft1ttab[i] - ua51ttab[i])
+  wa5 = abs(ft1ttab[i] - ua52ttab[i])
+  xa5 = abs(ft1ttab[i] - ua53ttab[i])
+  ya5 = abs(ft1ttab[i] - ua54ttab[i])
+  za5 = abs(ft1ttab[i] - ua55ttab[i])
+
+  va6 = abs(ft1ttab[i] - ua61ttab[i])
+  wa6 = abs(ft1ttab[i] - ua62ttab[i])
+  xa6 = abs(ft1ttab[i] - ua63ttab[i])
+  ya6 = abs(ft1ttab[i] - ua64ttab[i])
+  za6 = abs(ft1ttab[i] - ua65ttab[i])
+
+  qa1tab.append(va1)
+  ra1tab.append(wa1)
+  sa1tab.append(xa1)
+  ta1tab.append(ya1)
+  ua1tab.append(za1)
+
+  qa2tab.append(va2)
+  ra2tab.append(wa2)
+  sa2tab.append(xa2)
+  ta2tab.append(ya2)
+  ua2tab.append(za2)
+  
+  qa3tab.append(va3)
+  ra3tab.append(wa3)
+  sa3tab.append(xa3)
+  ta3tab.append(ya3)
+  ua3tab.append(za3)
+
+  qa4tab.append(va4)
+  ra4tab.append(wa4)
+  sa4tab.append(xa4)
+  ta4tab.append(ya4)
+  ua4tab.append(za4)
+
+  qa5tab.append(va5)
+  ra5tab.append(wa5)
+  sa5tab.append(xa5)
+  ta5tab.append(ya5)
+  ua5tab.append(za5)
+
+  qa6tab.append(va6)
+  ra6tab.append(wa6)
+  sa6tab.append(xa6)
+  ta6tab.append(ya6)
+  ua6tab.append(za6)
+
+aaa1 = sum(qa1tab)/len(qa1tab)/100
+bba1 = sum(ra1tab)/len(qa1tab)/100
+cca1 = sum(sa1tab)/len(qa1tab)/100
+dda1 = sum(ta1tab)/len(qa1tab)/100
+eea1 = sum(ua1tab)/len(qa1tab)/100
+
+aaa2 = sum(qa2tab)/len(qa1tab)/100
+bba2 = sum(ra2tab)/len(qa1tab)/100
+cca2 = sum(sa2tab)/len(qa1tab)/100
+dda2 = sum(ta2tab)/len(qa1tab)/100
+eea2 = sum(ua2tab)/len(qa1tab)/100
+
+aaa3 = sum(qa3tab)/len(qa1tab)/100
+bba3 = sum(ra3tab)/len(qa1tab)/100
+cca3 = sum(sa3tab)/len(qa1tab)/100
+dda3 = sum(ta3tab)/len(qa1tab)/100
+eea3 = sum(ua3tab)/len(qa1tab)/100
+
+aaa4 = sum(qa4tab)/len(qa1tab)/100
+bba4 = sum(ra4tab)/len(qa1tab)/100
+cca4 = sum(sa4tab)/len(qa1tab)/100
+dda4 = sum(ta4tab)/len(qa1tab)/100
+eea4 = sum(ua4tab)/len(qa1tab)/100
+
+aaa5 = sum(qa5tab)/len(qa1tab)/100
+bba5 = sum(ra5tab)/len(qa1tab)/100
+cca5 = sum(sa5tab)/len(qa1tab)/100
+dda5 = sum(ta5tab)/len(qa1tab)/100
+eea5 = sum(ua5tab)/len(qa1tab)/100
+
+aaa6 = sum(qa6tab)/len(qa1tab)/100
+bba6 = sum(ra6tab)/len(qa1tab)/100
+cca6 = sum(sa6tab)/len(qa1tab)/100
+dda6 = sum(ta6tab)/len(qa1tab)/100
+eea6 = sum(ua6tab)/len(qa1tab)/100
+
+print(aaa1,bba1,cca1,dda1,eea1)
+print((aaa1+bba1+cca1+dda1+eea1)/5)
+scattertab1.append((aaa1+bba1+cca1+dda1+eea1)/5)
+
+print(aaa2,bba2,cca2,dda2,eea2)
+print((aaa2+bba2+cca2+dda2+eea2)/5)
+scattertab1.append((aaa2+bba2+cca2+dda2+eea2)/5)
+
+print(aaa3,bba3,cca3,dda3,eea3)
+print((aaa3+bba3+cca3+dda3+eea3)/5)
+scattertab1.append((aaa3+bba3+cca3+dda3+eea3)/5)
+
+print(aaa4,bba4,cca4,dda4,eea4)
+print((aaa4+bba4+cca4+dda4+eea4)/5)
+scattertab1.append((aaa4+bba4+cca4+dda4+eea4)/5)
+
+print(aaa5,bba5,cca5,dda5,eea5)
+print((aaa5+bba5+cca5+dda5+eea5)/5)
+scattertab1.append((aaa5+bba5+cca5+dda5+eea5)/5)
+
+print(aaa6,bba6,cca6,dda6,eea6)
+print((aaa6+bba6+cca6+dda6+eea6)/5)
+scattertab1.append((aaa6+bba6+cca6+dda6+eea6)/5)
+
+#-----------------------Pilot 2----------------------#
+print("Pilot 2")
+ab1= u2_C1[:,0]
+bb1= u2_C1[:,1]
+cb1= u2_C1[:,2]
+db1= u2_C1[:,3]
+eb1= u2_C1[:,4]
+
+ab2= u2_C2[:,0]
+bb2= u2_C2[:,1]
+cb2= u2_C2[:,2]
+db2= u2_C2[:,3]
+eb2= u2_C2[:,4]
+
+ab3= u2_C3[:,0]
+bb3= u2_C3[:,1]
+cb3= u2_C3[:,2]
+db3= u2_C3[:,3]
+eb3= u2_C3[:,4]
+
+ab4= u2_C4[:,0]
+bb4= u2_C4[:,1]
+cb4= u2_C4[:,2]
+db4= u2_C4[:,3]
+eb4= u2_C4[:,4]
+
+ab5= u2_C5[:,0]
+bb5= u2_C5[:,1]
+cb5= u2_C5[:,2]
+db5= u2_C5[:,3]
+eb5= u2_C5[:,4]
+
+ab6= u2_C6[:,0]
+bb6= u2_C6[:,1]
+cb6= u2_C6[:,2]
+db6= u2_C6[:,3]
+eb6= u2_C6[:,4]
+
+ft1ttab = [59,309,577,755,1182,2000,2207,2844,3041,3201,3357,3444,3799,4036,4472,5022,5458,5981,6294,6944,7188,7921]
+
+ftab =    [135,385,643,805,1240,2063,2280,2900,3114,3268,3407,3546,3908,4090,4570,5112,5554,6050,6391,7063,7270,8008]
+#gatab =    [117,380,629,823,1226,2045,2246,2887,3074,3271,3416,3472,3884,4110,4523,5104,5499,6066,6357,7016,7246,7985]                                       
+#hatab =    [111,375,627,844,1234,2127,2247,2944,3092,3343,3428,3498,3984,4126,4541,5132,5500,6081,6449,7002,7248,7995]
+#iatab =    [115,381,633,843,1220,2084,2251,2917,3091,3267,3434,3499,3887,4149,4550,5136,5552,6081,6427,7041,7269,8001]
+#jatab =    [115,381,633,843,1220,2084,2251,2917,3091,3267,3434,3499,3887,4149,4550,5136,5552,6081,6427,7041,7269,8001]
+#katab =    [115,381,633,843,1220,2084,2251,2917,3091,3267,3434,3499,3887,4149,4550,5136,5552,6081,6427,7041,7269,8001]
+
+ub11ttab = []
+ub12ttab = []
+ub13ttab = []
+ub14ttab = []
+ub15ttab = []
+
+ub21ttab = []
+ub22ttab = []
+ub23ttab = []
+ub24ttab = []
+ub25ttab = []
+
+ub31ttab = []
+ub32ttab = []
+ub33ttab = []
+ub34ttab = []
+ub35ttab = []
+
+ub41ttab = []
+ub42ttab = []
+ub43ttab = []
+ub44ttab = []
+ub45ttab = []
+
+ub51ttab = []
+ub52ttab = []
+ub53ttab = []
+ub54ttab = []
+ub55ttab = []
+
+ub61ttab = []
+ub62ttab = []
+ub63ttab = []
+ub64ttab = []
+ub65ttab = []
+
+for n in range(len(ft1ttab)):
+
+  if ft1ttab[n] == 59 or ft1ttab[n] == 309 or ft1ttab[n] == 2207 or ft1ttab[n] == 2844 or ft1ttab[n] == 3444 or ft1ttab[n] == 4036 or ft1ttab[n] == 5458 or ft1ttab[n] == 7921:
+    k1b = np.min(ab1[ft1ttab[n]:ftab[n]])
+    l1b = np.min(bb1[ft1ttab[n]:ftab[n]])
+    m1b = np.min(cb1[ft1ttab[n]:ftab[n]])
+    o1b = np.min(db1[ft1ttab[n]:ftab[n]])
+    p1b = np.min(eb1[ft1ttab[n]:ftab[n]])
+
+    k2b = np.min(ab2[ft1ttab[n]:ftab[n]])
+    l2b = np.min(bb2[ft1ttab[n]:ftab[n]])
+    m2b = np.min(cb2[ft1ttab[n]:ftab[n]])
+    o2b = np.min(db2[ft1ttab[n]:ftab[n]])
+    p2b = np.min(eb2[ft1ttab[n]:ftab[n]])
+
+    k3b = np.min(ab3[ft1ttab[n]:ftab[n]])
+    l3b = np.min(bb3[ft1ttab[n]:ftab[n]])
+    m3b = np.min(cb3[ft1ttab[n]:ftab[n]])
+    o3b = np.min(db3[ft1ttab[n]:ftab[n]])
+    p3b = np.min(eb3[ft1ttab[n]:ftab[n]])
+
+    k4b = np.min(ab4[ft1ttab[n]:ftab[n]])
+    l4b = np.min(bb4[ft1ttab[n]:ftab[n]])
+    m4b = np.min(cb4[ft1ttab[n]:ftab[n]])
+    o4b = np.min(db4[ft1ttab[n]:ftab[n]])
+    p4b = np.min(eb4[ft1ttab[n]:ftab[n]])
+
+    k5b = np.min(ab5[ft1ttab[n]:ftab[n]])
+    l5b = np.min(bb5[ft1ttab[n]:ftab[n]])
+    m5b = np.min(cb5[ft1ttab[n]:ftab[n]])
+    o5b = np.min(db5[ft1ttab[n]:ftab[n]])
+    p5b = np.min(eb5[ft1ttab[n]:ftab[n]])
+
+    k6b = np.min(ab6[ft1ttab[n]:ftab[n]])
+    l6b = np.min(bb6[ft1ttab[n]:ftab[n]])
+    m6b = np.min(cb6[ft1ttab[n]:ftab[n]])
+    o6b = np.min(db6[ft1ttab[n]:ftab[n]])
+    p6b = np.min(eb6[ft1ttab[n]:ftab[n]])
+
+    kab = (np.where(ab1 == k1b)[0]).tolist()
+    lab = (np.where(bb1 == l1b)[0]).tolist()
+    mab = (np.where(cb1 == m1b)[0]).tolist()
+    oab = (np.where(db1 == o1b)[0]).tolist()
+    pab = (np.where(eb1 == p1b)[0]).tolist()
+    
+    kbb = (np.where(ab2 == k2b)[0]).tolist()
+    lbb = (np.where(bb2 == l2b)[0]).tolist()
+    mbb = (np.where(cb2 == m2b)[0]).tolist()
+    obb = (np.where(db2 == o2b)[0]).tolist()
+    pbb = (np.where(eb2 == p2b)[0]).tolist()
+
+    kcb = (np.where(ab3 == k3b)[0]).tolist()
+    lcb = (np.where(bb3 == l3b)[0]).tolist()
+    mcb = (np.where(cb3 == m3b)[0]).tolist()
+    ocb = (np.where(db3 == o3b)[0]).tolist()
+    pcb = (np.where(eb3 == p3b)[0]).tolist()
+
+    kdb = (np.where(ab4 == k4b)[0]).tolist()
+    ldb = (np.where(bb4 == l4b)[0]).tolist()
+    mdb = (np.where(cb4 == m4b)[0]).tolist()
+    odb = (np.where(db4 == o4b)[0]).tolist()
+    pdb = (np.where(eb4 == p4b)[0]).tolist()
+    
+    keb = (np.where(ab5 == k5b)[0]).tolist()
+    leb = (np.where(bb5 == l5b)[0]).tolist()
+    meb = (np.where(cb5 == m5b)[0]).tolist()
+    oeb = (np.where(db5 == o5b)[0]).tolist()
+    peb = (np.where(eb5 == p5b)[0]).tolist()
+    
+    kfb = (np.where(ab6 == k6b)[0]).tolist()
+    lfb = (np.where(bb6 == l6b)[0]).tolist()
+    mfb = (np.where(cb6 == m6b)[0]).tolist()
+    ofb = (np.where(db6 == o6b)[0]).tolist()
+    pfb = (np.where(eb6 == p6b)[0]).tolist()
+
+    ub11ttab.extend(kab)
+    ub12ttab.extend(lab)
+    ub13ttab.extend(mab)
+    ub14ttab.extend(oab)
+    ub15ttab.extend(pab)
+
+    ub21ttab.extend(kbb)
+    ub22ttab.extend(lbb)
+    ub23ttab.extend(mbb)
+    ub24ttab.extend(obb)
+    ub25ttab.extend(pbb)
+
+    ub31ttab.extend(kcb)
+    ub32ttab.extend(lcb)
+    ub33ttab.extend(mcb)
+    ub34ttab.extend(ocb)
+    ub35ttab.extend(pcb)
+
+    ub41ttab.extend(kdb)
+    ub42ttab.extend(ldb)
+    ub43ttab.extend(mdb)
+    ub44ttab.extend(odb)
+    ub45ttab.extend(pdb)
+
+    ub51ttab.extend(keb)
+    ub52ttab.extend(leb)
+    ub53ttab.extend(meb)
+    ub54ttab.extend(oeb)
+    ub55ttab.extend(peb)
+
+    ub61ttab.extend(kfb)
+    ub62ttab.extend(lfb)
+    ub63ttab.extend(mfb)
+    ub64ttab.extend(ofb)
+    ub65ttab.extend(pfb)
+
+  if ft1ttab[n] == 577 or ft1ttab[n] == 755 or ft1ttab[n] == 1182 or ft1ttab[n] == 2000 or ft1ttab[n] == 3041 or ft1ttab[n] == 3201 or ft1ttab[n] == 3357 or ft1ttab[n] == 3799 or ft1ttab[n] == 4472 or ft1ttab[n] == 5022 or ft1ttab[n] == 5981 or ft1ttab[n] == 6294 or ft1ttab[n] == 6944 or ft1ttab[n] == 7188:
+    k1b = np.min(ab1[ft1ttab[n]:ftab[n]])
+    l1b = np.min(bb1[ft1ttab[n]:ftab[n]])
+    m1b = np.min(cb1[ft1ttab[n]:ftab[n]])
+    o1b = np.min(db1[ft1ttab[n]:ftab[n]])
+    p1b = np.min(eb1[ft1ttab[n]:ftab[n]])
+
+    k2b = np.min(ab2[ft1ttab[n]:ftab[n]])
+    l2b = np.min(bb2[ft1ttab[n]:ftab[n]])
+    m2b = np.min(cb2[ft1ttab[n]:ftab[n]])
+    o2b = np.min(db2[ft1ttab[n]:ftab[n]])
+    p2b = np.min(eb2[ft1ttab[n]:ftab[n]])
+
+    k3b = np.min(ab3[ft1ttab[n]:ftab[n]])
+    l3b = np.min(bb3[ft1ttab[n]:ftab[n]])
+    m3b = np.min(cb3[ft1ttab[n]:ftab[n]])
+    o3b = np.min(db3[ft1ttab[n]:ftab[n]])
+    p3b = np.min(eb3[ft1ttab[n]:ftab[n]])
+
+    k4b = np.min(ab4[ft1ttab[n]:ftab[n]])
+    l4b = np.min(bb4[ft1ttab[n]:ftab[n]])
+    m4b = np.min(cb4[ft1ttab[n]:ftab[n]])
+    o4b = np.min(db4[ft1ttab[n]:ftab[n]])
+    p4b = np.min(eb4[ft1ttab[n]:ftab[n]])
+
+    k5b = np.min(ab5[ft1ttab[n]:ftab[n]])
+    l5b = np.min(bb5[ft1ttab[n]:ftab[n]])
+    m5b = np.min(cb5[ft1ttab[n]:ftab[n]])
+    o5b = np.min(db5[ft1ttab[n]:ftab[n]])
+    p5b = np.min(eb5[ft1ttab[n]:ftab[n]])
+
+    k6b = np.min(ab6[ft1ttab[n]:ftab[n]])
+    l6b = np.min(bb6[ft1ttab[n]:ftab[n]])
+    m6b = np.min(cb6[ft1ttab[n]:ftab[n]])
+    o6b = np.min(db6[ft1ttab[n]:ftab[n]])
+    p6b = np.min(eb6[ft1ttab[n]:ftab[n]])
+
+    kab = (np.where(ab1 == k1b)[0]).tolist()
+    lab = (np.where(bb1 == l1b)[0]).tolist()
+    mab = (np.where(cb1 == m1b)[0]).tolist()
+    oab = (np.where(db1 == o1b)[0]).tolist()
+    pab = (np.where(eb1 == p1b)[0]).tolist()
+    
+    kbb = (np.where(ab2 == k2b)[0]).tolist()
+    lbb = (np.where(bb2 == l2b)[0]).tolist()
+    mbb = (np.where(cb2 == m2b)[0]).tolist()
+    obb = (np.where(db2 == o2b)[0]).tolist()
+    pbb = (np.where(eb2 == p2b)[0]).tolist()
+
+    kcb = (np.where(ab3 == k3b)[0]).tolist()
+    lcb = (np.where(bb3 == l3b)[0]).tolist()
+    mcb = (np.where(cb3 == m3b)[0]).tolist()
+    ocb = (np.where(db3 == o3b)[0]).tolist()
+    pcb = (np.where(eb3 == p3b)[0]).tolist()
+
+    kdb = (np.where(ab4 == k4b)[0]).tolist()
+    ldb = (np.where(bb4 == l4b)[0]).tolist()
+    mdb = (np.where(cb4 == m4b)[0]).tolist()
+    odb = (np.where(db4 == o4b)[0]).tolist()
+    pdb = (np.where(eb4 == p4b)[0]).tolist()
+    
+    keb = (np.where(ab5 == k5b)[0]).tolist()
+    leb = (np.where(bb5 == l5b)[0]).tolist()
+    meb = (np.where(cb5 == m5b)[0]).tolist()
+    oeb = (np.where(db5 == o5b)[0]).tolist()
+    peb = (np.where(eb5 == p5b)[0]).tolist()
+    
+    kfb = (np.where(ab6 == k6b)[0]).tolist()
+    lfb = (np.where(bb6 == l6b)[0]).tolist()
+    mfb = (np.where(cb6 == m6b)[0]).tolist()
+    ofb = (np.where(db6 == o6b)[0]).tolist()
+    pfb = (np.where(eb6 == p6b)[0]).tolist()
+
+    ub11ttab.extend(kab)
+    ub12ttab.extend(lab)
+    ub13ttab.extend(mab)
+    ub14ttab.extend(oab)
+    ub15ttab.extend(pab)
+
+    ub21ttab.extend(kbb)
+    ub22ttab.extend(lbb)
+    ub23ttab.extend(mbb)
+    ub24ttab.extend(obb)
+    ub25ttab.extend(pbb)
+
+    ub31ttab.extend(kcb)
+    ub32ttab.extend(lcb)
+    ub33ttab.extend(mcb)
+    ub34ttab.extend(ocb)
+    ub35ttab.extend(pcb)
+
+    ub41ttab.extend(kdb)
+    ub42ttab.extend(ldb)
+    ub43ttab.extend(mdb)
+    ub44ttab.extend(odb)
+    ub45ttab.extend(pdb)
+
+    ub51ttab.extend(keb)
+    ub52ttab.extend(leb)
+    ub53ttab.extend(meb)
+    ub54ttab.extend(oeb)
+    ub55ttab.extend(peb)
+
+    ub61ttab.extend(kfb)
+    ub62ttab.extend(lfb)
+    ub63ttab.extend(mfb)
+    ub64ttab.extend(ofb)
+    ub65ttab.extend(pfb)
+
+#ub11ttab.remove(1523)
+ub43ttab.remove(1416)
+
+
+qb1tab = []
+rb1tab = []
+sb1tab = []
+tb1tab = []
+ub1tab = []
+
+qb2tab = []
+rb2tab = []
+sb2tab = []
+tb2tab = []
+ub2tab = []
+
+qb3tab = []
+rb3tab = []
+sb3tab = []
+tb3tab = []
+ub3tab = []
+
+qb4tab = []
+rb4tab = []
+sb4tab = []
+tb4tab = []
+ub4tab = []
+
+qb5tab = []
+rb5tab = []
+sb5tab = []
+tb5tab = []
+ub5tab = []
+
+qb6tab = []
+rb6tab = []
+sb6tab = []
+tb6tab = []
+ub6tab = []
+
+for i in range(len(ft1ttab)):
+  vb1 = abs(ft1ttab[i] - ub11ttab[i])
+  wb1 = abs(ft1ttab[i] - ub12ttab[i])
+  xb1 = abs(ft1ttab[i] - ub13ttab[i])
+  yb1 = abs(ft1ttab[i] - ub14ttab[i])
+  zb1 = abs(ft1ttab[i] - ub15ttab[i])
+
+  vb2 = abs(ft1ttab[i] - ub21ttab[i])
+  wb2 = abs(ft1ttab[i] - ub22ttab[i])
+  xb2 = abs(ft1ttab[i] - ub23ttab[i])
+  yb2 = abs(ft1ttab[i] - ub24ttab[i])
+  zb2 = abs(ft1ttab[i] - ub25ttab[i])
+
+  vb3 = abs(ft1ttab[i] - ub31ttab[i])
+  wb3 = abs(ft1ttab[i] - ub32ttab[i])
+  xb3 = abs(ft1ttab[i] - ub33ttab[i])
+  yb3 = abs(ft1ttab[i] - ub34ttab[i])
+  zb3 = abs(ft1ttab[i] - ub35ttab[i])
+
+  vb4 = abs(ft1ttab[i] - ub41ttab[i])
+  wb4 = abs(ft1ttab[i] - ub42ttab[i])
+  xb4 = abs(ft1ttab[i] - ub43ttab[i])
+  yb4 = abs(ft1ttab[i] - ub44ttab[i])
+  zb4 = abs(ft1ttab[i] - ub45ttab[i])
+
+  vb5 = abs(ft1ttab[i] - ub51ttab[i])
+  wb5 = abs(ft1ttab[i] - ub52ttab[i])
+  xb5 = abs(ft1ttab[i] - ub53ttab[i])
+  yb5 = abs(ft1ttab[i] - ub54ttab[i])
+  zb5 = abs(ft1ttab[i] - ub55ttab[i])
+
+  vb6 = abs(ft1ttab[i] - ub61ttab[i])
+  wb6 = abs(ft1ttab[i] - ub62ttab[i])
+  xb6 = abs(ft1ttab[i] - ub63ttab[i])
+  yb6 = abs(ft1ttab[i] - ub64ttab[i])
+  zb6 = abs(ft1ttab[i] - ub65ttab[i])
+
+  qb1tab.append(vb1)
+  rb1tab.append(wb1)
+  sb1tab.append(xb1)
+  tb1tab.append(yb1)
+  ub1tab.append(zb1)
+
+  qb2tab.append(vb2)
+  rb2tab.append(wb2)
+  sb2tab.append(xb2)
+  tb2tab.append(yb2)
+  ub2tab.append(zb2)
+  
+  qb3tab.append(vb3)
+  rb3tab.append(wb3)
+  sb3tab.append(xb3)
+  tb3tab.append(yb3)
+  ub3tab.append(zb3)
+
+  qb4tab.append(vb4)
+  rb4tab.append(wb4)
+  sb4tab.append(xb4)
+  tb4tab.append(yb4)
+  ub4tab.append(zb4)
+
+  qb5tab.append(vb5)
+  rb5tab.append(wb5)
+  sb5tab.append(xb5)
+  tb5tab.append(yb5)
+  ub5tab.append(zb5)
+
+  qb6tab.append(vb6)
+  rb6tab.append(wb6)
+  sb6tab.append(xb6)
+  tb6tab.append(yb6)
+  ub6tab.append(zb6)
+
+aab1 = sum(qb1tab)/len(qb1tab)/100
+bbb1 = sum(rb1tab)/len(qb1tab)/100
+ccb1 = sum(sb1tab)/len(qb1tab)/100
+ddb1 = sum(tb1tab)/len(qb1tab)/100
+eeb1 = sum(ub1tab)/len(qb1tab)/100
+
+aab2 = sum(qb2tab)/len(qb1tab)/100
+bbb2 = sum(rb2tab)/len(qb1tab)/100
+ccb2 = sum(sb2tab)/len(qb1tab)/100
+ddb2 = sum(tb2tab)/len(qb1tab)/100
+eeb2 = sum(ub2tab)/len(qb1tab)/100
+
+aab3 = sum(qb3tab)/len(qb1tab)/100
+bbb3 = sum(rb3tab)/len(qb1tab)/100
+ccb3 = sum(sb3tab)/len(qb1tab)/100
+ddb3 = sum(tb3tab)/len(qb1tab)/100
+eeb3 = sum(ub3tab)/len(qb1tab)/100
+
+aab4 = sum(qb4tab)/len(qb1tab)/100
+bbb4 = sum(rb4tab)/len(qb1tab)/100
+ccb4 = sum(sb4tab)/len(qb1tab)/100
+ddb4 = sum(tb4tab)/len(qb1tab)/100
+eeb4 = sum(ub4tab)/len(qb1tab)/100
+
+aab5 = sum(qb5tab)/len(qb1tab)/100
+bbb5 = sum(rb5tab)/len(qb1tab)/100
+ccb5 = sum(sb5tab)/len(qb1tab)/100
+ddb5 = sum(tb5tab)/len(qb1tab)/100
+eeb5 = sum(ub5tab)/len(qb1tab)/100
+
+aab6 = sum(qb6tab)/len(qb1tab)/100
+bbb6 = sum(rb6tab)/len(qb1tab)/100
+ccb6 = sum(sb6tab)/len(qb1tab)/100
+ddb6 = sum(tb6tab)/len(qb1tab)/100
+eeb6 = sum(ub6tab)/len(qb1tab)/100
+
+print(aab1,bbb1,ccb1,ddb1,eeb1)
+print((aab1+bbb1+ccb1+ddb1+eeb1)/5)
+scattertab2.append((aab1+bbb1+ccb1+ddb1+eeb1)/5)
+
+print(aab2,bbb2,ccb2,ddb2,eeb2)
+print((aab2+bbb2+ccb2+ddb2+eeb2)/5)
+scattertab2.append((aab2+bbb2+ccb2+ddb2+eeb2)/5)
+
+print(aab3,bbb3,ccb3,ddb3,eeb3)
+print((aab3+bbb3+ccb3+ddb3+eeb3)/5)
+scattertab2.append((aab3+bbb3+ccb3+ddb3+eeb3)/5)
+
+print(aab4,bbb4,ccb4,ddb4,eeb4)
+print((aab4+bbb4+ccb4+ddb4+eeb4)/5)
+scattertab2.append((aab4+bbb4+ccb4+ddb4+eeb4)/5)
+
+print(aab5,bbb5,ccb5,ddb5,eeb5)
+print((aab5+bbb5+ccb5+ddb5+eeb5)/5)
+scattertab2.append((aab5+bbb5+ccb5+ddb5+eeb5)/5)
+
+print(aab6,bbb6,ccb6,ddb6,eeb6)
+print((aab6+bbb6+ccb6+ddb6+eeb6)/5)
+scattertab2.append((aab6+bbb6+ccb6+ddb6+eeb6)/5)
+
+#-----------------------Pilot 3----------------------#
+print("pilot3")
+aa1= u3_C1[:,0]
+ba1= u3_C1[:,1]
+ca1= u3_C1[:,2]
+da1= u3_C1[:,3]
+ea1= u3_C1[:,4]
+
+aa2= u3_C2[:,0]
+ba2= u3_C2[:,1]
+ca2= u3_C2[:,2]
+da2= u3_C2[:,3]
+ea2= u3_C2[:,4]
+
+aa3= u3_C3[:,0]
+ba3= u3_C3[:,1]
+ca3= u3_C3[:,2]
+da3= u3_C3[:,3]
+ea3= u3_C3[:,4]
+
+aa4= u3_C4[:,0]
+ba4= u3_C4[:,1]
+ca4= u3_C4[:,2]
+da4= u3_C4[:,3]
+ea4= u3_C4[:,4]
+
+aa5= u3_C5[:,0]
+ba5= u3_C5[:,1]
+ca5= u3_C5[:,2]
+da5= u3_C5[:,3]
+ea5= u3_C5[:,4]
+
+aa6= u3_C6[:,0]
+ba6= u3_C6[:,1]
+ca6= u3_C6[:,2]
+da6= u3_C6[:,3]
+ea6= u3_C6[:,4]
+
+
+ft1ttab = [59,309,577,755,1182,2000,2207,2844,3041,3201,3357,3444,3799,4036,4472,5022,5458,5981,6294,6944,7188,7921]
+
+ftab =    [135,385,643,805,1240,2063,2280,2900,3114,3268,3407,3546,3908,4090,4570,5112,5554,6050,6391,7063,7270,8008]
+#gatab =    [117,380,629,823,1226,2045,2246,2887,3074,3271,3416,3472,3884,4110,4523,5104,5499,6066,6357,7016,7246,7985]                                       
+#hatab =    [111,375,627,844,1234,2127,2247,2944,3092,3343,3428,3498,3984,4126,4541,5132,5500,6081,6449,7002,7248,7995]
+#iatab =    [115,381,633,843,1220,2084,2251,2917,3091,3267,3434,3499,3887,4149,4550,5136,5552,6081,6427,7041,7269,8001]
+#jatab =    [115,381,633,843,1220,2084,2251,2917,3091,3267,3434,3499,3887,4149,4550,5136,5552,6081,6427,7041,7269,8001]
+#katab =    [115,381,633,843,1220,2084,2251,2917,3091,3267,3434,3499,3887,4149,4550,5136,5552,6081,6427,7041,7269,8001]
+
+ua11ttab = []
+ua12ttab = []
+ua13ttab = []
+ua14ttab = []
+ua15ttab = []
+
+ua21ttab = []
+ua22ttab = []
+ua23ttab = []
+ua24ttab = []
+ua25ttab = []
+
+ua31ttab = []
+ua32ttab = []
+ua33ttab = []
+ua34ttab = []
+ua35ttab = []
+
+ua41ttab = []
+ua42ttab = []
+ua43ttab = []
+ua44ttab = []
+ua45ttab = []
+
+ua51ttab = []
+ua52ttab = []
+ua53ttab = []
+ua54ttab = []
+ua55ttab = []
+
+ua61ttab = []
+ua62ttab = []
+ua63ttab = []
+ua64ttab = []
+ua65ttab = []
+
+for n in range(len(ft1ttab)):
+
+  if ft1ttab[n] == 59 or ft1ttab[n] == 309 or ft1ttab[n] == 2207 or ft1ttab[n] == 2844 or ft1ttab[n] == 3444 or ft1ttab[n] == 4036 or ft1ttab[n] == 5458 or ft1ttab[n] == 7921:
+    k1a = np.min(aa1[ft1ttab[n]:ftab[n]])
+    l1a = np.min(ba1[ft1ttab[n]:ftab[n]])
+    m1a = np.min(ca1[ft1ttab[n]:ftab[n]])
+    o1a = np.min(da1[ft1ttab[n]:ftab[n]])
+    p1a = np.min(ea1[ft1ttab[n]:ftab[n]])
+
+    k2a = np.min(aa2[ft1ttab[n]:ftab[n]])
+    l2a = np.min(ba2[ft1ttab[n]:ftab[n]])
+    m2a = np.min(ca2[ft1ttab[n]:ftab[n]])
+    o2a = np.min(da2[ft1ttab[n]:ftab[n]])
+    p2a = np.min(ea2[ft1ttab[n]:ftab[n]])
+
+    k3a = np.min(aa3[ft1ttab[n]:ftab[n]])
+    l3a = np.min(ba3[ft1ttab[n]:ftab[n]])
+    m3a = np.min(ca3[ft1ttab[n]:ftab[n]])
+    o3a = np.min(da3[ft1ttab[n]:ftab[n]])
+    p3a = np.min(ea3[ft1ttab[n]:ftab[n]])
+
+    k4a = np.min(aa4[ft1ttab[n]:ftab[n]])
+    l4a = np.min(ba4[ft1ttab[n]:ftab[n]])
+    m4a = np.min(ca4[ft1ttab[n]:ftab[n]])
+    o4a = np.min(da4[ft1ttab[n]:ftab[n]])
+    p4a = np.min(ea4[ft1ttab[n]:ftab[n]])
+
+    k5a = np.min(aa5[ft1ttab[n]:ftab[n]])
+    l5a = np.min(ba5[ft1ttab[n]:ftab[n]])
+    m5a = np.min(ca5[ft1ttab[n]:ftab[n]])
+    o5a = np.min(da5[ft1ttab[n]:ftab[n]])
+    p5a = np.min(ea5[ft1ttab[n]:ftab[n]])
+
+    k6a = np.min(aa6[ft1ttab[n]:ftab[n]])
+    l6a = np.min(ba6[ft1ttab[n]:ftab[n]])
+    m6a = np.min(ca6[ft1ttab[n]:ftab[n]])
+    o6a = np.min(da6[ft1ttab[n]:ftab[n]])
+    p6a = np.min(ea6[ft1ttab[n]:ftab[n]])
+
+    kaa = (np.where(aa1 == k1a)[0]).tolist()
+    laa = (np.where(ba1 == l1a)[0]).tolist()
+    maa = (np.where(ca1 == m1a)[0]).tolist()
+    oaa = (np.where(da1 == o1a)[0]).tolist()
+    paa = (np.where(ea1 == p1a)[0]).tolist()
+
+    kba = (np.where(aa2 == k2a)[0]).tolist()
+    lba = (np.where(ba2 == l2a)[0]).tolist()
+    mba = (np.where(ca2 == m2a)[0]).tolist()
+    oba = (np.where(da2 == o2a)[0]).tolist()
+    pba = (np.where(ea2 == p2a)[0]).tolist()
+
+    kca = (np.where(aa3 == k3a)[0]).tolist()
+    lca = (np.where(ba3 == l3a)[0]).tolist()
+    mca = (np.where(ca3 == m3a)[0]).tolist()
+    oca = (np.where(da3 == o3a)[0]).tolist()
+    pca = (np.where(ea3 == p3a)[0]).tolist()
+
+    kda = (np.where(aa4 == k4a)[0]).tolist()
+    lda = (np.where(ba4 == l4a)[0]).tolist()
+    mda = (np.where(ca4 == m4a)[0]).tolist()
+    oda = (np.where(da4 == o4a)[0]).tolist()
+    pda = (np.where(ea4 == p4a)[0]).tolist()
+
+    kea = (np.where(aa5 == k5a)[0]).tolist()
+    lea = (np.where(ba5 == l5a)[0]).tolist()
+    mea = (np.where(ca5 == m5a)[0]).tolist()
+    oea = (np.where(da5 == o5a)[0]).tolist()
+    pea = (np.where(ea5 == p5a)[0]).tolist()
+
+    kfa = (np.where(aa6 == k6a)[0]).tolist()
+    lfa = (np.where(ba6 == l6a)[0]).tolist()
+    mfa = (np.where(ca6 == m6a)[0]).tolist()
+    ofa = (np.where(da6 == o6a)[0]).tolist()
+    pfa = (np.where(ea6 == p6a)[0]).tolist()
+
+    ua11ttab.extend(kaa)
+    ua12ttab.extend(laa)
+    ua13ttab.extend(maa)
+    ua14ttab.extend(oaa)
+    ua15ttab.extend(paa)
+
+    ua21ttab.extend(kba)
+    ua22ttab.extend(lba)
+    ua23ttab.extend(mba)
+    ua24ttab.extend(oba)
+    ua25ttab.extend(pba)
+
+    ua31ttab.extend(kca)
+    ua32ttab.extend(lca)
+    ua33ttab.extend(mca)
+    ua34ttab.extend(oca)
+    ua35ttab.extend(pca)
+
+    ua41ttab.extend(kda)
+    ua42ttab.extend(lda)
+    ua43ttab.extend(mda)
+    ua44ttab.extend(oda)
+    ua45ttab.extend(pda)
+
+    ua51ttab.extend(kea)
+    ua52ttab.extend(lea)
+    ua53ttab.extend(mea)
+    ua54ttab.extend(oea)
+    ua55ttab.extend(pea)
+
+    ua61ttab.extend(kfa)
+    ua62ttab.extend(lfa)
+    ua63ttab.extend(mfa)
+    ua64ttab.extend(ofa)
+    ua65ttab.extend(pfa)
+
+  if ft1ttab[n] == 577 or ft1ttab[n] == 755 or ft1ttab[n] == 1182 or ft1ttab[n] == 2000 or ft1ttab[n] == 3041 or ft1ttab[n] == 3201 or ft1ttab[n] == 3357 or ft1ttab[n] == 3799 or ft1ttab[n] == 4472 or ft1ttab[n] == 5022 or ft1ttab[n] == 5981 or ft1ttab[n] == 6294 or ft1ttab[n] == 6944 or ft1ttab[n] == 7188:
+    k1a = np.min(aa1[ft1ttab[n]:ftab[n]])
+    l1a = np.min(ba1[ft1ttab[n]:ftab[n]])
+    m1a = np.min(ca1[ft1ttab[n]:ftab[n]])
+    o1a = np.min(da1[ft1ttab[n]:ftab[n]])
+    p1a = np.min(ea1[ft1ttab[n]:ftab[n]])
+
+    k2a = np.min(aa2[ft1ttab[n]:ftab[n]])
+    l2a = np.min(ba2[ft1ttab[n]:ftab[n]])
+    m2a = np.min(ca2[ft1ttab[n]:ftab[n]])
+    o2a = np.min(da2[ft1ttab[n]:ftab[n]])
+    p2a = np.min(ea2[ft1ttab[n]:ftab[n]])
+
+    k3a = np.min(aa3[ft1ttab[n]:ftab[n]])
+    l3a = np.min(ba3[ft1ttab[n]:ftab[n]])
+    m3a = np.min(ca3[ft1ttab[n]:ftab[n]])
+    o3a = np.min(da3[ft1ttab[n]:ftab[n]])
+    p3a = np.min(ea3[ft1ttab[n]:ftab[n]])
+
+    k4a = np.min(aa4[ft1ttab[n]:ftab[n]])
+    l4a = np.min(ba4[ft1ttab[n]:ftab[n]])
+    m4a = np.min(ca4[ft1ttab[n]:ftab[n]])
+    o4a = np.min(da4[ft1ttab[n]:ftab[n]])
+    p4a = np.min(ea4[ft1ttab[n]:ftab[n]])
+
+    k5a = np.min(aa5[ft1ttab[n]:ftab[n]])
+    l5a = np.min(ba5[ft1ttab[n]:ftab[n]])
+    m5a = np.min(ca5[ft1ttab[n]:ftab[n]])
+    o5a = np.min(da5[ft1ttab[n]:ftab[n]])
+    p5a = np.min(ea5[ft1ttab[n]:ftab[n]])
+
+    k6a = np.min(aa6[ft1ttab[n]:ftab[n]])
+    l6a = np.min(ba6[ft1ttab[n]:ftab[n]])
+    m6a = np.min(ca6[ft1ttab[n]:ftab[n]])
+    o6a = np.min(da6[ft1ttab[n]:ftab[n]])
+    p6a = np.min(ea6[ft1ttab[n]:ftab[n]])
+
+    kaa = (np.where(aa1 == k1a)[0]).tolist()
+    laa = (np.where(ba1 == l1a)[0]).tolist()
+    maa = (np.where(ca1 == m1a)[0]).tolist()
+    oaa = (np.where(da1 == o1a)[0]).tolist()
+    paa = (np.where(ea1 == p1a)[0]).tolist()
+
+    kba = (np.where(aa2 == k2a)[0]).tolist()
+    lba = (np.where(ba2 == l2a)[0]).tolist()
+    mba = (np.where(ca2 == m2a)[0]).tolist()
+    oba = (np.where(da2 == o2a)[0]).tolist()
+    pba = (np.where(ea2 == p2a)[0]).tolist()
+
+    kca = (np.where(aa3 == k3a)[0]).tolist()
+    lca = (np.where(ba3 == l3a)[0]).tolist()
+    mca = (np.where(ca3 == m3a)[0]).tolist()
+    oca = (np.where(da3 == o3a)[0]).tolist()
+    pca = (np.where(ea3 == p3a)[0]).tolist()
+
+    kda = (np.where(aa4 == k4a)[0]).tolist()
+    lda = (np.where(ba4 == l4a)[0]).tolist()
+    mda = (np.where(ca4 == m4a)[0]).tolist()
+    oda = (np.where(da4 == o4a)[0]).tolist()
+    pda = (np.where(ea4 == p4a)[0]).tolist()
+
+    kea = (np.where(aa5 == k5a)[0]).tolist()
+    lea = (np.where(ba5 == l5a)[0]).tolist()
+    mea = (np.where(ca5 == m5a)[0]).tolist()
+    oea = (np.where(da5 == o5a)[0]).tolist()
+    pea = (np.where(ea5 == p5a)[0]).tolist()
+
+    kfa = (np.where(aa6 == k6a)[0]).tolist()
+    lfa = (np.where(ba6 == l6a)[0]).tolist()
+    mfa = (np.where(ca6 == m6a)[0]).tolist()
+    ofa = (np.where(da6 == o6a)[0]).tolist()
+    pfa = (np.where(ea6 == p6a)[0]).tolist()
+
+    ua11ttab.extend(kaa)
+    ua12ttab.extend(laa)
+    ua13ttab.extend(maa)
+    ua14ttab.extend(oaa)
+    ua15ttab.extend(paa)
+
+    ua21ttab.extend(kba)
+    ua22ttab.extend(lba)
+    ua23ttab.extend(mba)
+    ua24ttab.extend(oba)
+    ua25ttab.extend(pba)
+
+    ua31ttab.extend(kca)
+    ua32ttab.extend(lca)
+    ua33ttab.extend(mca)
+    ua34ttab.extend(oca)
+    ua35ttab.extend(pca)
+
+    ua41ttab.extend(kda)
+    ua42ttab.extend(lda)
+    ua43ttab.extend(mda)
+    ua44ttab.extend(oda)
+    ua45ttab.extend(pda)
+
+    ua51ttab.extend(kea)
+    ua52ttab.extend(lea)
+    ua53ttab.extend(mea)
+    ua54ttab.extend(oea)
+    ua55ttab.extend(pea)
+
+    ua61ttab.extend(kfa)
+    ua62ttab.extend(lfa)
+    ua63ttab.extend(mfa)
+    ua64ttab.extend(ofa)
+    ua65ttab.extend(pfa)
+
+#ua11ttab.remove(1523)
+
+
+qa1tab = []
+ra1tab = []
+sa1tab = []
+ta1tab = []
+ua1tab = []
+
+qa2tab = []
+ra2tab = []
+sa2tab = []
+ta2tab = []
+ua2tab = []
+
+qa3tab = []
+ra3tab = []
+sa3tab = []
+ta3tab = []
+ua3tab = []
+
+qa4tab = []
+ra4tab = []
+sa4tab = []
+ta4tab = []
+ua4tab = []
+
+qa5tab = []
+ra5tab = []
+sa5tab = []
+ta5tab = []
+ua5tab = []
+
+qa6tab = []
+ra6tab = []
+sa6tab = []
+ta6tab = []
+ua6tab = []
+
+for i in range(len(ft1ttab)):
+  va1 = abs(ft1ttab[i] - ua11ttab[i])
+  wa1 = abs(ft1ttab[i] - ua12ttab[i])
+  xa1 = abs(ft1ttab[i] - ua13ttab[i])
+  ya1 = abs(ft1ttab[i] - ua14ttab[i])
+  za1 = abs(ft1ttab[i] - ua15ttab[i])
+
+  va2 = abs(ft1ttab[i] - ua21ttab[i])
+  wa2 = abs(ft1ttab[i] - ua22ttab[i])
+  xa2 = abs(ft1ttab[i] - ua23ttab[i])
+  ya2 = abs(ft1ttab[i] - ua24ttab[i])
+  za2 = abs(ft1ttab[i] - ua25ttab[i])
+
+  va3 = abs(ft1ttab[i] - ua31ttab[i])
+  wa3 = abs(ft1ttab[i] - ua32ttab[i])
+  xa3 = abs(ft1ttab[i] - ua33ttab[i])
+  ya3 = abs(ft1ttab[i] - ua34ttab[i])
+  za3 = abs(ft1ttab[i] - ua35ttab[i])
+
+  va4 = abs(ft1ttab[i] - ua41ttab[i])
+  wa4 = abs(ft1ttab[i] - ua42ttab[i])
+  xa4 = abs(ft1ttab[i] - ua43ttab[i])
+  ya4 = abs(ft1ttab[i] - ua44ttab[i])
+  za4 = abs(ft1ttab[i] - ua45ttab[i])
+
+  va5 = abs(ft1ttab[i] - ua51ttab[i])
+  wa5 = abs(ft1ttab[i] - ua52ttab[i])
+  xa5 = abs(ft1ttab[i] - ua53ttab[i])
+  ya5 = abs(ft1ttab[i] - ua54ttab[i])
+  za5 = abs(ft1ttab[i] - ua55ttab[i])
+
+  va6 = abs(ft1ttab[i] - ua61ttab[i])
+  wa6 = abs(ft1ttab[i] - ua62ttab[i])
+  xa6 = abs(ft1ttab[i] - ua63ttab[i])
+  ya6 = abs(ft1ttab[i] - ua64ttab[i])
+  za6 = abs(ft1ttab[i] - ua65ttab[i])
+
+  qa1tab.append(va1)
+  ra1tab.append(wa1)
+  sa1tab.append(xa1)
+  ta1tab.append(ya1)
+  ua1tab.append(za1)
+
+  qa2tab.append(va2)
+  ra2tab.append(wa2)
+  sa2tab.append(xa2)
+  ta2tab.append(ya2)
+  ua2tab.append(za2)
+  
+  qa3tab.append(va3)
+  ra3tab.append(wa3)
+  sa3tab.append(xa3)
+  ta3tab.append(ya3)
+  ua3tab.append(za3)
+
+  qa4tab.append(va4)
+  ra4tab.append(wa4)
+  sa4tab.append(xa4)
+  ta4tab.append(ya4)
+  ua4tab.append(za4)
+
+  qa5tab.append(va5)
+  ra5tab.append(wa5)
+  sa5tab.append(xa5)
+  ta5tab.append(ya5)
+  ua5tab.append(za5)
+
+  qa6tab.append(va6)
+  ra6tab.append(wa6)
+  sa6tab.append(xa6)
+  ta6tab.append(ya6)
+  ua6tab.append(za6)
+
+aaa1 = sum(qa1tab)/len(qa1tab)/100
+bba1 = sum(ra1tab)/len(qa1tab)/100
+cca1 = sum(sa1tab)/len(qa1tab)/100
+dda1 = sum(ta1tab)/len(qa1tab)/100
+eea1 = sum(ua1tab)/len(qa1tab)/100
+
+aaa2 = sum(qa2tab)/len(qa1tab)/100
+bba2 = sum(ra2tab)/len(qa1tab)/100
+cca2 = sum(sa2tab)/len(qa1tab)/100
+dda2 = sum(ta2tab)/len(qa1tab)/100
+eea2 = sum(ua2tab)/len(qa1tab)/100
+
+aaa3 = sum(qa3tab)/len(qa1tab)/100
+bba3 = sum(ra3tab)/len(qa1tab)/100
+cca3 = sum(sa3tab)/len(qa1tab)/100
+dda3 = sum(ta3tab)/len(qa1tab)/100
+eea3 = sum(ua3tab)/len(qa1tab)/100
+
+aaa4 = sum(qa4tab)/len(qa1tab)/100
+bba4 = sum(ra4tab)/len(qa1tab)/100
+cca4 = sum(sa4tab)/len(qa1tab)/100
+dda4 = sum(ta4tab)/len(qa1tab)/100
+eea4 = sum(ua4tab)/len(qa1tab)/100
+
+aaa5 = sum(qa5tab)/len(qa1tab)/100
+bba5 = sum(ra5tab)/len(qa1tab)/100
+cca5 = sum(sa5tab)/len(qa1tab)/100
+dda5 = sum(ta5tab)/len(qa1tab)/100
+eea5 = sum(ua5tab)/len(qa1tab)/100
+
+aaa6 = sum(qa6tab)/len(qa1tab)/100
+bba6 = sum(ra6tab)/len(qa1tab)/100
+cca6 = sum(sa6tab)/len(qa1tab)/100
+dda6 = sum(ta6tab)/len(qa1tab)/100
+eea6 = sum(ua6tab)/len(qa1tab)/100
+
+print(aaa1,bba1,cca1,dda1,eea1)
+print((aaa1+bba1+cca1+dda1+eea1)/5)
+scattertab3.append((aaa1+bba1+cca1+dda1+eea1)/5)
+
+print(aaa2,bba2,cca2,dda2,eea2)
+print((aaa2+bba2+cca2+dda2+eea2)/5)
+scattertab3.append((aaa2+bba2+cca2+dda2+eea2)/5)
+
+print(aaa3,bba3,cca3,dda3,eea3)
+print((aaa3+bba3+cca3+dda3+eea3)/5)
+scattertab3.append((aaa3+bba3+cca3+dda3+eea3)/5)
+
+print(aaa4,bba4,cca4,dda4,eea4)
+print((aaa4+bba4+cca4+dda4+eea4)/5)
+scattertab3.append((aaa4+bba4+cca4+dda4+eea4)/5)
+
+print(aaa5,bba5,cca5,dda5,eea5)
+print((aaa5+bba5+cca5+dda5+eea5)/5)
+scattertab3.append((aaa5+bba5+cca5+dda5+eea5)/5)
+
+print(aaa6,bba6,cca6,dda6,eea6)
+print((aaa6+bba6+cca6+dda6+eea6)/5)
+scattertab3.append((aaa6+bba6+cca6+dda6+eea6)/5)
+
+#-----------------------Pilot 4----------------------#
+print("Pilot 4")
+aa1= u4_C1[:,0]
+ba1= u4_C1[:,1]
+ca1= u4_C1[:,2]
+da1= u4_C1[:,3]
+ea1= u4_C1[:,4]
+
+aa2= u4_C2[:,0]
+ba2= u4_C2[:,1]
+ca2= u4_C2[:,2]
+da2= u4_C2[:,3]
+ea2= u4_C2[:,4]
+
+aa3= u4_C3[:,0]
+ba3= u4_C3[:,1]
+ca3= u4_C3[:,2]
+da3= u4_C3[:,3]
+ea3= u4_C3[:,4]
+
+aa4= u4_C4[:,0]
+ba4= u4_C4[:,1]
+ca4= u4_C4[:,2]
+da4= u4_C4[:,3]
+ea4= u4_C4[:,4]
+
+aa5= u4_C5[:,0]
+ba5= u4_C5[:,1]
+ca5= u4_C5[:,2]
+da5= u4_C5[:,3]
+ea5= u4_C5[:,4]
+
+aa6= u4_C6[:,0]
+ba6= u4_C6[:,1]
+ca6= u4_C6[:,2]
+da6= u4_C6[:,3]
+ea6= u4_C6[:,4]
+
+
+ft1ttab = [59,309,577,755,1182,2000,2207,2844,3041,3201,3357,3444,3799,4036,4472,5022,5458,5981,6294,6944,7188,7921]
+
+ftab =    [135,385,643,805,1240,2063,2280,2900,3114,3268,3407,3546,3908,4090,4570,5112,5554,6050,6391,7063,7270,8008]
+#gatab =    [117,380,629,823,1226,2045,2246,2887,3074,3271,3416,3472,3884,4110,4523,5104,5499,6066,6357,7016,7246,7985]                                       
+#hatab =    [111,375,627,844,1234,2127,2247,2944,3092,3343,3428,3498,3984,4126,4541,5132,5500,6081,6449,7002,7248,7995]
+#iatab =    [115,381,633,843,1220,2084,2251,2917,3091,3267,3434,3499,3887,4149,4550,5136,5552,6081,6427,7041,7269,8001]
+#jatab =    [115,381,633,843,1220,2084,2251,2917,3091,3267,3434,3499,3887,4149,4550,5136,5552,6081,6427,7041,7269,8001]
+#katab =    [115,381,633,843,1220,2084,2251,2917,3091,3267,3434,3499,3887,4149,4550,5136,5552,6081,6427,7041,7269,8001]
+
+ua11ttab = []
+ua12ttab = []
+ua13ttab = []
+ua14ttab = []
+ua15ttab = []
+
+ua21ttab = []
+ua22ttab = []
+ua23ttab = []
+ua24ttab = []
+ua25ttab = []
+
+ua31ttab = []
+ua32ttab = []
+ua33ttab = []
+ua34ttab = []
+ua35ttab = []
+
+ua41ttab = []
+ua42ttab = []
+ua43ttab = []
+ua44ttab = []
+ua45ttab = []
+
+ua51ttab = []
+ua52ttab = []
+ua53ttab = []
+ua54ttab = []
+ua55ttab = []
+
+ua61ttab = []
+ua62ttab = []
+ua63ttab = []
+ua64ttab = []
+ua65ttab = []
+
+for n in range(len(ft1ttab)):
+
+  if ft1ttab[n] == 59 or ft1ttab[n] == 309 or ft1ttab[n] == 2207 or ft1ttab[n] == 2844 or ft1ttab[n] == 3444 or ft1ttab[n] == 4036 or ft1ttab[n] == 5458 or ft1ttab[n] == 7921:
+    k1a = np.min(aa1[ft1ttab[n]:ftab[n]])
+    l1a = np.min(ba1[ft1ttab[n]:ftab[n]])
+    m1a = np.min(ca1[ft1ttab[n]:ftab[n]])
+    o1a = np.min(da1[ft1ttab[n]:ftab[n]])
+    p1a = np.min(ea1[ft1ttab[n]:ftab[n]])
+
+    k2a = np.min(aa2[ft1ttab[n]:ftab[n]])
+    l2a = np.min(ba2[ft1ttab[n]:ftab[n]])
+    m2a = np.min(ca2[ft1ttab[n]:ftab[n]])
+    o2a = np.min(da2[ft1ttab[n]:ftab[n]])
+    p2a = np.min(ea2[ft1ttab[n]:ftab[n]])
+
+    k3a = np.min(aa3[ft1ttab[n]:ftab[n]])
+    l3a = np.min(ba3[ft1ttab[n]:ftab[n]])
+    m3a = np.min(ca3[ft1ttab[n]:ftab[n]])
+    o3a = np.min(da3[ft1ttab[n]:ftab[n]])
+    p3a = np.min(ea3[ft1ttab[n]:ftab[n]])
+
+    k4a = np.min(aa4[ft1ttab[n]:ftab[n]])
+    l4a = np.min(ba4[ft1ttab[n]:ftab[n]])
+    m4a = np.min(ca4[ft1ttab[n]:ftab[n]])
+    o4a = np.min(da4[ft1ttab[n]:ftab[n]])
+    p4a = np.min(ea4[ft1ttab[n]:ftab[n]])
+
+    k5a = np.min(aa5[ft1ttab[n]:ftab[n]])
+    l5a = np.min(ba5[ft1ttab[n]:ftab[n]])
+    m5a = np.min(ca5[ft1ttab[n]:ftab[n]])
+    o5a = np.min(da5[ft1ttab[n]:ftab[n]])
+    p5a = np.min(ea5[ft1ttab[n]:ftab[n]])
+
+    k6a = np.min(aa6[ft1ttab[n]:ftab[n]])
+    l6a = np.min(ba6[ft1ttab[n]:ftab[n]])
+    m6a = np.min(ca6[ft1ttab[n]:ftab[n]])
+    o6a = np.min(da6[ft1ttab[n]:ftab[n]])
+    p6a = np.min(ea6[ft1ttab[n]:ftab[n]])
+
+    kaa = (np.where(aa1 == k1a)[0]).tolist()
+    laa = (np.where(ba1 == l1a)[0]).tolist()
+    maa = (np.where(ca1 == m1a)[0]).tolist()
+    oaa = (np.where(da1 == o1a)[0]).tolist()
+    paa = (np.where(ea1 == p1a)[0]).tolist()
+
+    kba = (np.where(aa2 == k2a)[0]).tolist()
+    lba = (np.where(ba2 == l2a)[0]).tolist()
+    mba = (np.where(ca2 == m2a)[0]).tolist()
+    oba = (np.where(da2 == o2a)[0]).tolist()
+    pba = (np.where(ea2 == p2a)[0]).tolist()
+
+    kca = (np.where(aa3 == k3a)[0]).tolist()
+    lca = (np.where(ba3 == l3a)[0]).tolist()
+    mca = (np.where(ca3 == m3a)[0]).tolist()
+    oca = (np.where(da3 == o3a)[0]).tolist()
+    pca = (np.where(ea3 == p3a)[0]).tolist()
+
+    kda = (np.where(aa4 == k4a)[0]).tolist()
+    lda = (np.where(ba4 == l4a)[0]).tolist()
+    mda = (np.where(ca4 == m4a)[0]).tolist()
+    oda = (np.where(da4 == o4a)[0]).tolist()
+    pda = (np.where(ea4 == p4a)[0]).tolist()
+
+    kea = (np.where(aa5 == k5a)[0]).tolist()
+    lea = (np.where(ba5 == l5a)[0]).tolist()
+    mea = (np.where(ca5 == m5a)[0]).tolist()
+    oea = (np.where(da5 == o5a)[0]).tolist()
+    pea = (np.where(ea5 == p5a)[0]).tolist()
+
+    kfa = (np.where(aa6 == k6a)[0]).tolist()
+    lfa = (np.where(ba6 == l6a)[0]).tolist()
+    mfa = (np.where(ca6 == m6a)[0]).tolist()
+    ofa = (np.where(da6 == o6a)[0]).tolist()
+    pfa = (np.where(ea6 == p6a)[0]).tolist()
+
+    ua11ttab.extend(kaa)
+    ua12ttab.extend(laa)
+    ua13ttab.extend(maa)
+    ua14ttab.extend(oaa)
+    ua15ttab.extend(paa)
+
+    ua21ttab.extend(kba)
+    ua22ttab.extend(lba)
+    ua23ttab.extend(mba)
+    ua24ttab.extend(oba)
+    ua25ttab.extend(pba)
+
+    ua31ttab.extend(kca)
+    ua32ttab.extend(lca)
+    ua33ttab.extend(mca)
+    ua34ttab.extend(oca)
+    ua35ttab.extend(pca)
+
+    ua41ttab.extend(kda)
+    ua42ttab.extend(lda)
+    ua43ttab.extend(mda)
+    ua44ttab.extend(oda)
+    ua45ttab.extend(pda)
+
+    ua51ttab.extend(kea)
+    ua52ttab.extend(lea)
+    ua53ttab.extend(mea)
+    ua54ttab.extend(oea)
+    ua55ttab.extend(pea)
+
+    ua61ttab.extend(kfa)
+    ua62ttab.extend(lfa)
+    ua63ttab.extend(mfa)
+    ua64ttab.extend(ofa)
+    ua65ttab.extend(pfa)
+
+  if ft1ttab[n] == 577 or ft1ttab[n] == 755 or ft1ttab[n] == 1182 or ft1ttab[n] == 2000 or ft1ttab[n] == 3041 or ft1ttab[n] == 3201 or ft1ttab[n] == 3357 or ft1ttab[n] == 3799 or ft1ttab[n] == 4472 or ft1ttab[n] == 5022 or ft1ttab[n] == 5981 or ft1ttab[n] == 6294 or ft1ttab[n] == 6944 or ft1ttab[n] == 7188:
+    k1a = np.min(aa1[ft1ttab[n]:ftab[n]])
+    l1a = np.min(ba1[ft1ttab[n]:ftab[n]])
+    m1a = np.min(ca1[ft1ttab[n]:ftab[n]])
+    o1a = np.min(da1[ft1ttab[n]:ftab[n]])
+    p1a = np.min(ea1[ft1ttab[n]:ftab[n]])
+
+    k2a = np.min(aa2[ft1ttab[n]:ftab[n]])
+    l2a = np.min(ba2[ft1ttab[n]:ftab[n]])
+    m2a = np.min(ca2[ft1ttab[n]:ftab[n]])
+    o2a = np.min(da2[ft1ttab[n]:ftab[n]])
+    p2a = np.min(ea2[ft1ttab[n]:ftab[n]])
+
+    k3a = np.min(aa3[ft1ttab[n]:ftab[n]])
+    l3a = np.min(ba3[ft1ttab[n]:ftab[n]])
+    m3a = np.min(ca3[ft1ttab[n]:ftab[n]])
+    o3a = np.min(da3[ft1ttab[n]:ftab[n]])
+    p3a = np.min(ea3[ft1ttab[n]:ftab[n]])
+
+    k4a = np.min(aa4[ft1ttab[n]:ftab[n]])
+    l4a = np.min(ba4[ft1ttab[n]:ftab[n]])
+    m4a = np.min(ca4[ft1ttab[n]:ftab[n]])
+    o4a = np.min(da4[ft1ttab[n]:ftab[n]])
+    p4a = np.min(ea4[ft1ttab[n]:ftab[n]])
+
+    k5a = np.min(aa5[ft1ttab[n]:ftab[n]])
+    l5a = np.min(ba5[ft1ttab[n]:ftab[n]])
+    m5a = np.min(ca5[ft1ttab[n]:ftab[n]])
+    o5a = np.min(da5[ft1ttab[n]:ftab[n]])
+    p5a = np.min(ea5[ft1ttab[n]:ftab[n]])
+
+    k6a = np.min(aa6[ft1ttab[n]:ftab[n]])
+    l6a = np.min(ba6[ft1ttab[n]:ftab[n]])
+    m6a = np.min(ca6[ft1ttab[n]:ftab[n]])
+    o6a = np.min(da6[ft1ttab[n]:ftab[n]])
+    p6a = np.min(ea6[ft1ttab[n]:ftab[n]])
+
+    kaa = (np.where(aa1 == k1a)[0]).tolist()
+    laa = (np.where(ba1 == l1a)[0]).tolist()
+    maa = (np.where(ca1 == m1a)[0]).tolist()
+    oaa = (np.where(da1 == o1a)[0]).tolist()
+    paa = (np.where(ea1 == p1a)[0]).tolist()
+
+    kba = (np.where(aa2 == k2a)[0]).tolist()
+    lba = (np.where(ba2 == l2a)[0]).tolist()
+    mba = (np.where(ca2 == m2a)[0]).tolist()
+    oba = (np.where(da2 == o2a)[0]).tolist()
+    pba = (np.where(ea2 == p2a)[0]).tolist()
+
+    kca = (np.where(aa3 == k3a)[0]).tolist()
+    lca = (np.where(ba3 == l3a)[0]).tolist()
+    mca = (np.where(ca3 == m3a)[0]).tolist()
+    oca = (np.where(da3 == o3a)[0]).tolist()
+    pca = (np.where(ea3 == p3a)[0]).tolist()
+
+    kda = (np.where(aa4 == k4a)[0]).tolist()
+    lda = (np.where(ba4 == l4a)[0]).tolist()
+    mda = (np.where(ca4 == m4a)[0]).tolist()
+    oda = (np.where(da4 == o4a)[0]).tolist()
+    pda = (np.where(ea4 == p4a)[0]).tolist()
+
+    kea = (np.where(aa5 == k5a)[0]).tolist()
+    lea = (np.where(ba5 == l5a)[0]).tolist()
+    mea = (np.where(ca5 == m5a)[0]).tolist()
+    oea = (np.where(da5 == o5a)[0]).tolist()
+    pea = (np.where(ea5 == p5a)[0]).tolist()
+
+    kfa = (np.where(aa6 == k6a)[0]).tolist()
+    lfa = (np.where(ba6 == l6a)[0]).tolist()
+    mfa = (np.where(ca6 == m6a)[0]).tolist()
+    ofa = (np.where(da6 == o6a)[0]).tolist()
+    pfa = (np.where(ea6 == p6a)[0]).tolist()
+
+    ua11ttab.extend(kaa)
+    ua12ttab.extend(laa)
+    ua13ttab.extend(maa)
+    ua14ttab.extend(oaa)
+    ua15ttab.extend(paa)
+
+    ua21ttab.extend(kba)
+    ua22ttab.extend(lba)
+    ua23ttab.extend(mba)
+    ua24ttab.extend(oba)
+    ua25ttab.extend(pba)
+
+    ua31ttab.extend(kca)
+    ua32ttab.extend(lca)
+    ua33ttab.extend(mca)
+    ua34ttab.extend(oca)
+    ua35ttab.extend(pca)
+
+    ua41ttab.extend(kda)
+    ua42ttab.extend(lda)
+    ua43ttab.extend(mda)
+    ua44ttab.extend(oda)
+    ua45ttab.extend(pda)
+
+    ua51ttab.extend(kea)
+    ua52ttab.extend(lea)
+    ua53ttab.extend(mea)
+    ua54ttab.extend(oea)
+    ua55ttab.extend(pea)
+
+    ua61ttab.extend(kfa)
+    ua62ttab.extend(lfa)
+    ua63ttab.extend(mfa)
+    ua64ttab.extend(ofa)
+    ua65ttab.extend(pfa)
+
+#ua11ttab.remove(1523)
+
+
+
+qa1tab = []
+ra1tab = []
+sa1tab = []
+ta1tab = []
+ua1tab = []
+
+qa2tab = []
+ra2tab = []
+sa2tab = []
+ta2tab = []
+ua2tab = []
+
+qa3tab = []
+ra3tab = []
+sa3tab = []
+ta3tab = []
+ua3tab = []
+
+qa4tab = []
+ra4tab = []
+sa4tab = []
+ta4tab = []
+ua4tab = []
+
+qa5tab = []
+ra5tab = []
+sa5tab = []
+ta5tab = []
+ua5tab = []
+
+qa6tab = []
+ra6tab = []
+sa6tab = []
+ta6tab = []
+ua6tab = []
+
+for i in range(len(ft1ttab)):
+  va1 = abs(ft1ttab[i] - ua11ttab[i])
+  wa1 = abs(ft1ttab[i] - ua12ttab[i])
+  xa1 = abs(ft1ttab[i] - ua13ttab[i])
+  ya1 = abs(ft1ttab[i] - ua14ttab[i])
+  za1 = abs(ft1ttab[i] - ua15ttab[i])
+
+  va2 = abs(ft1ttab[i] - ua21ttab[i])
+  wa2 = abs(ft1ttab[i] - ua22ttab[i])
+  xa2 = abs(ft1ttab[i] - ua23ttab[i])
+  ya2 = abs(ft1ttab[i] - ua24ttab[i])
+  za2 = abs(ft1ttab[i] - ua25ttab[i])
+
+  va3 = abs(ft1ttab[i] - ua31ttab[i])
+  wa3 = abs(ft1ttab[i] - ua32ttab[i])
+  xa3 = abs(ft1ttab[i] - ua33ttab[i])
+  ya3 = abs(ft1ttab[i] - ua34ttab[i])
+  za3 = abs(ft1ttab[i] - ua35ttab[i])
+
+  va4 = abs(ft1ttab[i] - ua41ttab[i])
+  wa4 = abs(ft1ttab[i] - ua42ttab[i])
+  xa4 = abs(ft1ttab[i] - ua43ttab[i])
+  ya4 = abs(ft1ttab[i] - ua44ttab[i])
+  za4 = abs(ft1ttab[i] - ua45ttab[i])
+
+  va5 = abs(ft1ttab[i] - ua51ttab[i])
+  wa5 = abs(ft1ttab[i] - ua52ttab[i])
+  xa5 = abs(ft1ttab[i] - ua53ttab[i])
+  ya5 = abs(ft1ttab[i] - ua54ttab[i])
+  za5 = abs(ft1ttab[i] - ua55ttab[i])
+
+  va6 = abs(ft1ttab[i] - ua61ttab[i])
+  wa6 = abs(ft1ttab[i] - ua62ttab[i])
+  xa6 = abs(ft1ttab[i] - ua63ttab[i])
+  ya6 = abs(ft1ttab[i] - ua64ttab[i])
+  za6 = abs(ft1ttab[i] - ua65ttab[i])
+
+  qa1tab.append(va1)
+  ra1tab.append(wa1)
+  sa1tab.append(xa1)
+  ta1tab.append(ya1)
+  ua1tab.append(za1)
+
+  qa2tab.append(va2)
+  ra2tab.append(wa2)
+  sa2tab.append(xa2)
+  ta2tab.append(ya2)
+  ua2tab.append(za2)
+  
+  qa3tab.append(va3)
+  ra3tab.append(wa3)
+  sa3tab.append(xa3)
+  ta3tab.append(ya3)
+  ua3tab.append(za3)
+
+  qa4tab.append(va4)
+  ra4tab.append(wa4)
+  sa4tab.append(xa4)
+  ta4tab.append(ya4)
+  ua4tab.append(za4)
+
+  qa5tab.append(va5)
+  ra5tab.append(wa5)
+  sa5tab.append(xa5)
+  ta5tab.append(ya5)
+  ua5tab.append(za5)
+
+  qa6tab.append(va6)
+  ra6tab.append(wa6)
+  sa6tab.append(xa6)
+  ta6tab.append(ya6)
+  ua6tab.append(za6)
+
+aaa1 = sum(qa1tab)/len(qa1tab)/100
+bba1 = sum(ra1tab)/len(qa1tab)/100
+cca1 = sum(sa1tab)/len(qa1tab)/100
+dda1 = sum(ta1tab)/len(qa1tab)/100
+eea1 = sum(ua1tab)/len(qa1tab)/100
+
+aaa2 = sum(qa2tab)/len(qa1tab)/100
+bba2 = sum(ra2tab)/len(qa1tab)/100
+cca2 = sum(sa2tab)/len(qa1tab)/100
+dda2 = sum(ta2tab)/len(qa1tab)/100
+eea2 = sum(ua2tab)/len(qa1tab)/100
+
+aaa3 = sum(qa3tab)/len(qa1tab)/100
+bba3 = sum(ra3tab)/len(qa1tab)/100
+cca3 = sum(sa3tab)/len(qa1tab)/100
+dda3 = sum(ta3tab)/len(qa1tab)/100
+eea3 = sum(ua3tab)/len(qa1tab)/100
+
+aaa4 = sum(qa4tab)/len(qa1tab)/100
+bba4 = sum(ra4tab)/len(qa1tab)/100
+cca4 = sum(sa4tab)/len(qa1tab)/100
+dda4 = sum(ta4tab)/len(qa1tab)/100
+eea4 = sum(ua4tab)/len(qa1tab)/100
+
+aaa5 = sum(qa5tab)/len(qa1tab)/100
+bba5 = sum(ra5tab)/len(qa1tab)/100
+cca5 = sum(sa5tab)/len(qa1tab)/100
+dda5 = sum(ta5tab)/len(qa1tab)/100
+eea5 = sum(ua5tab)/len(qa1tab)/100
+
+aaa6 = sum(qa6tab)/len(qa1tab)/100
+bba6 = sum(ra6tab)/len(qa1tab)/100
+cca6 = sum(sa6tab)/len(qa1tab)/100
+dda6 = sum(ta6tab)/len(qa1tab)/100
+eea6 = sum(ua6tab)/len(qa1tab)/100
+
+print(aaa1,bba1,cca1,dda1,eea1)
+print((aaa1+bba1+cca1+dda1+eea1)/5)
+scattertab4.append((aaa1+bba1+cca1+dda1+eea1)/5)
+
+print(aaa2,bba2,cca2,dda2,eea2)
+print((aaa2+bba2+cca2+dda2+eea2)/5)
+scattertab4.append((aaa2+bba2+cca2+dda2+eea2)/5)
+
+print(aaa3,bba3,cca3,dda3,eea3)
+print((aaa3+bba3+cca3+dda3+eea3)/5)
+scattertab4.append((aaa3+bba3+cca3+dda3+eea3)/5)
+
+print(aaa4,bba4,cca4,dda4,eea4)
+print((aaa4+bba4+cca4+dda4+eea4)/5)
+scattertab4.append((aaa4+bba4+cca4+dda4+eea4)/5)
+
+print(aaa5,bba5,cca5,dda5,eea5)
+print((aaa5+bba5+cca5+dda5+eea5)/5)
+scattertab4.append((aaa5+bba5+cca5+dda5+eea5)/5)
+
+print(aaa6,bba6,cca6,dda6,eea6)
+print((aaa6+bba6+cca6+dda6+eea6)/5)
+scattertab4.append((aaa6+bba6+cca6+dda6+eea6)/5)
+
+#-----------------------Pilot 5----------------------#
+print("Pilot 5")
+aa1= u5_C1[:,0]
+ba1= u5_C1[:,1]
+ca1= u5_C1[:,2]
+da1= u5_C1[:,3]
+ea1= u5_C1[:,4]
+
+aa2= u5_C2[:,0]
+ba2= u5_C2[:,1]
+ca2= u5_C2[:,2]
+da2= u5_C2[:,3]
+ea2= u5_C2[:,4]
+
+aa3= u5_C3[:,0]
+ba3= u5_C3[:,1]
+ca3= u5_C3[:,2]
+da3= u5_C3[:,3]
+ea3= u5_C3[:,4]
+
+aa4= u5_C4[:,0]
+ba4= u5_C4[:,1]
+ca4= u5_C4[:,2]
+da4= u5_C4[:,3]
+ea4= u5_C4[:,4]
+
+aa5= u5_C5[:,0]
+ba5= u5_C5[:,1]
+ca5= u5_C5[:,2]
+da5= u5_C5[:,3]
+ea5= u5_C5[:,4]
+
+aa6= u5_C6[:,0]
+ba6= u5_C6[:,1]
+ca6= u5_C6[:,2]
+da6= u5_C6[:,3]
+ea6= u5_C6[:,4]
+
+
+ft1ttab = [59,309,577,755,1182,2000,2207,2844,3041,3201,3357,3444,3799,4036,4472,5022,5458,5981,6294,6944,7188,7921]
+
+ftab =    [135,385,643,805,1240,2063,2280,2900,3114,3268,3407,3546,3908,4090,4570,5112,5554,6050,6391,7063,7270,8008]
+#gatab =    [117,380,629,823,1226,2045,2246,2887,3074,3271,3416,3472,3884,4110,4523,5104,5499,6066,6357,7016,7246,7985]                                       
+#hatab =    [111,375,627,844,1234,2127,2247,2944,3092,3343,3428,3498,3984,4126,4541,5132,5500,6081,6449,7002,7248,7995]
+#iatab =    [115,381,633,843,1220,2084,2251,2917,3091,3267,3434,3499,3887,4149,4550,5136,5552,6081,6427,7041,7269,8001]
+#jatab =    [115,381,633,843,1220,2084,2251,2917,3091,3267,3434,3499,3887,4149,4550,5136,5552,6081,6427,7041,7269,8001]
+#katab =    [115,381,633,843,1220,2084,2251,2917,3091,3267,3434,3499,3887,4149,4550,5136,5552,6081,6427,7041,7269,8001]
+
+ua11ttab = []
+ua12ttab = []
+ua13ttab = []
+ua14ttab = []
+ua15ttab = []
+
+ua21ttab = []
+ua22ttab = []
+ua23ttab = []
+ua24ttab = []
+ua25ttab = []
+
+ua31ttab = []
+ua32ttab = []
+ua33ttab = []
+ua34ttab = []
+ua35ttab = []
+
+ua41ttab = []
+ua42ttab = []
+ua43ttab = []
+ua44ttab = []
+ua45ttab = []
+
+ua51ttab = []
+ua52ttab = []
+ua53ttab = []
+ua54ttab = []
+ua55ttab = []
+
+ua61ttab = []
+ua62ttab = []
+ua63ttab = []
+ua64ttab = []
+ua65ttab = []
+
+for n in range(len(ft1ttab)):
+
+  if ft1ttab[n] == 59 or ft1ttab[n] == 309 or ft1ttab[n] == 2207 or ft1ttab[n] == 2844 or ft1ttab[n] == 3444 or ft1ttab[n] == 4036 or ft1ttab[n] == 5458 or ft1ttab[n] == 7921:
+    k1a = np.min(aa1[ft1ttab[n]:ftab[n]])
+    l1a = np.min(ba1[ft1ttab[n]:ftab[n]])
+    m1a = np.min(ca1[ft1ttab[n]:ftab[n]])
+    o1a = np.min(da1[ft1ttab[n]:ftab[n]])
+    p1a = np.min(ea1[ft1ttab[n]:ftab[n]])
+
+    k2a = np.min(aa2[ft1ttab[n]:ftab[n]])
+    l2a = np.min(ba2[ft1ttab[n]:ftab[n]])
+    m2a = np.min(ca2[ft1ttab[n]:ftab[n]])
+    o2a = np.min(da2[ft1ttab[n]:ftab[n]])
+    p2a = np.min(ea2[ft1ttab[n]:ftab[n]])
+
+    k3a = np.min(aa3[ft1ttab[n]:ftab[n]])
+    l3a = np.min(ba3[ft1ttab[n]:ftab[n]])
+    m3a = np.min(ca3[ft1ttab[n]:ftab[n]])
+    o3a = np.min(da3[ft1ttab[n]:ftab[n]])
+    p3a = np.min(ea3[ft1ttab[n]:ftab[n]])
+
+    k4a = np.min(aa4[ft1ttab[n]:ftab[n]])
+    l4a = np.min(ba4[ft1ttab[n]:ftab[n]])
+    m4a = np.min(ca4[ft1ttab[n]:ftab[n]])
+    o4a = np.min(da4[ft1ttab[n]:ftab[n]])
+    p4a = np.min(ea4[ft1ttab[n]:ftab[n]])
+
+    k5a = np.min(aa5[ft1ttab[n]:ftab[n]])
+    l5a = np.min(ba5[ft1ttab[n]:ftab[n]])
+    m5a = np.min(ca5[ft1ttab[n]:ftab[n]])
+    o5a = np.min(da5[ft1ttab[n]:ftab[n]])
+    p5a = np.min(ea5[ft1ttab[n]:ftab[n]])
+
+    k6a = np.min(aa6[ft1ttab[n]:ftab[n]])
+    l6a = np.min(ba6[ft1ttab[n]:ftab[n]])
+    m6a = np.min(ca6[ft1ttab[n]:ftab[n]])
+    o6a = np.min(da6[ft1ttab[n]:ftab[n]])
+    p6a = np.min(ea6[ft1ttab[n]:ftab[n]])
+
+    kaa = (np.where(aa1 == k1a)[0]).tolist()
+    laa = (np.where(ba1 == l1a)[0]).tolist()
+    maa = (np.where(ca1 == m1a)[0]).tolist()
+    oaa = (np.where(da1 == o1a)[0]).tolist()
+    paa = (np.where(ea1 == p1a)[0]).tolist()
+
+    kba = (np.where(aa2 == k2a)[0]).tolist()
+    lba = (np.where(ba2 == l2a)[0]).tolist()
+    mba = (np.where(ca2 == m2a)[0]).tolist()
+    oba = (np.where(da2 == o2a)[0]).tolist()
+    pba = (np.where(ea2 == p2a)[0]).tolist()
+
+    kca = (np.where(aa3 == k3a)[0]).tolist()
+    lca = (np.where(ba3 == l3a)[0]).tolist()
+    mca = (np.where(ca3 == m3a)[0]).tolist()
+    oca = (np.where(da3 == o3a)[0]).tolist()
+    pca = (np.where(ea3 == p3a)[0]).tolist()
+
+    kda = (np.where(aa4 == k4a)[0]).tolist()
+    lda = (np.where(ba4 == l4a)[0]).tolist()
+    mda = (np.where(ca4 == m4a)[0]).tolist()
+    oda = (np.where(da4 == o4a)[0]).tolist()
+    pda = (np.where(ea4 == p4a)[0]).tolist()
+
+    kea = (np.where(aa5 == k5a)[0]).tolist()
+    lea = (np.where(ba5 == l5a)[0]).tolist()
+    mea = (np.where(ca5 == m5a)[0]).tolist()
+    oea = (np.where(da5 == o5a)[0]).tolist()
+    pea = (np.where(ea5 == p5a)[0]).tolist()
+
+    kfa = (np.where(aa6 == k6a)[0]).tolist()
+    lfa = (np.where(ba6 == l6a)[0]).tolist()
+    mfa = (np.where(ca6 == m6a)[0]).tolist()
+    ofa = (np.where(da6 == o6a)[0]).tolist()
+    pfa = (np.where(ea6 == p6a)[0]).tolist()
+
+    ua11ttab.extend(kaa)
+    ua12ttab.extend(laa)
+    ua13ttab.extend(maa)
+    ua14ttab.extend(oaa)
+    ua15ttab.extend(paa)
+
+    ua21ttab.extend(kba)
+    ua22ttab.extend(lba)
+    ua23ttab.extend(mba)
+    ua24ttab.extend(oba)
+    ua25ttab.extend(pba)
+
+    ua31ttab.extend(kca)
+    ua32ttab.extend(lca)
+    ua33ttab.extend(mca)
+    ua34ttab.extend(oca)
+    ua35ttab.extend(pca)
+
+    ua41ttab.extend(kda)
+    ua42ttab.extend(lda)
+    ua43ttab.extend(mda)
+    ua44ttab.extend(oda)
+    ua45ttab.extend(pda)
+
+    ua51ttab.extend(kea)
+    ua52ttab.extend(lea)
+    ua53ttab.extend(mea)
+    ua54ttab.extend(oea)
+    ua55ttab.extend(pea)
+
+    ua61ttab.extend(kfa)
+    ua62ttab.extend(lfa)
+    ua63ttab.extend(mfa)
+    ua64ttab.extend(ofa)
+    ua65ttab.extend(pfa)
+
+  if ft1ttab[n] == 577 or ft1ttab[n] == 755 or ft1ttab[n] == 1182 or ft1ttab[n] == 2000 or ft1ttab[n] == 3041 or ft1ttab[n] == 3201 or ft1ttab[n] == 3357 or ft1ttab[n] == 3799 or ft1ttab[n] == 4472 or ft1ttab[n] == 5022 or ft1ttab[n] == 5981 or ft1ttab[n] == 6294 or ft1ttab[n] == 6944 or ft1ttab[n] == 7188:
+    k1a = np.min(aa1[ft1ttab[n]:ftab[n]])
+    l1a = np.min(ba1[ft1ttab[n]:ftab[n]])
+    m1a = np.min(ca1[ft1ttab[n]:ftab[n]])
+    o1a = np.min(da1[ft1ttab[n]:ftab[n]])
+    p1a = np.min(ea1[ft1ttab[n]:ftab[n]])
+
+    k2a = np.min(aa2[ft1ttab[n]:ftab[n]])
+    l2a = np.min(ba2[ft1ttab[n]:ftab[n]])
+    m2a = np.min(ca2[ft1ttab[n]:ftab[n]])
+    o2a = np.min(da2[ft1ttab[n]:ftab[n]])
+    p2a = np.min(ea2[ft1ttab[n]:ftab[n]])
+
+    k3a = np.min(aa3[ft1ttab[n]:ftab[n]])
+    l3a = np.min(ba3[ft1ttab[n]:ftab[n]])
+    m3a = np.min(ca3[ft1ttab[n]:ftab[n]])
+    o3a = np.min(da3[ft1ttab[n]:ftab[n]])
+    p3a = np.min(ea3[ft1ttab[n]:ftab[n]])
+
+    k4a = np.min(aa4[ft1ttab[n]:ftab[n]])
+    l4a = np.min(ba4[ft1ttab[n]:ftab[n]])
+    m4a = np.min(ca4[ft1ttab[n]:ftab[n]])
+    o4a = np.min(da4[ft1ttab[n]:ftab[n]])
+    p4a = np.min(ea4[ft1ttab[n]:ftab[n]])
+
+    k5a = np.min(aa5[ft1ttab[n]:ftab[n]])
+    l5a = np.min(ba5[ft1ttab[n]:ftab[n]])
+    m5a = np.min(ca5[ft1ttab[n]:ftab[n]])
+    o5a = np.min(da5[ft1ttab[n]:ftab[n]])
+    p5a = np.min(ea5[ft1ttab[n]:ftab[n]])
+
+    k6a = np.min(aa6[ft1ttab[n]:ftab[n]])
+    l6a = np.min(ba6[ft1ttab[n]:ftab[n]])
+    m6a = np.min(ca6[ft1ttab[n]:ftab[n]])
+    o6a = np.min(da6[ft1ttab[n]:ftab[n]])
+    p6a = np.min(ea6[ft1ttab[n]:ftab[n]])
+
+    kaa = (np.where(aa1 == k1a)[0]).tolist()
+    laa = (np.where(ba1 == l1a)[0]).tolist()
+    maa = (np.where(ca1 == m1a)[0]).tolist()
+    oaa = (np.where(da1 == o1a)[0]).tolist()
+    paa = (np.where(ea1 == p1a)[0]).tolist()
+
+    kba = (np.where(aa2 == k2a)[0]).tolist()
+    lba = (np.where(ba2 == l2a)[0]).tolist()
+    mba = (np.where(ca2 == m2a)[0]).tolist()
+    oba = (np.where(da2 == o2a)[0]).tolist()
+    pba = (np.where(ea2 == p2a)[0]).tolist()
+
+    kca = (np.where(aa3 == k3a)[0]).tolist()
+    lca = (np.where(ba3 == l3a)[0]).tolist()
+    mca = (np.where(ca3 == m3a)[0]).tolist()
+    oca = (np.where(da3 == o3a)[0]).tolist()
+    pca = (np.where(ea3 == p3a)[0]).tolist()
+
+    kda = (np.where(aa4 == k4a)[0]).tolist()
+    lda = (np.where(ba4 == l4a)[0]).tolist()
+    mda = (np.where(ca4 == m4a)[0]).tolist()
+    oda = (np.where(da4 == o4a)[0]).tolist()
+    pda = (np.where(ea4 == p4a)[0]).tolist()
+
+    kea = (np.where(aa5 == k5a)[0]).tolist()
+    lea = (np.where(ba5 == l5a)[0]).tolist()
+    mea = (np.where(ca5 == m5a)[0]).tolist()
+    oea = (np.where(da5 == o5a)[0]).tolist()
+    pea = (np.where(ea5 == p5a)[0]).tolist()
+
+    kfa = (np.where(aa6 == k6a)[0]).tolist()
+    lfa = (np.where(ba6 == l6a)[0]).tolist()
+    mfa = (np.where(ca6 == m6a)[0]).tolist()
+    ofa = (np.where(da6 == o6a)[0]).tolist()
+    pfa = (np.where(ea6 == p6a)[0]).tolist()
+
+    ua11ttab.extend(kaa)
+    ua12ttab.extend(laa)
+    ua13ttab.extend(maa)
+    ua14ttab.extend(oaa)
+    ua15ttab.extend(paa)
+
+    ua21ttab.extend(kba)
+    ua22ttab.extend(lba)
+    ua23ttab.extend(mba)
+    ua24ttab.extend(oba)
+    ua25ttab.extend(pba)
+
+    ua31ttab.extend(kca)
+    ua32ttab.extend(lca)
+    ua33ttab.extend(mca)
+    ua34ttab.extend(oca)
+    ua35ttab.extend(pca)
+
+    ua41ttab.extend(kda)
+    ua42ttab.extend(lda)
+    ua43ttab.extend(mda)
+    ua44ttab.extend(oda)
+    ua45ttab.extend(pda)
+
+    ua51ttab.extend(kea)
+    ua52ttab.extend(lea)
+    ua53ttab.extend(mea)
+    ua54ttab.extend(oea)
+    ua55ttab.extend(pea)
+
+    ua61ttab.extend(kfa)
+    ua62ttab.extend(lfa)
+    ua63ttab.extend(mfa)
+    ua64ttab.extend(ofa)
+    ua65ttab.extend(pfa)
+
+ua53ttab.remove(2630)
+ua14ttab.remove(383)
+
+
+
+qa1tab = []
+ra1tab = []
+sa1tab = []
+ta1tab = []
+ua1tab = []
+
+qa2tab = []
+ra2tab = []
+sa2tab = []
+ta2tab = []
+ua2tab = []
+
+qa3tab = []
+ra3tab = []
+sa3tab = []
+ta3tab = []
+ua3tab = []
+
+qa4tab = []
+ra4tab = []
+sa4tab = []
+ta4tab = []
+ua4tab = []
+
+qa5tab = []
+ra5tab = []
+sa5tab = []
+ta5tab = []
+ua5tab = []
+
+qa6tab = []
+ra6tab = []
+sa6tab = []
+ta6tab = []
+ua6tab = []
+
+for i in range(len(ft1ttab)):
+  va1 = abs(ft1ttab[i] - ua11ttab[i])
+  wa1 = abs(ft1ttab[i] - ua12ttab[i])
+  xa1 = abs(ft1ttab[i] - ua13ttab[i])
+  ya1 = abs(ft1ttab[i] - ua14ttab[i])
+  za1 = abs(ft1ttab[i] - ua15ttab[i])
+
+  va2 = abs(ft1ttab[i] - ua21ttab[i])
+  wa2 = abs(ft1ttab[i] - ua22ttab[i])
+  xa2 = abs(ft1ttab[i] - ua23ttab[i])
+  ya2 = abs(ft1ttab[i] - ua24ttab[i])
+  za2 = abs(ft1ttab[i] - ua25ttab[i])
+
+  va3 = abs(ft1ttab[i] - ua31ttab[i])
+  wa3 = abs(ft1ttab[i] - ua32ttab[i])
+  xa3 = abs(ft1ttab[i] - ua33ttab[i])
+  ya3 = abs(ft1ttab[i] - ua34ttab[i])
+  za3 = abs(ft1ttab[i] - ua35ttab[i])
+
+  va4 = abs(ft1ttab[i] - ua41ttab[i])
+  wa4 = abs(ft1ttab[i] - ua42ttab[i])
+  xa4 = abs(ft1ttab[i] - ua43ttab[i])
+  ya4 = abs(ft1ttab[i] - ua44ttab[i])
+  za4 = abs(ft1ttab[i] - ua45ttab[i])
+
+  va5 = abs(ft1ttab[i] - ua51ttab[i])
+  wa5 = abs(ft1ttab[i] - ua52ttab[i])
+  xa5 = abs(ft1ttab[i] - ua53ttab[i])
+  ya5 = abs(ft1ttab[i] - ua54ttab[i])
+  za5 = abs(ft1ttab[i] - ua55ttab[i])
+
+  va6 = abs(ft1ttab[i] - ua61ttab[i])
+  wa6 = abs(ft1ttab[i] - ua62ttab[i])
+  xa6 = abs(ft1ttab[i] - ua63ttab[i])
+  ya6 = abs(ft1ttab[i] - ua64ttab[i])
+  za6 = abs(ft1ttab[i] - ua65ttab[i])
+
+  qa1tab.append(va1)
+  ra1tab.append(wa1)
+  sa1tab.append(xa1)
+  ta1tab.append(ya1)
+  ua1tab.append(za1)
+
+  qa2tab.append(va2)
+  ra2tab.append(wa2)
+  sa2tab.append(xa2)
+  ta2tab.append(ya2)
+  ua2tab.append(za2)
+  
+  qa3tab.append(va3)
+  ra3tab.append(wa3)
+  sa3tab.append(xa3)
+  ta3tab.append(ya3)
+  ua3tab.append(za3)
+
+  qa4tab.append(va4)
+  ra4tab.append(wa4)
+  sa4tab.append(xa4)
+  ta4tab.append(ya4)
+  ua4tab.append(za4)
+
+  qa5tab.append(va5)
+  ra5tab.append(wa5)
+  sa5tab.append(xa5)
+  ta5tab.append(ya5)
+  ua5tab.append(za5)
+
+  qa6tab.append(va6)
+  ra6tab.append(wa6)
+  sa6tab.append(xa6)
+  ta6tab.append(ya6)
+  ua6tab.append(za6)
+
+aaa1 = sum(qa1tab)/len(qa1tab)/100
+bba1 = sum(ra1tab)/len(qa1tab)/100
+cca1 = sum(sa1tab)/len(qa1tab)/100
+dda1 = sum(ta1tab)/len(qa1tab)/100
+eea1 = sum(ua1tab)/len(qa1tab)/100
+
+aaa2 = sum(qa2tab)/len(qa1tab)/100
+bba2 = sum(ra2tab)/len(qa1tab)/100
+cca2 = sum(sa2tab)/len(qa1tab)/100
+dda2 = sum(ta2tab)/len(qa1tab)/100
+eea2 = sum(ua2tab)/len(qa1tab)/100
+
+aaa3 = sum(qa3tab)/len(qa1tab)/100
+bba3 = sum(ra3tab)/len(qa1tab)/100
+cca3 = sum(sa3tab)/len(qa1tab)/100
+dda3 = sum(ta3tab)/len(qa1tab)/100
+eea3 = sum(ua3tab)/len(qa1tab)/100
+
+aaa4 = sum(qa4tab)/len(qa1tab)/100
+bba4 = sum(ra4tab)/len(qa1tab)/100
+cca4 = sum(sa4tab)/len(qa1tab)/100
+dda4 = sum(ta4tab)/len(qa1tab)/100
+eea4 = sum(ua4tab)/len(qa1tab)/100
+
+aaa5 = sum(qa5tab)/len(qa1tab)/100
+bba5 = sum(ra5tab)/len(qa1tab)/100
+cca5 = sum(sa5tab)/len(qa1tab)/100
+dda5 = sum(ta5tab)/len(qa1tab)/100
+eea5 = sum(ua5tab)/len(qa1tab)/100
+
+aaa6 = sum(qa6tab)/len(qa1tab)/100
+bba6 = sum(ra6tab)/len(qa1tab)/100
+cca6 = sum(sa6tab)/len(qa1tab)/100
+dda6 = sum(ta6tab)/len(qa1tab)/100
+eea6 = sum(ua6tab)/len(qa1tab)/100
+
+print(aaa1,bba1,cca1,dda1,eea1)
+print((aaa1+bba1+cca1+dda1+eea1)/5)
+scattertab5.append((aaa1+bba1+cca1+dda1+eea1)/5)
+
+print(aaa2,bba2,cca2,dda2,eea2)
+print((aaa2+bba2+cca2+dda2+eea2)/5)
+scattertab5.append((aaa2+bba2+cca2+dda2+eea2)/5)
+
+print(aaa3,bba3,cca3,dda3,eea3)
+print((aaa3+bba3+cca3+dda3+eea3)/5)
+scattertab5.append((aaa3+bba3+cca3+dda3+eea3)/5)
+
+print(aaa4,bba4,cca4,dda4,eea4)
+print((aaa4+bba4+cca4+dda4+eea4)/5)
+scattertab5.append((aaa4+bba4+cca4+dda4+eea4)/5)
+
+print(aaa5,bba5,cca5,dda5,eea5)
+print((aaa5+bba5+cca5+dda5+eea5)/5)
+scattertab5.append((aaa5+bba5+cca5+dda5+eea5)/5)
+
+print(aaa6,bba6,cca6,dda6,eea6)
+print((aaa6+bba6+cca6+dda6+eea6)/5)
+scattertab5.append((aaa6+bba6+cca6+dda6+eea6)/5)
+
+#-----------------------Pilot 6----------------------#
+print("Pilot 6")
+aa1= u6_C1[:,0]
+ba1= u6_C1[:,1]
+ca1= u6_C1[:,2]
+da1= u6_C1[:,3]
+ea1= u6_C1[:,4]
+
+aa2= u6_C2[:,0]
+ba2= u6_C2[:,1]
+ca2= u6_C2[:,2]
+da2= u6_C2[:,3]
+ea2= u6_C2[:,4]
+
+aa3= u6_C3[:,0]
+ba3= u6_C3[:,1]
+ca3= u6_C3[:,2]
+da3= u6_C3[:,3]
+ea3= u6_C3[:,4]
+
+aa4= u6_C4[:,0]
+ba4= u6_C4[:,1]
+ca4= u6_C4[:,2]
+da4= u6_C4[:,3]
+ea4= u6_C4[:,4]
+
+aa5= u6_C5[:,0]
+ba5= u6_C5[:,1]
+ca5= u6_C5[:,2]
+da5= u6_C5[:,3]
+ea5= u6_C5[:,4]
+
+aa6= u6_C6[:,0]
+ba6= u6_C6[:,1]
+ca6= u6_C6[:,2]
+da6= u6_C6[:,3]
+ea6= u6_C6[:,4]
+
+
+ft1ttab = [59,309,577,755,1182,2000,2207,2844,3041,3201,3357,3444,3799,4036,4472,5022,5458,5981,6294,6944,7188,7921]
+
+ftab =    [135,385,643,805,1240,2063,2280,2900,3114,3268,3407,3546,3908,4090,4570,5112,5554,6050,6391,7063,7270,8008]
+#gatab =    [117,380,629,823,1226,2045,2246,2887,3074,3271,3416,3472,3884,4110,4523,5104,5499,6066,6357,7016,7246,7985]                                       
+#hatab =    [111,375,627,844,1234,2127,2247,2944,3092,3343,3428,3498,3984,4126,4541,5132,5500,6081,6449,7002,7248,7995]
+#iatab =    [115,381,633,843,1220,2084,2251,2917,3091,3267,3434,3499,3887,4149,4550,5136,5552,6081,6427,7041,7269,8001]
+#jatab =    [115,381,633,843,1220,2084,2251,2917,3091,3267,3434,3499,3887,4149,4550,5136,5552,6081,6427,7041,7269,8001]
+#katab =    [115,381,633,843,1220,2084,2251,2917,3091,3267,3434,3499,3887,4149,4550,5136,5552,6081,6427,7041,7269,8001]
+
+ua11ttab = []
+ua12ttab = []
+ua13ttab = []
+ua14ttab = []
+ua15ttab = []
+
+ua21ttab = []
+ua22ttab = []
+ua23ttab = []
+ua24ttab = []
+ua25ttab = []
+
+ua31ttab = []
+ua32ttab = []
+ua33ttab = []
+ua34ttab = []
+ua35ttab = []
+
+ua41ttab = []
+ua42ttab = []
+ua43ttab = []
+ua44ttab = []
+ua45ttab = []
+
+ua51ttab = []
+ua52ttab = []
+ua53ttab = []
+ua54ttab = []
+ua55ttab = []
+
+ua61ttab = []
+ua62ttab = []
+ua63ttab = []
+ua64ttab = []
+ua65ttab = []
+
+for n in range(len(ft1ttab)):
+
+  if ft1ttab[n] == 59 or ft1ttab[n] == 309 or ft1ttab[n] == 2207 or ft1ttab[n] == 2844 or ft1ttab[n] == 3444 or ft1ttab[n] == 4036 or ft1ttab[n] == 5458 or ft1ttab[n] == 7921:
+    k1a = np.min(aa1[ft1ttab[n]:ftab[n]])
+    l1a = np.min(ba1[ft1ttab[n]:ftab[n]])
+    m1a = np.min(ca1[ft1ttab[n]:ftab[n]])
+    o1a = np.min(da1[ft1ttab[n]:ftab[n]])
+    p1a = np.min(ea1[ft1ttab[n]:ftab[n]])
+
+    k2a = np.min(aa2[ft1ttab[n]:ftab[n]])
+    l2a = np.min(ba2[ft1ttab[n]:ftab[n]])
+    m2a = np.min(ca2[ft1ttab[n]:ftab[n]])
+    o2a = np.min(da2[ft1ttab[n]:ftab[n]])
+    p2a = np.min(ea2[ft1ttab[n]:ftab[n]])
+
+    k3a = np.min(aa3[ft1ttab[n]:ftab[n]])
+    l3a = np.min(ba3[ft1ttab[n]:ftab[n]])
+    m3a = np.min(ca3[ft1ttab[n]:ftab[n]])
+    o3a = np.min(da3[ft1ttab[n]:ftab[n]])
+    p3a = np.min(ea3[ft1ttab[n]:ftab[n]])
+
+    k4a = np.min(aa4[ft1ttab[n]:ftab[n]])
+    l4a = np.min(ba4[ft1ttab[n]:ftab[n]])
+    m4a = np.min(ca4[ft1ttab[n]:ftab[n]])
+    o4a = np.min(da4[ft1ttab[n]:ftab[n]])
+    p4a = np.min(ea4[ft1ttab[n]:ftab[n]])
+
+    k5a = np.min(aa5[ft1ttab[n]:ftab[n]])
+    l5a = np.min(ba5[ft1ttab[n]:ftab[n]])
+    m5a = np.min(ca5[ft1ttab[n]:ftab[n]])
+    o5a = np.min(da5[ft1ttab[n]:ftab[n]])
+    p5a = np.min(ea5[ft1ttab[n]:ftab[n]])
+
+    k6a = np.min(aa6[ft1ttab[n]:ftab[n]])
+    l6a = np.min(ba6[ft1ttab[n]:ftab[n]])
+    m6a = np.min(ca6[ft1ttab[n]:ftab[n]])
+    o6a = np.min(da6[ft1ttab[n]:ftab[n]])
+    p6a = np.min(ea6[ft1ttab[n]:ftab[n]])
+
+    kaa = (np.where(aa1 == k1a)[0]).tolist()
+    laa = (np.where(ba1 == l1a)[0]).tolist()
+    maa = (np.where(ca1 == m1a)[0]).tolist()
+    oaa = (np.where(da1 == o1a)[0]).tolist()
+    paa = (np.where(ea1 == p1a)[0]).tolist()
+
+    kba = (np.where(aa2 == k2a)[0]).tolist()
+    lba = (np.where(ba2 == l2a)[0]).tolist()
+    mba = (np.where(ca2 == m2a)[0]).tolist()
+    oba = (np.where(da2 == o2a)[0]).tolist()
+    pba = (np.where(ea2 == p2a)[0]).tolist()
+
+    kca = (np.where(aa3 == k3a)[0]).tolist()
+    lca = (np.where(ba3 == l3a)[0]).tolist()
+    mca = (np.where(ca3 == m3a)[0]).tolist()
+    oca = (np.where(da3 == o3a)[0]).tolist()
+    pca = (np.where(ea3 == p3a)[0]).tolist()
+
+    kda = (np.where(aa4 == k4a)[0]).tolist()
+    lda = (np.where(ba4 == l4a)[0]).tolist()
+    mda = (np.where(ca4 == m4a)[0]).tolist()
+    oda = (np.where(da4 == o4a)[0]).tolist()
+    pda = (np.where(ea4 == p4a)[0]).tolist()
+
+    kea = (np.where(aa5 == k5a)[0]).tolist()
+    lea = (np.where(ba5 == l5a)[0]).tolist()
+    mea = (np.where(ca5 == m5a)[0]).tolist()
+    oea = (np.where(da5 == o5a)[0]).tolist()
+    pea = (np.where(ea5 == p5a)[0]).tolist()
+
+    kfa = (np.where(aa6 == k6a)[0]).tolist()
+    lfa = (np.where(ba6 == l6a)[0]).tolist()
+    mfa = (np.where(ca6 == m6a)[0]).tolist()
+    ofa = (np.where(da6 == o6a)[0]).tolist()
+    pfa = (np.where(ea6 == p6a)[0]).tolist()
+
+    ua11ttab.extend(kaa)
+    ua12ttab.extend(laa)
+    ua13ttab.extend(maa)
+    ua14ttab.extend(oaa)
+    ua15ttab.extend(paa)
+
+    ua21ttab.extend(kba)
+    ua22ttab.extend(lba)
+    ua23ttab.extend(mba)
+    ua24ttab.extend(oba)
+    ua25ttab.extend(pba)
+
+    ua31ttab.extend(kca)
+    ua32ttab.extend(lca)
+    ua33ttab.extend(mca)
+    ua34ttab.extend(oca)
+    ua35ttab.extend(pca)
+
+    ua41ttab.extend(kda)
+    ua42ttab.extend(lda)
+    ua43ttab.extend(mda)
+    ua44ttab.extend(oda)
+    ua45ttab.extend(pda)
+
+    ua51ttab.extend(kea)
+    ua52ttab.extend(lea)
+    ua53ttab.extend(mea)
+    ua54ttab.extend(oea)
+    ua55ttab.extend(pea)
+
+    ua61ttab.extend(kfa)
+    ua62ttab.extend(lfa)
+    ua63ttab.extend(mfa)
+    ua64ttab.extend(ofa)
+    ua65ttab.extend(pfa)
+
+  if ft1ttab[n] == 577 or ft1ttab[n] == 755 or ft1ttab[n] == 1182 or ft1ttab[n] == 2000 or ft1ttab[n] == 3041 or ft1ttab[n] == 3201 or ft1ttab[n] == 3357 or ft1ttab[n] == 3799 or ft1ttab[n] == 4472 or ft1ttab[n] == 5022 or ft1ttab[n] == 5981 or ft1ttab[n] == 6294 or ft1ttab[n] == 6944 or ft1ttab[n] == 7188:
+    k1a = np.min(aa1[ft1ttab[n]:ftab[n]])
+    l1a = np.min(ba1[ft1ttab[n]:ftab[n]])
+    m1a = np.min(ca1[ft1ttab[n]:ftab[n]])
+    o1a = np.min(da1[ft1ttab[n]:ftab[n]])
+    p1a = np.min(ea1[ft1ttab[n]:ftab[n]])
+
+    k2a = np.min(aa2[ft1ttab[n]:ftab[n]])
+    l2a = np.min(ba2[ft1ttab[n]:ftab[n]])
+    m2a = np.min(ca2[ft1ttab[n]:ftab[n]])
+    o2a = np.min(da2[ft1ttab[n]:ftab[n]])
+    p2a = np.min(ea2[ft1ttab[n]:ftab[n]])
+
+    k3a = np.min(aa3[ft1ttab[n]:ftab[n]])
+    l3a = np.min(ba3[ft1ttab[n]:ftab[n]])
+    m3a = np.min(ca3[ft1ttab[n]:ftab[n]])
+    o3a = np.min(da3[ft1ttab[n]:ftab[n]])
+    p3a = np.min(ea3[ft1ttab[n]:ftab[n]])
+
+    k4a = np.min(aa4[ft1ttab[n]:ftab[n]])
+    l4a = np.min(ba4[ft1ttab[n]:ftab[n]])
+    m4a = np.min(ca4[ft1ttab[n]:ftab[n]])
+    o4a = np.min(da4[ft1ttab[n]:ftab[n]])
+    p4a = np.min(ea4[ft1ttab[n]:ftab[n]])
+
+    k5a = np.min(aa5[ft1ttab[n]:ftab[n]])
+    l5a = np.min(ba5[ft1ttab[n]:ftab[n]])
+    m5a = np.min(ca5[ft1ttab[n]:ftab[n]])
+    o5a = np.min(da5[ft1ttab[n]:ftab[n]])
+    p5a = np.min(ea5[ft1ttab[n]:ftab[n]])
+
+    k6a = np.min(aa6[ft1ttab[n]:ftab[n]])
+    l6a = np.min(ba6[ft1ttab[n]:ftab[n]])
+    m6a = np.min(ca6[ft1ttab[n]:ftab[n]])
+    o6a = np.min(da6[ft1ttab[n]:ftab[n]])
+    p6a = np.min(ea6[ft1ttab[n]:ftab[n]])
+
+    kaa = (np.where(aa1 == k1a)[0]).tolist()
+    laa = (np.where(ba1 == l1a)[0]).tolist()
+    maa = (np.where(ca1 == m1a)[0]).tolist()
+    oaa = (np.where(da1 == o1a)[0]).tolist()
+    paa = (np.where(ea1 == p1a)[0]).tolist()
+
+    kba = (np.where(aa2 == k2a)[0]).tolist()
+    lba = (np.where(ba2 == l2a)[0]).tolist()
+    mba = (np.where(ca2 == m2a)[0]).tolist()
+    oba = (np.where(da2 == o2a)[0]).tolist()
+    pba = (np.where(ea2 == p2a)[0]).tolist()
+
+    kca = (np.where(aa3 == k3a)[0]).tolist()
+    lca = (np.where(ba3 == l3a)[0]).tolist()
+    mca = (np.where(ca3 == m3a)[0]).tolist()
+    oca = (np.where(da3 == o3a)[0]).tolist()
+    pca = (np.where(ea3 == p3a)[0]).tolist()
+
+    kda = (np.where(aa4 == k4a)[0]).tolist()
+    lda = (np.where(ba4 == l4a)[0]).tolist()
+    mda = (np.where(ca4 == m4a)[0]).tolist()
+    oda = (np.where(da4 == o4a)[0]).tolist()
+    pda = (np.where(ea4 == p4a)[0]).tolist()
+
+    kea = (np.where(aa5 == k5a)[0]).tolist()
+    lea = (np.where(ba5 == l5a)[0]).tolist()
+    mea = (np.where(ca5 == m5a)[0]).tolist()
+    oea = (np.where(da5 == o5a)[0]).tolist()
+    pea = (np.where(ea5 == p5a)[0]).tolist()
+
+    kfa = (np.where(aa6 == k6a)[0]).tolist()
+    lfa = (np.where(ba6 == l6a)[0]).tolist()
+    mfa = (np.where(ca6 == m6a)[0]).tolist()
+    ofa = (np.where(da6 == o6a)[0]).tolist()
+    pfa = (np.where(ea6 == p6a)[0]).tolist()
+
+    ua11ttab.extend(kaa)
+    ua12ttab.extend(laa)
+    ua13ttab.extend(maa)
+    ua14ttab.extend(oaa)
+    ua15ttab.extend(paa)
+
+    ua21ttab.extend(kba)
+    ua22ttab.extend(lba)
+    ua23ttab.extend(mba)
+    ua24ttab.extend(oba)
+    ua25ttab.extend(pba)
+
+    ua31ttab.extend(kca)
+    ua32ttab.extend(lca)
+    ua33ttab.extend(mca)
+    ua34ttab.extend(oca)
+    ua35ttab.extend(pca)
+
+    ua41ttab.extend(kda)
+    ua42ttab.extend(lda)
+    ua43ttab.extend(mda)
+    ua44ttab.extend(oda)
+    ua45ttab.extend(pda)
+
+    ua51ttab.extend(kea)
+    ua52ttab.extend(lea)
+    ua53ttab.extend(mea)
+    ua54ttab.extend(oea)
+    ua55ttab.extend(pea)
+
+    ua61ttab.extend(kfa)
+    ua62ttab.extend(lfa)
+    ua63ttab.extend(mfa)
+    ua64ttab.extend(ofa)
+    ua65ttab.extend(pfa)
+
+#ua11ttab.remove(1523)
+
+
+qa1tab = []
+ra1tab = []
+sa1tab = []
+ta1tab = []
+ua1tab = []
+
+qa2tab = []
+ra2tab = []
+sa2tab = []
+ta2tab = []
+ua2tab = []
+
+qa3tab = []
+ra3tab = []
+sa3tab = []
+ta3tab = []
+ua3tab = []
+
+qa4tab = []
+ra4tab = []
+sa4tab = []
+ta4tab = []
+ua4tab = []
+
+qa5tab = []
+ra5tab = []
+sa5tab = []
+ta5tab = []
+ua5tab = []
+
+qa6tab = []
+ra6tab = []
+sa6tab = []
+ta6tab = []
+ua6tab = []
+
+for i in range(len(ft1ttab)):
+  va1 = abs(ft1ttab[i] - ua11ttab[i])
+  wa1 = abs(ft1ttab[i] - ua12ttab[i])
+  xa1 = abs(ft1ttab[i] - ua13ttab[i])
+  ya1 = abs(ft1ttab[i] - ua14ttab[i])
+  za1 = abs(ft1ttab[i] - ua15ttab[i])
+
+  va2 = abs(ft1ttab[i] - ua21ttab[i])
+  wa2 = abs(ft1ttab[i] - ua22ttab[i])
+  xa2 = abs(ft1ttab[i] - ua23ttab[i])
+  ya2 = abs(ft1ttab[i] - ua24ttab[i])
+  za2 = abs(ft1ttab[i] - ua25ttab[i])
+
+  va3 = abs(ft1ttab[i] - ua31ttab[i])
+  wa3 = abs(ft1ttab[i] - ua32ttab[i])
+  xa3 = abs(ft1ttab[i] - ua33ttab[i])
+  ya3 = abs(ft1ttab[i] - ua34ttab[i])
+  za3 = abs(ft1ttab[i] - ua35ttab[i])
+
+  va4 = abs(ft1ttab[i] - ua41ttab[i])
+  wa4 = abs(ft1ttab[i] - ua42ttab[i])
+  xa4 = abs(ft1ttab[i] - ua43ttab[i])
+  ya4 = abs(ft1ttab[i] - ua44ttab[i])
+  za4 = abs(ft1ttab[i] - ua45ttab[i])
+
+  va5 = abs(ft1ttab[i] - ua51ttab[i])
+  wa5 = abs(ft1ttab[i] - ua52ttab[i])
+  xa5 = abs(ft1ttab[i] - ua53ttab[i])
+  ya5 = abs(ft1ttab[i] - ua54ttab[i])
+  za5 = abs(ft1ttab[i] - ua55ttab[i])
+
+  va6 = abs(ft1ttab[i] - ua61ttab[i])
+  wa6 = abs(ft1ttab[i] - ua62ttab[i])
+  xa6 = abs(ft1ttab[i] - ua63ttab[i])
+  ya6 = abs(ft1ttab[i] - ua64ttab[i])
+  za6 = abs(ft1ttab[i] - ua65ttab[i])
+
+  qa1tab.append(va1)
+  ra1tab.append(wa1)
+  sa1tab.append(xa1)
+  ta1tab.append(ya1)
+  ua1tab.append(za1)
+
+  qa2tab.append(va2)
+  ra2tab.append(wa2)
+  sa2tab.append(xa2)
+  ta2tab.append(ya2)
+  ua2tab.append(za2)
+  
+  qa3tab.append(va3)
+  ra3tab.append(wa3)
+  sa3tab.append(xa3)
+  ta3tab.append(ya3)
+  ua3tab.append(za3)
+
+  qa4tab.append(va4)
+  ra4tab.append(wa4)
+  sa4tab.append(xa4)
+  ta4tab.append(ya4)
+  ua4tab.append(za4)
+
+  qa5tab.append(va5)
+  ra5tab.append(wa5)
+  sa5tab.append(xa5)
+  ta5tab.append(ya5)
+  ua5tab.append(za5)
+
+  qa6tab.append(va6)
+  ra6tab.append(wa6)
+  sa6tab.append(xa6)
+  ta6tab.append(ya6)
+  ua6tab.append(za6)
+
+aaa1 = sum(qa1tab)/len(qa1tab)/100
+bba1 = sum(ra1tab)/len(qa1tab)/100
+cca1 = sum(sa1tab)/len(qa1tab)/100
+dda1 = sum(ta1tab)/len(qa1tab)/100
+eea1 = sum(ua1tab)/len(qa1tab)/100
+
+aaa2 = sum(qa2tab)/len(qa1tab)/100
+bba2 = sum(ra2tab)/len(qa1tab)/100
+cca2 = sum(sa2tab)/len(qa1tab)/100
+dda2 = sum(ta2tab)/len(qa1tab)/100
+eea2 = sum(ua2tab)/len(qa1tab)/100
+
+aaa3 = sum(qa3tab)/len(qa1tab)/100
+bba3 = sum(ra3tab)/len(qa1tab)/100
+cca3 = sum(sa3tab)/len(qa1tab)/100
+dda3 = sum(ta3tab)/len(qa1tab)/100
+eea3 = sum(ua3tab)/len(qa1tab)/100
+
+aaa4 = sum(qa4tab)/len(qa1tab)/100
+bba4 = sum(ra4tab)/len(qa1tab)/100
+cca4 = sum(sa4tab)/len(qa1tab)/100
+dda4 = sum(ta4tab)/len(qa1tab)/100
+eea4 = sum(ua4tab)/len(qa1tab)/100
+
+aaa5 = sum(qa5tab)/len(qa1tab)/100
+bba5 = sum(ra5tab)/len(qa1tab)/100
+cca5 = sum(sa5tab)/len(qa1tab)/100
+dda5 = sum(ta5tab)/len(qa1tab)/100
+eea5 = sum(ua5tab)/len(qa1tab)/100
+
+aaa6 = sum(qa6tab)/len(qa1tab)/100
+bba6 = sum(ra6tab)/len(qa1tab)/100
+cca6 = sum(sa6tab)/len(qa1tab)/100
+dda6 = sum(ta6tab)/len(qa1tab)/100
+eea6 = sum(ua6tab)/len(qa1tab)/100
+
+print(aaa1,bba1,cca1,dda1,eea1)
+print((aaa1+bba1+cca1+dda1+eea1)/5)
+scattertab6.append((aaa1+bba1+cca1+dda1+eea1)/5)
+
+print(aaa2,bba2,cca2,dda2,eea2)
+print((aaa2+bba2+cca2+dda2+eea2)/5)
+scattertab6.append((aaa2+bba2+cca2+dda2+eea2)/5)
+
+print(aaa3,bba3,cca3,dda3,eea3)
+print((aaa3+bba3+cca3+dda3+eea3)/5)
+scattertab6.append((aaa3+bba3+cca3+dda3+eea3)/5)
+
+print(aaa4,bba4,cca4,dda4,eea4)
+print((aaa4+bba4+cca4+dda4+eea4)/5)
+scattertab6.append((aaa4+bba4+cca4+dda4+eea4)/5)
+
+print(aaa5,bba5,cca5,dda5,eea5)
+print((aaa5+bba5+cca5+dda5+eea5)/5)
+scattertab6.append((aaa5+bba5+cca5+dda5+eea5)/5)
+
+print(aaa6,bba6,cca6,dda6,eea6)
+print((aaa6+bba6+cca6+dda6+eea6)/5)
+scattertab6.append((aaa6+bba6+cca6+dda6+eea6)/5)
+
+print(scattertab1)
+print(scattertab2)
+print(scattertab3)
+print(scattertab4)
+print(scattertab5)
+print(scattertab6)
+scatterrange = [1,2,3,4,5,6]
+
+plt.scatter(scatterrange, scattertab1, color='red')
+plt.scatter(scatterrange, scattertab2, color='green')
+plt.scatter(scatterrange, scattertab3, color='blue')
+plt.scatter(scatterrange, scattertab4, color='black')
+plt.scatter(scatterrange, scattertab5, color='purple')
+plt.scatter(scatterrange, scattertab6, color='orange')
+
+plt.xlabel('combination')
+plt.ylabel('time delay')
+
+
+boxplttab1 = [scattertab1[0],scattertab2[0],scattertab3[0],scattertab4[0],scattertab5[0],scattertab6[0]]
+boxplttab2 = [scattertab1[1],scattertab2[1],scattertab3[1],scattertab4[1],scattertab5[1],scattertab6[1]]
+boxplttab3 = [scattertab1[2],scattertab2[2],scattertab3[2],scattertab4[2],scattertab5[2],scattertab6[2]]
+boxplttab4 = [scattertab1[3],scattertab2[3],scattertab3[3],scattertab4[3],scattertab5[3],scattertab6[3]]
+boxplttab5 = [scattertab1[4],scattertab2[4],scattertab3[4],scattertab4[4],scattertab5[4],scattertab6[4]]
+boxplttab6 = [scattertab1[5],scattertab2[5],scattertab3[5],scattertab4[5],scattertab5[5],scattertab6[5]]
+finaltab = [boxplttab1,boxplttab2,boxplttab3,boxplttab4,boxplttab5,boxplttab6]
+fig = plt.figure()
+ax = fig.add_subplot(111)
+boxplot = ax.boxplot(finaltab)
+ax = fig.add_subplot(111)
+ax.set_xticklabels(['p nm', 'v nm', 'a nm', 'p m', 'v m', 'a m'])
+plt.show()
+"""
+plt.plot(t, ft1_C1)
+plt.plot(t, ft2_C1)
 plt.title('Human input; position control; no motion')
 plt.xlabel("t[s]")
 plt.ylabel("u[-]")
@@ -1477,149 +4377,4 @@ plt.legend(('1st try', '2nd try', '3rd try','4rd try','5rd try'),
            loc='upper right')
 plt.show()
 """
-# Time delay calculations
-samples = 4096  #number of steps
-length = int(len(ft1_C1))
 
-s = length/samples
-   #NECESSARY TABS
-slopetab1 = []
-average_error_tab1 = []
-time_delay_tab1 = []
-
-slopetab2 = []
-average_error_tab2 = []
-time_delay_tab2 = []
-
-slopetab3 = []
-average_error_tab3 = []
-time_delay_tab3 = []
-
-slopetab4 = []
-average_error_tab4 = []
-time_delay_tab4 = []
-
-slopetab5 = []
-average_error_tab5 = []
-time_delay_tab5 = []
-
-slopetab6 = []
-average_error_tab6 = []
-time_delay_tab6 = []
-
-for i in range(0, length, int(s)):
-           #SPLITTING THE LISTS
-    a = ft1_C1[int(i):int(i) + int(s)]
-    b = t[int(i):int(i) + int(s)]
-    c = e1_C1[int(i):int(i) + int(s)]
-
-    d = ft1_C2[int(i):int(i) + int(s)]
-    e = t[int(i):int(i) + int(s)]
-    f = e1_C2[int(i):int(i) + int(s)]
-
-    g = ft1_C3[int(i):int(i) + int(s)]
-    h = t[int(i):int(i) + int(s)]
-    i = e1_C3[int(i):int(i) + int(s)]
-
-    #j = ft1_C4[int(i):int(i) + int(s)]
-    #k = t[int(i):int(i) + int(s)]
-    #l = e1_C4[int(i):int(i) + int(s)]
-
-    #m = ft1_C5[int(i):int(i) + int(s)]
-    #n = t[int(i):int(i) + int(s)]
-    #o = e1_C5[int(i):int(i) + int(s)]
-
-    #p = ft1_C6[int(i):int(i) + int(s)]
-    #q = t[int(i):int(i) + int(s)]
-    #r = e1_C6[int(i):int(i) + int(s)]
-
-              #SLOPE CALCULATIONS
-    slope1 = (a[-1]-a[0])/(b[-1]-b[0])
-    slopetab1.append(slope1)
-    slope2 = (d[-1]-d[0])/(e[-1]-e[0])
-    slopetab2.append(slope2)
-    slope3 = (g[-1]-g[0])/(h[-1]-h[0])
-    slopetab3.append(slope3)
-    #slope4 = (j[-1]-j[0])/(k[-1]-k[0])
-    #slopetab4.append(slope4)
-    #slope5 = (m[-1]-m[0])/(n[-1]-n[0])
-    #slopetab5.append(slope5)
-    #slope6 = (p[-1]-p[0])/(q[-1]-q[0])
-    #slopetab6.append(slope6)
-
-               #AVERAGE ERROR
-    average_error1 = sum(c)/len(c)
-    average_error_tab1.append(average_error1)
-    average_error2 = sum(f)/len(f)
-    average_error_tab2.append(average_error2)
-    average_error3 = sum(i)/len(i)
-    average_error_tab3.append(average_error3)
-    #average_error4 = sum(l)/len(l)
-    #average_error_tab4.append(average_error4)
-    #average_error5 = sum(o)/len(o)
-    #average_error_tab5.append(average_error5)
-    #average_error6 = sum(r)/len(r)
-    #average_error_tab6.append(average_error6)
-
-                #TIME DELAY
-    time_delay1 = abs(average_error1)/abs(slope1)
-    time_delay_tab1.extend(time_delay1 for r in range(2))
-    time_delay2 = abs(average_error2)/abs(slope2)
-    time_delay_tab2.extend(time_delay2 for r in range(2))
-    time_delay3 = abs(average_error3)/abs(slope3)
-    time_delay_tab3.extend(time_delay3 for r in range(2))
-
-    #time_delay4 = abs(average_error4)/abs(slope4)
-    #time_delay_tab4.extend(time_delay4 for r in range(2))
-    #time_delay5 = abs(average_error5)/abs(slope5)
-    #time_delay_tab5.extend(time_delay5 for r in range(2))
-    #time_delay6 = abs(average_error6)/abs(slope6)
-    #time_delay_tab6.extend(time_delay6 for r in range(2))
-
-                 #AVERAGE TIME DELAY
-average_time_delay1 = (sum(time_delay_tab1)/8192)
-average_time_delay2 = (sum(time_delay_tab2)/8192)
-average_time_delay3 = (sum(time_delay_tab3)/8192)
-
-#average_time_delay4 = (sum(time_delay_tab4)/8192)
-#average_time_delay5 = (sum(time_delay_tab5)/8192)
-#average_time_delay6 = (sum(time_delay_tab6)/8192)
-
-print(average_time_delay1)
-print(average_time_delay2)
-print(average_time_delay3)
-
-#print(average_time_delay4)
-#print(average_time_delay5)
-#print(average_time_delay6)
-
-                  #THE PLOTS
-
-plt.subplot(131)    
-plt.plot(t, time_delay_tab1)
-plt.xlabel("t[s]")
-plt.ylabel("time_delay_tab1")
-plt.subplot(132)    
-plt.plot(t, time_delay_tab2)
-plt.xlabel("t[s]")
-plt.ylabel("time_delay_tab2")
-plt.subplot(133)    
-plt.plot(t, time_delay_tab3)
-plt.xlabel("t[s]")
-plt.ylabel("time_delay_tab3")
-#plt.subplot(234)    
-#plt.plot(t, time_delay_tab4)
-#plt.xlabel("t[s]")
-#plt.ylabel("time_delay_tab4")
-#plt.subplot(235)    
-#plt.plot(t, time_delay_tab5)
-#plt.xlabel("t[s]")
-#plt.ylabel("time_delay_tab5")
-#plt.subplot(236)    
-#plt.plot(t, time_delay_tab6)
-#plt.xlabel("t[s]")
-#plt.ylabel("time_delay_tab6")
-plt.show()
-#>>>>>>> 0d82b29d03f8d470977ac863dbfac941c2cecbd9
-
-"""
