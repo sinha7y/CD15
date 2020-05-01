@@ -10,6 +10,9 @@ Kpdata = pd.read_csv('Kpvalues.csv')
 TLdata = pd.read_csv('TLvalues.csv')
 TIdata = pd.read_csv('TIvalues.csv')
 Taudata = pd.read_csv('Tauvalues.csv')
+NMFreqdata = pd.read_csv('NMFreqvalues.csv')
+NMDampingdata = pd.read_csv('NMDampingvalues.csv')
+
 print(Taudata)
 
 sns.boxplot(x="Control Mode", y=r'$K_p$', hue="Motion", data=Kpdata, palette="Set1")
@@ -23,5 +26,11 @@ plt.show()
 
 sns.boxplot(x="Control Mode", y=r'$\tau$', hue="Motion", data=Taudata, palette="Set1")
 plt.show()
+
+sns.boxplot(x="Control Mode", y=r'$\omega_{nm}$', hue="Motion", data=NMFreqdata, palette="Set1")
+plt.show()
+
+sns.boxplot(x="Control Mode", y =r'$damping_{nm}$', hue="Motion", data=NMDampingdata, palette ="Set1")
+plt.show()            
 
 print("Ready")
