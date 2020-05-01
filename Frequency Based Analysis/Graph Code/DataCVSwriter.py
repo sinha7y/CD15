@@ -48,7 +48,7 @@ with open('Kpvalues.csv', 'w') as Kpdata, open('TLvalues.csv', 'w') as TLdata, o
     NMFreqwriter.writerow([r'$\omega_{nm}$'] + ['Motion'] + ['Control Mode'])
 
     Dampingwriter = csv.writer(NMDampingdata, delimiter=',')
-    Dampingwriter.writerow([r'$damping_{nm}$'] + ['Motion'] + ['Control Mode'])
+    Dampingwriter.writerow([r'$\zeta_{nm}$'] + ['Motion'] + ['Control Mode'])
 
     for index in range(1, 7):
 
