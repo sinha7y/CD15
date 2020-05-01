@@ -47,6 +47,9 @@ with open('Kpvalues.csv', 'w') as Kpdata, open('TLvalues.csv', 'w') as TLdata, o
     NMFreqwriter = csv.writer(NMFreqdata, delimiter=',')
     NMFreqwriter.writerow([r'$\omega_{nm}$'] + ['Motion'] + ['Control Mode'])
 
+    Dampingwriter = csv.writer(NMDampingdata, delimiter=',')
+    Dampingwriter.writerow([r'$damping_{nm}$'] + ['Motion'] + ['Control Mode'])
+
     for index in range(1, 7):
 
         # filename = "ae2223I_measurement_data_subj1.mat"
@@ -492,6 +495,33 @@ with open('Kpvalues.csv', 'w') as Kpdata, open('TLvalues.csv', 'w') as TLdata, o
         Tauwriter.writerow([str(TaumotionHpeAcc)] + ['Yes - ' + r'$H_{pe}$'] + ['Acc'])
         Tauwriter.writerow([str(TaumotionHpxdAcc)] + ['Yes - ' + r'$H_{pxd}$'] + ['Acc'])
 
+        #Neuromuscular frequency
+        NMFreqwriter.writerow([str(NMFreqnomotionPos)] + ['No - ' + r'$H_{pe}$'] + ['Pos'])
+        NMFreqwriter.writerow([str(NMFreqmotionHpePos)] + ['Yes - ' + r'$H_{pe}$'] + ['Pos'])
+        NMFreqwriter.writerow([str(NMFreqmotionHpxdPos)] + ['Yes - ' + r'$H_{pxd}$'] + ['Pos'])
+
+        NMFreqwriter.writerow([str(NMFreqnomotionVel)] + ['No - ' + r'$H_{pe}$'] + ['Vel'])
+        NMFreqwriter.writerow([str(NMFreqmotionHpeVel)] + ['Yes - ' + r'$H_{pe}$'] + ['Vel'])
+        NMFreqwriter.writerow([str(NMFreqmotionHpxdVel)] + ['Yes - ' + r'$H_{pxd}$'] + ['Vel'])
+
+        NMFreqwriter.writerow([str(NMFreqnomotionAcc)] + ['No - ' + r'$H_{pe}$'] + ['Acc'])
+        NMFreqwriter.writerow([str(NMFreqmotionHpeAcc)] + ['Yes - ' + r'$H_{pe}$'] + ['Acc'])
+        NMFreqwriter.writerow([str(NMFreqmotionHpxdAcc)] + ['Yes - ' + r'$H_{pxd}$'] + ['Acc'])
+
+        #Neuromuscular Dampingg
+
+        Dampingwriter.writerow([str(NMDampingnomotionPos)] + ['No - ' + r'$H_{pe}$'] + ['Pos'])
+        Dampingwriter.writerow([str(NMDampingmotionHpePos)] + ['Yes - ' + r'$H_{pe}$'] + ['Pos'])
+        Dampingwriter.writerow([str(NMDampingmotionHpxdPos)] + ['Yes - ' + r'$H_{pxd}$'] + ['Pos'])
+
+        Dampingwriter.writerow([str(NMDampingnomotionVel)] + ['No - ' + r'$H_{pe}$'] + ['Vel'])
+        Dampingwriter.writerow([str(NMDampingmotionHpeVel)] + ['Yes - ' + r'$H_{pe}$'] + ['Vel'])
+        Dampingwriter.writerow([str(NMDampingmotionHpxdVel)] + ['Yes - ' + r'$H_{pxd}$'] + ['Vel'])
+
+        Dampingwriter.writerow([str(NMDampingnomotionAcc)] + ['No - ' + r'$H_{pe}$'] + ['Acc'])
+        Dampingwriter.writerow([str(NMDampingmotionHpeAcc)] + ['Yes - ' + r'$H_{pe}$'] + ['Acc'])
+        Dampingwriter.writerow([str(NMDampingmotionHpxdAcc)] + ['Yes - ' + r'$H_{pxd}$'] + ['Acc'])
+        
         # # Lag time constant
         # TIwriter.writerow([str(TInomotionPos)] + ['No - ' + r'$H_{pe}$'] + ['Pos'])
         # TIwriter.writerow([str(TImotionHpePos)] + ['Yes - ' + r'$H_{pe}$'] + ['Pos'])
