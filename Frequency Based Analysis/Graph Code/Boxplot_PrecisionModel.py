@@ -30,7 +30,7 @@ plt.show()
 sns.boxplot(x="Control Mode", y=r'$\omega_{nm}$', hue="Motion", data=NMFreqdata, palette="Set1")
 plt.show()
 
-sns.boxplot(x="Control Mode", y =r'$damping_{nm}$', hue="Motion", data=NMDampingdata, palette ="Set1")
+sns.boxplot(x="Control Mode", y =r'$\zeta_{nm}$', hue="Motion", data=NMDampingdata, palette ="Set1")
 plt.show()            
 
 print("Ready")
