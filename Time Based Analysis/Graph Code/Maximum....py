@@ -163,11 +163,14 @@ for i in range(6):
 plt.suptitle('Number of peaks for the human input function',fontsize=14)
 plt.show()
 
-plt.boxplot(np.transpose(matrix11))
+plt.suptitle('Boxplot with the number of peaks of the input function')
+plt.boxplot(np.transpose(matrix11),labels=vectornames)
 plt.show()
 
 #Maximum and minimum
 print("Average of the maximum absolute error for every case")
+matrix12=[]
+matrix13=[]
 for i in range(6):
     vectormax=[]
     tmax=[]
@@ -180,7 +183,9 @@ for i in range(6):
             vectormax.append(matrix3[6*j+i][k])
             f+=1
             tmax.append(f)
-    constant=231+i               
+    constant=231+i
+    matrix12.append(vectormax[0:len(vectormax)-1:2])
+    matrix13.append(vectormax[1:len(vectormax):2])
     plt.subplot(constant)
     plt.plot(tmax, vectormax,'r+')
     plt.title(vectornames[i])
@@ -190,14 +195,24 @@ for i in range(6):
 plt.suptitle('Maximum and minimum of the error function',fontsize=14)    
 plt.show()
 
+plt.suptitle('Boxplot with the maximum of the error function')
+plt.boxplot(np.transpose(matrix12),labels=vectornames)
+plt.show()
+
+plt.suptitle('Boxplot with the minimum of the error function')
+plt.boxplot(np.transpose(matrix13),labels=vectornames)
+plt.show()
+
 #Slope input
 print("Average of the slope of human input function for every case")
+matrix14=[]
 for i in range(6):
     vectorslope=[]
     for j in range(6):
         for k in range(5):
             vectorslope.append(matrix4[6*j+i][k])
-    constant=231+i               
+    constant=231+i
+    matrix14.append(vectorslope)
     plt.subplot(constant)
     plt.plot(tpeak, vectorslope,'r+')
     plt.title(vectornames[i])
@@ -206,14 +221,20 @@ for i in range(6):
 plt.suptitle('Average slope for the human input function',fontsize=14)     
 plt.show()
 
+plt.suptitle('Boxplot with the average slope of the input function')
+plt.boxplot(np.transpose(matrix14),labels=vectornames)
+plt.show()
+
 #Slope output
 print("Average of the slope of output function for every case")
+matrix15=[]
 for i in range(6):
     vectorslopex=[]
     for j in range(6):
         for k in range(5):
             vectorslopex.append(matrix5[6*j+i][k])
-    constant=231+i               
+    constant=231+i
+    matrix15.append(vectorslopex)
     plt.subplot(constant)
     plt.plot(tpeak, vectorslopex,'r+')
     plt.title(vectornames[i])
@@ -222,6 +243,9 @@ for i in range(6):
 plt.suptitle('Average slope for the output function',fontsize=14)      
 plt.show()
 
+plt.suptitle('Boxplot with the average slope of the output function')
+plt.boxplot(np.transpose(matrix14),labels=vectornames)
+plt.show()
 
 plt.plot(ft)
 plt.show()
