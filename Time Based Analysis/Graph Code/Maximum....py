@@ -47,6 +47,19 @@ def peak(a,b,c):
 def slope(a,b):
     return abs((b-a)/0.1)
 
+def change(matrix):
+    a=matrix[1]
+    matrix[1]=matrix[3]
+    matrix[3]=a
+
+    a=matrix[2]
+    matrix[2]=matrix[3]
+    matrix[3]=a
+
+    a=matrix[3]
+    matrix[3]=matrix[4]
+    matrix[4]=a
+    return (matrix)
 #-----------------------------Peaks of input function-----------------------------------------
 
 matrix1=np.empty((36,5))
@@ -140,6 +153,7 @@ for i in range(6):
 """
 #------------------------------------Graphs-----------------------------------------
 vectornames=['pos. control; no motion','vel. control; no motion','acc. control; no motion','pos. control; motion','vel. control; motion','acc. control; motion']
+namesboxplot=['p-nm','p-m','v-nm','v-m','a-nm','a-m']
 
 #Peaks
 print("Average number of stick movements for every case")
@@ -163,8 +177,9 @@ for i in range(6):
 plt.suptitle('Number of peaks for the human input function',fontsize=14)
 plt.show()
 
+matrix11=change(matrix11)
 plt.suptitle('Boxplot with the number of peaks of the input function')
-plt.boxplot(np.transpose(matrix11),labels=vectornames)
+plt.boxplot(np.transpose(matrix11),labels=namesboxplot)
 plt.show()
 
 #Maximum and minimum
@@ -195,12 +210,14 @@ for i in range(6):
 plt.suptitle('Maximum and minimum of the error function',fontsize=14)    
 plt.show()
 
+matrix12=change(matrix12)
 plt.suptitle('Boxplot with the maximum of the error function')
-plt.boxplot(np.transpose(matrix12),labels=vectornames)
+plt.boxplot(np.transpose(matrix12),labels=namesboxplot)
 plt.show()
 
+matrix13=change(matrix13)
 plt.suptitle('Boxplot with the minimum of the error function')
-plt.boxplot(np.transpose(matrix13),labels=vectornames)
+plt.boxplot(np.transpose(matrix13),labels=namesboxplot)
 plt.show()
 
 #Slope input
@@ -221,8 +238,9 @@ for i in range(6):
 plt.suptitle('Average slope for the human input function',fontsize=14)     
 plt.show()
 
+matrix14=change(matrix14)
 plt.suptitle('Boxplot with the average slope of the input function')
-plt.boxplot(np.transpose(matrix14),labels=vectornames)
+plt.boxplot(np.transpose(matrix14),labels=namesboxplot)
 plt.show()
 
 #Slope output
@@ -243,11 +261,8 @@ for i in range(6):
 plt.suptitle('Average slope for the output function',fontsize=14)      
 plt.show()
 
+matrix15=change(matrix15)
 plt.suptitle('Boxplot with the average slope of the output function')
-plt.boxplot(np.transpose(matrix14),labels=vectornames)
+plt.boxplot(np.transpose(matrix15),labels=namesboxplot)
 plt.show()
-
-plt.plot(ft)
-plt.show()
-
 
