@@ -4343,15 +4343,19 @@ print(scattertab5)
 print(scattertab6)
 scatterrange = [1,2,3,4,5,6]
 
-plt.scatter(scatterrange, scattertab1, color='red')
-plt.scatter(scatterrange, scattertab2, color='green')
-plt.scatter(scatterrange, scattertab3, color='blue')
-plt.scatter(scatterrange, scattertab4, color='black')
-plt.scatter(scatterrange, scattertab5, color='purple')
-plt.scatter(scatterrange, scattertab6, color='orange')
-
-plt.xlabel('combination')
-plt.ylabel('time delay')
+fig1 = plt.figure()
+bx = fig1.add_subplot(111)
+bx.scatter(scatterrange, scattertab1, label = ('pilot 1'))#color='red')
+bx.scatter(scatterrange, scattertab2, label = ('pilot 2'))#color='green')
+bx.scatter(scatterrange, scattertab3, label = ('pilot 3'))#color='blue')
+bx.scatter(scatterrange, scattertab4, label = ('pilot 4'))#color='black')
+bx.scatter(scatterrange, scattertab5, label = ('pilot 5'))#color='purple')
+bx.scatter(scatterrange, scattertab6, label = ('pilot 6'))#color='orange')
+bx.set_xticklabels(['p nm', 'p nm', 'v nm', 'a nm', 'p m', 'v m', 'a m'])
+bx.set_title('Avergae Time delay of pilots accros different combinations')
+bx.set_xlabel('Combination')
+bx.set_ylabel('Time delay [s]')
+bx.legend()
 
 
 boxplttab1 = [scattertab1[0],scattertab2[0],scattertab3[0],scattertab4[0],scattertab5[0],scattertab6[0]]
@@ -4364,17 +4368,10 @@ finaltab = [boxplttab1,boxplttab2,boxplttab3,boxplttab4,boxplttab5,boxplttab6]
 fig = plt.figure()
 ax = fig.add_subplot(111)
 boxplot = ax.boxplot(finaltab)
-ax = fig.add_subplot(111)
 ax.set_xticklabels(['p nm', 'v nm', 'a nm', 'p m', 'v m', 'a m'])
+ax.set_title('Average Time delay of pilots accros different combinations')
+ax.set_xlabel('Combination')
+ax.set_ylabel('Time delay [s]')
 plt.show()
-"""
-plt.plot(t, ft1_C1)
-plt.plot(t, ft2_C1)
-plt.title('Human input; position control; no motion')
-plt.xlabel("t[s]")
-plt.ylabel("u[-]")
-plt.legend(('1st try', '2nd try', '3rd try','4rd try','5rd try'),
-           loc='upper right')
-plt.show()
-"""
+
 
