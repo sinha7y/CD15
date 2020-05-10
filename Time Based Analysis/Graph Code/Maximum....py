@@ -269,6 +269,12 @@ plt.show()
 
 
 #********** Statistics **********
+matrix11 = np.array(matrix11)
+matrix12 = np.array(matrix12)
+matrix13 = np.array(matrix13)
+matrix14 = np.array(matrix14)
+matrix15 = np.array(matrix15)
+
 print('***** Matrix 11 **********')
 ttest_matrix11_pos=ttest_ind(matrix11[0,:], matrix11[1,:])
 ttest_matrix11_vel=ttest_ind(matrix11[2,:], matrix11[3,:])
