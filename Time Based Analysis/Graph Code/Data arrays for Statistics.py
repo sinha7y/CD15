@@ -1,6 +1,7 @@
 import scipy.io
 import scipy.optimize
 import numpy as np
+from statsmodels.stats.weightstats import ttest_ind
 
 
 # Arrays for statistics
@@ -540,5 +541,150 @@ for index in range(1, 7):
     damping_array_NoMo_Acc.append(NMDampingnomotionAcc)
     damping_array_Mo_Acc.append(NMDampingmotionHpeAcc)
 
+    
+print('******* Kp  ******')
+ttest_KpHpe_pos=ttest_ind(Kp_array_NoMo_Hpe_Pos, Kp_array_Mo_Hpe_Pos)
+ttest_KpHpe_vel=ttest_ind(Kp_array_NoMo_Hpe_Vel, Kp_array_Mo_Hpe_Vel)
+ttest_KpHpe_acc=ttest_ind(Kp_array_NoMo_Hpe_Acc, Kp_array_Mo_Hpe_Acc)
+#ttestHpe_pos=ttest_ind(Kp_array_NoMo_Hpe_Pos, Kp_array_Mo_Hpe_Pos)
 
+t_value_KpHpe_pos=ttestHpe_pos[0]
+p_value_KpHpe_pos=ttestHpe_pos[1]
+deg_freedom_KpHpe_pos=ttestHpe_pos[2]
+
+t_value_KpHpe_vel=ttest_KpHpe_vel[0]
+p_value_KpHpe_vel=ttest_KpHpe_vel[1]
+deg_freedom_KpHpe_vel=ttest_KpHpe_vel[2]
+
+t_value_KpHpe_acc=ttest_KpHpe_acc[0]
+p_value_KpHpe_acc=ttest_KpHpe_acc[1]
+deg_freedom_KpHpe_acc=ttest_KpHpe_acc[2]
+
+print('***1 Position, 2 velocity, 3 acceleration, Kp_Hpe***')
+print('t_value=',round(t_value_KpHpe_pos,3), ',',  round(t_value_KpHpe_vel,3), ',',  round(t_value_KpHpe_acc,3))
+print('p_value=',round(p_value_KpHpe_pos,3), ',',  round(p_value_KpHpe_vel,3), ',',  round(p_value_KpHpe_acc,3))
+print('degrees of freedom:',deg_freedom_KpHpe_pos)
+print('')
+
+
+print('******* TL  ******')
+
+ttest_TLHpe_pos=ttest_ind(TL_array_NoMo_Hpe_Pos, TL_array_Mo_Hpe_Pos)
+ttest_TLHpe_vel=ttest_ind(TL_array_NoMo_Hpe_Vel, TL_array_Mo_Hpe_Vel)
+ttest_TLHpe_acc=ttest_ind(TL_array_NoMo_Hpe_Acc, TL_array_Mo_Hpe_Acc)
+
+t_value_TLHpe_pos=ttest_TLHpe_pos[0]
+p_value_TLHpe_pos=ttest_TLHpe_pos[1]
+deg_freedom_TLHpe_pos=ttest_TLHpe_pos[2]
+
+t_value_TLHpe_vel=ttest_TLHpe_vel[0]
+p_value_TLHpe_vel=ttest_TLHpe_vel[1]
+deg_freedom_TLHpe_vel=ttest_TLHpe_vel[2]
+
+t_value_TLHpe_acc=ttest_TLHpe_acc[0]
+p_value_TLHpe_acc=ttest_TLHpe_acc[1]
+deg_freedom_TLHpe_acc=ttest_TLHpe_acc[2]
+
+print('***1 Position, 2 velocity, 3 acceleration, TLHpe***')
+print('t_value=',round(t_value_TLHpe_pos,3), ',',  round(t_value_TLHpe_vel,3), ',',  round(t_value_TLHpe_acc,3))
+print('p_value=',round(p_value_TLHpe_pos,3), ',',  round(p_value_TLHpe_vel,3), ',',  round(p_value_TLHpe_acc,3))
+print('degrees of freedom:',deg_freedom_TLHpe_pos)
+print('')
+
+print('******* TI  ******')
+
+ttest_TIHpe_pos=ttest_ind(TI_array_NoMo_Hpe_Pos, TI_array_Mo_Hpe_Pos)
+ttest_TIHpe_vel=ttest_ind(TI_array_NoMo_Hpe_Vel, TI_array_Mo_Hpe_Vel)
+ttest_TIHpe_acc=ttest_ind(TI_array_NoMo_Hpe_Acc, TI_array_Mo_Hpe_Acc)
+
+t_value_TIHpe_pos=ttest_TIHpe_pos[0]
+p_value_TIHpe_pos=ttest_TIHpe_pos[1]
+deg_freedom_TIHpe_pos=ttest_TIHpe_pos[2]
+
+t_value_TIHpe_vel=ttest_TIHpe_vel[0]
+p_value_TIHpe_vel=ttest_TIHpe_vel[1]
+deg_freedom_TIHpe_vel=ttest_TIHpe_vel[2]
+
+t_value_TIHpe_acc=ttest_TIHpe_acc[0]
+p_value_TIHpe_acc=ttest_TIHpe_acc[1]
+deg_freedom_TIHpe_acc=ttest_TIHpe_acc[2]
+
+print('***1 Position, 2 velocity, 3 acceleration, TIHpe***')
+print('t_value=',round(t_value_TIHpe_pos,3), ',',  round(t_value_TIHpe_vel,3), ',',  round(t_value_TIHpe_acc,3))
+print('p_value=',round(p_value_TIHpe_pos,3), ',',  round(p_value_TIHpe_vel,3), ',',  round(p_value_TIHpe_acc,3))
+print('degrees of freedom:',deg_freedom_TIHpe_pos)
+print('')
+
+print('******* Tau  ******')
+
+ttest_tauHpe_pos=ttest_ind(tau_array_NoMo_Hpe_Pos, tau_array_Mo_Hpe_Pos)
+ttest_tauHpe_vel=ttest_ind(tau_array_NoMo_Hpe_Vel, tau_array_Mo_Hpe_Vel)
+ttest_tauHpe_acc=ttest_ind(tau_array_NoMo_Hpe_Acc, tau_array_Mo_Hpe_Acc)
+
+t_value_tauHpe_pos=ttest_tauHpe_pos[0]
+p_value_tauHpe_pos=ttest_tauHpe_pos[1]
+deg_freedom_tauHpe_pos=ttest_tauHpe_pos[2]
+
+t_value_tauHpe_vel=ttest_tauHpe_vel[0]
+p_value_tauHpe_vel=ttest_tauHpe_vel[1]
+deg_freedom_tauHpe_vel=ttest_tauHpe_vel[2]
+
+t_value_tauHpe_acc=ttest_tauHpe_acc[0]
+p_value_tauHpe_acc=ttest_tauHpe_acc[1]
+deg_freedom_tauHpe_acc=ttest_tauHpe_acc[2]
+
+print('***1 Position, 2 velocity, 3 acceleration, tauHpe***')
+print('t_value=',round(t_value_tauHpe_pos,3), ',',  round(t_value_tauHpe_vel,3), ',',  round(t_value_tauHpe_acc,3))
+print('p_value=',round(p_value_tauHpe_pos,3), ',',  round(p_value_tauHpe_vel,3), ',',  round(p_value_tauHpe_acc,3))
+print('degrees of freedom:',deg_freedom_tauHpe_pos)
+print('')
+
+
+print('******* Frequency  ******')
+
+ttest_frequency_pos=ttest_ind(frequency_array_NoMo_Pos, frequency_array_Mo_Pos)
+ttest_frequency_vel=ttest_ind(frequency_array_NoMo_Vel, frequency_array_Mo_Vel)
+ttest_frequency_acc=ttest_ind(frequency_array_NoMo_Acc, frequency_array_Mo_Acc)
+
+t_value_frequency_pos=ttest_frequency_pos[0]
+p_value_frequency_pos=ttest_frequency_pos[1]
+deg_freedom_frequency_pos=ttest_frequency_pos[2]
+
+t_value_frequency_vel=ttest_frequency_vel[0]
+p_value_frequency_vel=ttest_frequency_vel[1]
+deg_freedom_frequency_vel=ttest_frequency_vel[2]
+
+t_value_frequency_acc=ttest_frequency_acc[0]
+p_value_frequency_acc=ttest_frequency_acc[1]
+deg_freedom_frequency_acc=ttest_frequency_acc[2]
+
+print('***1 Position, 2 velocity, 3 acceleration, frequency***')
+print('t_value=',round(t_value_frequency_pos,3), ',',  round(t_value_frequency_vel,3), ',',  round(t_value_frequency_acc,3))
+print('p_value=',round(p_value_frequency_pos,3), ',',  round(p_value_frequency_vel,3), ',',  round(p_value_frequency_acc,3))
+print('degrees of freedom:',deg_freedom_frequency_pos)
+print('')
+
+print('******* Damping  ******')
+
+ttest_damping_pos=ttest_ind(damping_array_NoMo_Pos, damping_array_Mo_Pos)
+ttest_damping_vel=ttest_ind(damping_array_NoMo_Vel, damping_array_Mo_Vel)
+ttest_damping_acc=ttest_ind(damping_array_NoMo_Acc, damping_array_Mo_Acc)
+
+t_value_damping_pos=ttest_damping_pos[0]
+p_value_damping_pos=ttest_damping_pos[1]
+deg_freedom_damping_pos=ttest_damping_pos[2]
+
+t_value_damping_vel=ttest_damping_vel[0]
+p_value_damping_vel=ttest_damping_vel[1]
+deg_freedom_damping_vel=ttest_damping_vel[2]
+
+t_value_damping_acc=ttest_damping_acc[0]
+p_value_damping_acc=ttest_damping_acc[1]
+deg_freedom_damping_acc=ttest_damping_acc[2]
+
+print('***1 Position, 2 velocity, 3 acceleration, frequency***')
+print('t_value=',round(t_value_damping_pos,3), ',',  round(t_value_damping_vel,3), ',',  round(t_value_damping_acc,3))
+print('p_value=',round(p_value_damping_pos,3), ',',  round(p_value_damping_vel,3), ',',  round(p_value_damping_acc,3))
+print('degrees of freedom:',deg_freedom_damping_pos)
+    
 print("Ready")
