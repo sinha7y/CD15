@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import cmath
 import math
 from scipy.signal import correlate
+from statsmodels.stats.weightstats import ttest_ind
 
 
 # Read Matlab file
@@ -4375,3 +4376,37 @@ ax.set_ylabel('Time delay [s]')
 plt.show()
 
 
+
+
+# =============================================================================
+# Statistics
+# =============================================================================
+
+TD_pos_nm = np.array(boxplttab1)
+TD_pos_m  = np.array(boxplttab2)
+TD_vel_nm = np.array(boxplttab3)
+TD_vel_m  = np.array(boxplttab4)
+TD_acc_nm = np.array(boxplttab5)
+TD_acc_m  = np.array(boxplttab6)
+
+ttest_TD_pos=ttest_ind(TD_pos_nm, TD_pos_m)
+ttest_TD_vel=ttest_ind(TD_vel_nm, TD_vel_m)
+ttest_TD_acc=ttest_ind(TD_acc_nm, TD_acc_m)
+
+t_value_TD_pos    =ttest_TD_pos[0]
+p_value_TD_pos    =ttest_TD_pos[1]
+deg_freedom_TD_pos=ttest_TD_pos[2]
+
+t_value_TD_vel    =ttest_TD_vel[0]
+p_value_TD_vel    =ttest_TD_vel[1]
+deg_freedom_TD_vel=ttest_TD_vel[2]
+
+t_value_TD_acc    =ttest_TD_acc[0]
+p_value_TD_acc    =ttest_TD_acc[1]
+deg_freedom_TD_acc=ttest_TD_acc[2]
+
+print('***1 Position, 2 velocity, 3 acceleration, time delay***')
+print('t_value=',round(t_value_TD_pos,3), ',',  round(t_value_TD_vel,3), ',',  round(t_value_TD_acc,3))
+print('p_value=',round(p_value_TD_pos,3), ',',  round(p_value_TD_vel,3), ',',  round(p_value_TD_acc,3))
+print('degrees of freedom:',deg_freedom_TD_pos)
+print('')
