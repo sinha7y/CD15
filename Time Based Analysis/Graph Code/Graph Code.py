@@ -4373,14 +4373,20 @@ ax.set_xticklabels(['p nm', 'v nm', 'a nm', 'p m', 'v m', 'a m'])
 ax.set_title('Average Time delay of pilots accros different combinations')
 ax.set_xlabel('Combination')
 ax.set_ylabel('Time delay [s]')
+print(np.average(boxplttab1))
+print(np.average(boxplttab2))
+print(np.average(boxplttab3))
+print(np.average(boxplttab4))
+print(np.average(boxplttab5))
+print(np.average(boxplttab6))
 plt.show()
 
 
 
-<<<<<<< Updated upstream
+#<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
+#=======
+#>>>>>>> Stashed changes
 # =============================================================================
 # Statistics
 # =============================================================================
@@ -4412,8 +4418,8 @@ print('***1 Position, 2 velocity, 3 acceleration, time delay***')
 print('t_value=',round(t_value_TD_pos,3), ',',  round(t_value_TD_vel,3), ',',  round(t_value_TD_acc,3))
 print('p_value=',round(p_value_TD_pos,3), ',',  round(p_value_TD_vel,3), ',',  round(p_value_TD_acc,3))
 print('degrees of freedom:',deg_freedom_TD_pos)
-<<<<<<< Updated upstream
+#<<<<<<< Updated upstream
 print('')
-=======
+#=======
 print('')
->>>>>>> Stashed changes
+#>>>>>>> Stashed changes
