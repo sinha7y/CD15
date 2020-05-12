@@ -4375,7 +4375,7 @@ print(np.average(boxplttab6))
 plt.show()
 
 
-<<<<<<< HEAD
+#<<<<<<< HEAD
 """
 =======
 
@@ -4432,4 +4432,4 @@ print('')
 =======
 >>>>>>> ac5b7a6feddf200a261bf29207f5e30750184b21
 """
->>>>>>> 21fad8dcdac6808b8dc7fd00bd96b875042a23b6
+#>>>>>>> 21fad8dcdac6808b8dc7fd00bd96b875042a23b6
