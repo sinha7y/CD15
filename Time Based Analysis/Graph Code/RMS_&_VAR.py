@@ -3,6 +3,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import cmath
 import math
+import scipy.stats as stats
+from statsmodels.stats.weightstats import ttest_ind
+
 
 # Read Matlab file
 datasubj1 = scipy.io.loadmat("ae2223I_measurement_data_subj1.mat") # Subject 1
@@ -1162,3 +1165,214 @@ plt.ylabel("Machine output VAR")
 
 
 plt.show()
+
+
+# =============================================================================
+# Statistics
+# =============================================================================
+e_C1_RMS = [e1_C1_RMS_overall, e2_C1_RMS_overall, e3_C1_RMS_overall, e4_C1_RMS_overall, e5_C1_RMS_overall, e6_C1_RMS_overall]
+e_C2_RMS = [e1_C2_RMS_overall, e2_C2_RMS_overall, e3_C2_RMS_overall, e4_C2_RMS_overall, e5_C2_RMS_overall, e6_C2_RMS_overall]
+e_C3_RMS = [e1_C3_RMS_overall, e2_C3_RMS_overall, e3_C3_RMS_overall, e4_C3_RMS_overall, e5_C3_RMS_overall, e6_C3_RMS_overall]
+e_C4_RMS = [e1_C4_RMS_overall, e2_C4_RMS_overall, e3_C4_RMS_overall, e4_C4_RMS_overall, e5_C4_RMS_overall, e6_C4_RMS_overall]
+e_C5_RMS = [e1_C5_RMS_overall, e2_C5_RMS_overall, e3_C5_RMS_overall, e4_C5_RMS_overall, e5_C5_RMS_overall, e6_C5_RMS_overall]
+e_C6_RMS = [e1_C6_RMS_overall, e2_C6_RMS_overall, e3_C6_RMS_overall, e4_C6_RMS_overall, e5_C6_RMS_overall, e6_C6_RMS_overall]
+
+u_C1_RMS = [u1_C1_RMS_overall, u2_C1_RMS_overall, u3_C1_RMS_overall, u4_C1_RMS_overall, u5_C1_RMS_overall, u6_C1_RMS_overall]
+u_C2_RMS = [u1_C2_RMS_overall, u2_C2_RMS_overall, u3_C2_RMS_overall, u4_C2_RMS_overall, u5_C2_RMS_overall, u6_C2_RMS_overall]
+u_C3_RMS = [u1_C3_RMS_overall, u2_C3_RMS_overall, u3_C3_RMS_overall, u4_C3_RMS_overall, u5_C3_RMS_overall, u6_C3_RMS_overall]
+u_C4_RMS = [u1_C4_RMS_overall, u2_C4_RMS_overall, u3_C4_RMS_overall, u4_C4_RMS_overall, u5_C4_RMS_overall, u6_C4_RMS_overall]
+u_C5_RMS = [u1_C5_RMS_overall, u2_C5_RMS_overall, u3_C5_RMS_overall, u4_C5_RMS_overall, u5_C5_RMS_overall, u6_C5_RMS_overall]
+u_C6_RMS = [u1_C6_RMS_overall, u2_C6_RMS_overall, u3_C6_RMS_overall, u4_C6_RMS_overall, u5_C6_RMS_overall, u6_C6_RMS_overall]
+
+x_C1_RMS = [x1_C1_RMS_overall, x2_C1_RMS_overall, x3_C1_RMS_overall, x4_C1_RMS_overall, x5_C1_RMS_overall, x6_C1_RMS_overall]
+x_C2_RMS = [x1_C2_RMS_overall, x2_C2_RMS_overall, x3_C2_RMS_overall, x4_C2_RMS_overall, x5_C2_RMS_overall, x6_C2_RMS_overall]
+x_C3_RMS = [x1_C3_RMS_overall, x2_C3_RMS_overall, x3_C3_RMS_overall, x4_C3_RMS_overall, x5_C3_RMS_overall, x6_C3_RMS_overall]
+x_C4_RMS = [x1_C4_RMS_overall, x2_C4_RMS_overall, x3_C4_RMS_overall, x4_C4_RMS_overall, x5_C4_RMS_overall, x6_C4_RMS_overall]
+x_C5_RMS = [x1_C5_RMS_overall, x2_C5_RMS_overall, x3_C5_RMS_overall, x4_C5_RMS_overall, x5_C5_RMS_overall, x6_C5_RMS_overall]
+x_C6_RMS = [x1_C6_RMS_overall, x2_C6_RMS_overall, x3_C6_RMS_overall, x4_C6_RMS_overall, x5_C6_RMS_overall, x6_C6_RMS_overall]
+
+
+
+e_C1_VAR = [e1_C1_VAR_overall, e2_C1_VAR_overall, e3_C1_VAR_overall, e4_C1_VAR_overall, e5_C1_VAR_overall, e6_C1_VAR_overall]
+e_C2_VAR = [e1_C2_VAR_overall, e2_C2_VAR_overall, e3_C2_VAR_overall, e4_C2_VAR_overall, e5_C2_VAR_overall, e6_C2_VAR_overall]
+e_C3_VAR = [e1_C3_VAR_overall, e2_C3_VAR_overall, e3_C3_VAR_overall, e4_C3_VAR_overall, e5_C3_VAR_overall, e6_C3_VAR_overall]
+e_C4_VAR = [e1_C4_VAR_overall, e2_C4_VAR_overall, e3_C4_VAR_overall, e4_C4_VAR_overall, e5_C4_VAR_overall, e6_C4_VAR_overall]
+e_C5_VAR = [e1_C5_VAR_overall, e2_C5_VAR_overall, e3_C5_VAR_overall, e4_C5_VAR_overall, e5_C5_VAR_overall, e6_C5_VAR_overall]
+e_C6_VAR = [e1_C6_VAR_overall, e2_C6_VAR_overall, e3_C6_VAR_overall, e4_C6_VAR_overall, e5_C6_VAR_overall, e6_C6_VAR_overall]
+
+u_C1_VAR = [u1_C1_VAR_overall, u2_C1_VAR_overall, u3_C1_VAR_overall, u4_C1_VAR_overall, u5_C1_VAR_overall, u6_C1_VAR_overall]
+u_C2_VAR = [u1_C2_VAR_overall, u2_C2_VAR_overall, u3_C2_VAR_overall, u4_C2_VAR_overall, u5_C2_VAR_overall, u6_C2_VAR_overall]
+u_C3_VAR = [u1_C3_VAR_overall, u2_C3_VAR_overall, u3_C3_VAR_overall, u4_C3_VAR_overall, u5_C3_VAR_overall, u6_C3_VAR_overall]
+u_C4_VAR = [u1_C4_VAR_overall, u2_C4_VAR_overall, u3_C4_VAR_overall, u4_C4_VAR_overall, u5_C4_VAR_overall, u6_C4_VAR_overall]
+u_C5_VAR = [u1_C5_VAR_overall, u2_C5_VAR_overall, u3_C5_VAR_overall, u4_C5_VAR_overall, u5_C5_VAR_overall, u6_C5_VAR_overall]
+u_C6_VAR = [u1_C6_VAR_overall, u2_C6_VAR_overall, u3_C6_VAR_overall, u4_C6_VAR_overall, u5_C6_VAR_overall, u6_C6_VAR_overall]
+
+x_C1_VAR = [x1_C1_VAR_overall, x2_C1_VAR_overall, x3_C1_VAR_overall, x4_C1_VAR_overall, x5_C1_VAR_overall, x6_C1_VAR_overall]
+x_C2_VAR = [x1_C2_VAR_overall, x2_C2_VAR_overall, x3_C2_VAR_overall, x4_C2_VAR_overall, x5_C2_VAR_overall, x6_C2_VAR_overall]
+x_C3_VAR = [x1_C3_VAR_overall, x2_C3_VAR_overall, x3_C3_VAR_overall, x4_C3_VAR_overall, x5_C3_VAR_overall, x6_C3_VAR_overall]
+x_C4_VAR = [x1_C4_VAR_overall, x2_C4_VAR_overall, x3_C4_VAR_overall, x4_C4_VAR_overall, x5_C4_VAR_overall, x6_C4_VAR_overall]
+x_C5_VAR = [x1_C5_VAR_overall, x2_C5_VAR_overall, x3_C5_VAR_overall, x4_C5_VAR_overall, x5_C5_VAR_overall, x6_C5_VAR_overall]
+x_C6_VAR = [x1_C6_VAR_overall, x2_C6_VAR_overall, x3_C6_VAR_overall, x4_C6_VAR_overall, x5_C6_VAR_overall, x6_C6_VAR_overall]
+
+
+
+print('******* Error RMS  ******')
+
+ttest_e_RMS_pos  = ttest_ind(e_C1_RMS, e_C4_RMS)
+ttest_e_RMS_vel  = ttest_ind(e_C2_RMS, e_C5_RMS)
+ttest_e_RMS_acc  = ttest_ind(e_C3_RMS, e_C6_RMS)
+
+t_value_e_RMS_pos=ttest_e_RMS_pos[0]
+p_value_e_RMS_pos=ttest_e_RMS_pos[1]
+deg_fre_e_RMS_pos=ttest_e_RMS_pos[2]
+
+t_value_e_RMS_vel=ttest_e_RMS_vel[0]
+p_value_e_RMS_vel=ttest_e_RMS_vel[1]
+deg_fre_e_RMS_vel=ttest_e_RMS_vel[2]
+
+t_value_e_RMS_acc=ttest_e_RMS_acc[0]
+p_value_e_RMS_acc=ttest_e_RMS_acc[1]
+deg_fre_e_RMS_acc=ttest_e_RMS_acc[2]
+
+print('***1 Position, 2 velocity, 3 acceleration, Error RMS***')
+print('t_value=',round(t_value_e_RMS_pos,3), ',',  round(t_value_e_RMS_vel,3), ',',  round(t_value_e_RMS_acc,3))
+print('p_value=',round(p_value_e_RMS_pos,3), ',',  round(p_value_e_RMS_vel,3), ',',  round(p_value_e_RMS_acc,3))
+print('degrees of freedom:',deg_fre_e_RMS_pos)
+print('')
+
+
+print('******* Human Input RMS  ******')
+
+ttest_u_RMS_pos  = ttest_ind(u_C1_RMS, u_C4_RMS)
+ttest_u_RMS_vel  = ttest_ind(u_C2_RMS, u_C5_RMS)
+ttest_u_RMS_acc  = ttest_ind(u_C3_RMS, u_C6_RMS)
+
+t_value_u_RMS_pos=ttest_u_RMS_pos[0]
+p_value_u_RMS_pos=ttest_u_RMS_pos[1]
+deg_fre_u_RMS_pos=ttest_u_RMS_pos[2]
+
+t_value_u_RMS_vel=ttest_u_RMS_vel[0]
+p_value_u_RMS_vel=ttest_u_RMS_vel[1]
+deg_fre_u_RMS_vel=ttest_u_RMS_vel[2]
+
+t_value_u_RMS_acc=ttest_u_RMS_acc[0]
+p_value_u_RMS_acc=ttest_u_RMS_acc[1]
+deg_fre_u_RMS_acc=ttest_u_RMS_acc[2]
+
+print('***1 Position, 2 velocity, 3 acceleration, Human Input RMS***')
+print('t_value=',round(t_value_u_RMS_pos,3), ',',  round(t_value_u_RMS_vel,3), ',',  round(t_value_u_RMS_acc,3))
+print('p_value=',round(p_value_u_RMS_pos,3), ',',  round(p_value_u_RMS_vel,3), ',',  round(p_value_u_RMS_acc,3))
+print('degrees of freedom:',deg_fre_u_RMS_pos)
+print('')
+
+
+print('******* Pitch RMS  ******')
+
+ttest_x_RMS_pos  = ttest_ind(x_C1_RMS, x_C4_RMS)
+ttest_x_RMS_vel  = ttest_ind(x_C2_RMS, x_C5_RMS)
+ttest_x_RMS_acc  = ttest_ind(x_C3_RMS, x_C6_RMS)
+
+t_value_x_RMS_pos=ttest_x_RMS_pos[0]
+p_value_x_RMS_pos=ttest_x_RMS_pos[1]
+deg_fre_x_RMS_pos=ttest_x_RMS_pos[2]
+
+t_value_x_RMS_vel=ttest_x_RMS_vel[0]
+p_value_x_RMS_vel=ttest_x_RMS_vel[1]
+deg_fre_x_RMS_vel=ttest_x_RMS_vel[2]
+
+t_value_x_RMS_acc=ttest_x_RMS_acc[0]
+p_value_x_RMS_acc=ttest_x_RMS_acc[1]
+deg_fre_x_RMS_acc=ttest_x_RMS_acc[2]
+
+print('***1 Position, 2 velocity, 3 acceleration, Pitch RMS***')
+print('t_value=',round(t_value_x_RMS_pos,3), ',',  round(t_value_x_RMS_vel,3), ',',  round(t_value_x_RMS_acc,3))
+print('p_value=',round(p_value_x_RMS_pos,3), ',',  round(p_value_x_RMS_vel,3), ',',  round(p_value_x_RMS_acc,3))
+print('degrees of freedom:',deg_fre_x_RMS_pos)
+print('')
+
+
+print('******* Error VAR  ******')
+
+ttest_e_VAR_pos  = ttest_ind(e_C1_VAR, e_C4_VAR)
+ttest_e_VAR_vel  = ttest_ind(e_C2_VAR, e_C5_VAR)
+ttest_e_VAR_acc  = ttest_ind(e_C3_VAR, e_C6_VAR)
+
+t_value_e_VAR_pos=ttest_e_VAR_pos[0]
+p_value_e_VAR_pos=ttest_e_VAR_pos[1]
+deg_fre_e_VAR_pos=ttest_e_VAR_pos[2]
+
+t_value_e_VAR_vel=ttest_e_VAR_vel[0]
+p_value_e_VAR_vel=ttest_e_VAR_vel[1]
+deg_fre_e_VAR_vel=ttest_e_VAR_vel[2]
+
+t_value_e_VAR_acc=ttest_e_VAR_acc[0]
+p_value_e_VAR_acc=ttest_e_VAR_acc[1]
+deg_fre_e_VAR_acc=ttest_e_VAR_acc[2]
+
+print('***1 Position, 2 velocity, 3 acceleration, Error VAR***')
+print('t_value=',round(t_value_e_VAR_pos,3), ',',  round(t_value_e_VAR_vel,3), ',',  round(t_value_e_VAR_acc,3))
+print('p_value=',round(p_value_e_VAR_pos,3), ',',  round(p_value_e_VAR_vel,3), ',',  round(p_value_e_VAR_acc,3))
+print('degrees of freedom:',deg_fre_e_VAR_pos)
+print('')
+
+
+print('******* Human Input VAR  ******')
+
+ttest_u_VAR_pos  = ttest_ind(u_C1_VAR, u_C4_VAR)
+ttest_u_VAR_vel  = ttest_ind(u_C2_VAR, u_C5_VAR)
+ttest_u_VAR_acc  = ttest_ind(u_C3_VAR, u_C6_VAR)
+
+t_value_u_VAR_pos=ttest_u_VAR_pos[0]
+p_value_u_VAR_pos=ttest_u_VAR_pos[1]
+deg_fre_u_VAR_pos=ttest_u_VAR_pos[2]
+
+t_value_u_VAR_vel=ttest_u_VAR_vel[0]
+p_value_u_VAR_vel=ttest_u_VAR_vel[1]
+deg_fre_u_VAR_vel=ttest_u_VAR_vel[2]
+
+t_value_u_VAR_acc=ttest_u_VAR_acc[0]
+p_value_u_VAR_acc=ttest_u_VAR_acc[1]
+deg_fre_u_VAR_acc=ttest_u_VAR_acc[2]
+
+print('***1 Position, 2 velocity, 3 acceleration, Human Input VAR***')
+print('t_value=',round(t_value_u_VAR_pos,3), ',',  round(t_value_u_VAR_vel,3), ',',  round(t_value_u_VAR_acc,3))
+print('p_value=',round(p_value_u_VAR_pos,3), ',',  round(p_value_u_VAR_vel,3), ',',  round(p_value_u_VAR_acc,3))
+print('degrees of freedom:',deg_fre_u_VAR_pos)
+print('')
+
+
+print('******* Pitch VAR  ******')
+
+ttest_x_VAR_pos  = ttest_ind(x_C1_VAR, x_C4_VAR)
+ttest_x_VAR_vel  = ttest_ind(x_C2_VAR, x_C5_VAR)
+ttest_x_VAR_acc  = ttest_ind(x_C3_VAR, x_C6_VAR)
+
+t_value_x_VAR_pos=ttest_x_VAR_pos[0]
+p_value_x_VAR_pos=ttest_x_VAR_pos[1]
+deg_fre_x_VAR_pos=ttest_x_VAR_pos[2]
+
+t_value_x_VAR_vel=ttest_x_VAR_vel[0]
+p_value_x_VAR_vel=ttest_x_VAR_vel[1]
+deg_fre_x_VAR_vel=ttest_x_VAR_vel[2]
+
+t_value_x_VAR_acc=ttest_x_VAR_acc[0]
+p_value_x_VAR_acc=ttest_x_VAR_acc[1]
+deg_fre_x_VAR_acc=ttest_x_VAR_acc[2]
+
+print('***1 Position, 2 velocity, 3 acceleration, Pitch VAR***')
+print('t_value=',round(t_value_x_VAR_pos,3), ',',  round(t_value_x_VAR_vel,3), ',',  round(t_value_x_VAR_acc,3))
+print('p_value=',round(p_value_x_VAR_pos,3), ',',  round(p_value_x_VAR_vel,3), ',',  round(p_value_x_VAR_acc,3))
+print('degrees of freedom:',deg_fre_x_VAR_pos)
+print('')
+
+# **********************   ANOVA    ************************
+#u1_VAR = [u1_C1_VAR_overall, u1_C2_VAR_overall, u1_C3_VAR_overall, u1_C4_VAR_overall, u1_C5_VAR_overall, u1_C6_VAR_overall]
+#u2_VAR = [u2_C1_VAR_overall, u2_C2_VAR_overall, u2_C3_VAR_overall, u2_C4_VAR_overall, u2_C5_VAR_overall, u2_C6_VAR_overall]
+#u3_VAR = [u3_C1_VAR_overall, u3_C2_VAR_overall, u3_C3_VAR_overall, u3_C4_VAR_overall, u3_C5_VAR_overall, u3_C6_VAR_overall]
+#u4_VAR = [u4_C1_VAR_overall, u4_C2_VAR_overall, u4_C3_VAR_overall, u4_C4_VAR_overall, u4_C5_VAR_overall, u4_C6_VAR_overall]
+#u5_VAR = [u5_C1_VAR_overall, u5_C2_VAR_overall, u5_C3_VAR_overall, u5_C4_VAR_overall, u5_C5_VAR_overall, u5_C6_VAR_overall]
+#u6_VAR = [u6_C1_VAR_overall, u6_C2_VAR_overall, u6_C3_VAR_overall, u6_C4_VAR_overall, u6_C5_VAR_overall, u6_C6_VAR_overall]
+#
+#
+#print('***u_VAR, statistical difference between pilots for human input VAR***')
+#print(stats.f_oneway(u1_VAR, u2_VAR, u3_VAR, u4_VAR, u5_VAR, u6_VAR))
