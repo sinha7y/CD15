@@ -686,5 +686,5 @@ print('***1 Position, 2 velocity, 3 acceleration, frequency***')
 print('t_value=',round(t_value_damping_pos,3), ',',  round(t_value_damping_vel,3), ',',  round(t_value_damping_acc,3))
 print('p_value=',round(p_value_damping_pos,3), ',',  round(p_value_damping_vel,3), ',',  round(p_value_damping_acc,3))
 print('degrees of freedom:',deg_freedom_damping_pos)
-    
-print("Ready")
+
+#print("Ready")

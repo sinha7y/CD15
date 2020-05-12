@@ -4377,7 +4377,10 @@ plt.show()
 
 
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 # =============================================================================
 # Statistics
 # =============================================================================
@@ -4409,4 +4412,8 @@ print('***1 Position, 2 velocity, 3 acceleration, time delay***')
 print('t_value=',round(t_value_TD_pos,3), ',',  round(t_value_TD_vel,3), ',',  round(t_value_TD_acc,3))
 print('p_value=',round(p_value_TD_pos,3), ',',  round(p_value_TD_vel,3), ',',  round(p_value_TD_acc,3))
 print('degrees of freedom:',deg_freedom_TD_pos)
+<<<<<<< Updated upstream
 print('')
+=======
+print('')
+>>>>>>> Stashed changes

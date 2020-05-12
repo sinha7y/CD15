@@ -268,6 +268,7 @@ plt.boxplot(np.transpose(matrix15),labels=namesboxplot)
 plt.show()
 
 
+#<<<<<<< Updated upstream
 #********** Statistics **********
 matrix11 = np.array(matrix11)
 matrix12 = np.array(matrix12)
@@ -393,3 +394,5 @@ print('p_value=',round(p_value_matrix15_pos,3), ',',  round(p_value_matrix15_vel
 print('degrees of freedom:',deg_freedom_matrix15_pos)
 print('')
 
+#=======
+#>>>>>>> Stashed changes
