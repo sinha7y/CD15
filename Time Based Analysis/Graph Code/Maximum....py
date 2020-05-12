@@ -2,6 +2,7 @@ import scipy.io
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
+from statsmodels.stats.weightstats import ttest_ind
 
 #----------------------------Initialisation---------------------------------------
 
@@ -266,3 +267,132 @@ plt.suptitle('Boxplot with the average slope of the output function')
 plt.boxplot(np.transpose(matrix15),labels=namesboxplot)
 plt.show()
 
+
+#<<<<<<< Updated upstream
+#********** Statistics **********
+matrix11 = np.array(matrix11)
+matrix12 = np.array(matrix12)
+matrix13 = np.array(matrix13)
+matrix14 = np.array(matrix14)
+matrix15 = np.array(matrix15)
+
+print('***** Matrix 11 **********')
+ttest_matrix11_pos=ttest_ind(matrix11[0,:], matrix11[1,:])
+ttest_matrix11_vel=ttest_ind(matrix11[2,:], matrix11[3,:])
+ttest_matrix11_acc=ttest_ind(matrix11[4,:], matrix11[5,:])
+
+t_value_matrix11_pos=ttest_matrix11_pos[0]
+p_value_matrix11_pos=ttest_matrix11_pos[1]
+deg_freedom_matrix11_pos=ttest_matrix11_pos[2]
+
+t_value_matrix11_vel=ttest_matrix11_vel[0]
+p_value_matrix11_vel=ttest_matrix11_vel[1]
+deg_freedom_matrix11_vel=ttest_matrix11_vel[2]
+
+t_value_matrix11_acc=ttest_matrix11_acc[0]
+p_value_matrix11_acc=ttest_matrix11_acc[1]
+deg_freedom_matrix11_acc=ttest_matrix11_acc[2]
+
+print('***1 Position, 2 velocity, 3 acceleration, matrix11***')
+print('t_value=',round(t_value_matrix11_pos,3), ',',  round(t_value_matrix11_vel,3), ',',  round(t_value_matrix11_acc,3))
+print('p_value=',round(p_value_matrix11_pos,3), ',',  round(p_value_matrix11_vel,3), ',',  round(p_value_matrix11_acc,3))
+print('degrees of freedom:',deg_freedom_matrix11_pos)
+print('')
+
+print('***** Matrix 12 **********')
+ttest_matrix12_pos=ttest_ind(matrix12[0,:], matrix12[1,:])
+ttest_matrix12_vel=ttest_ind(matrix12[2,:], matrix12[3,:])
+ttest_matrix12_acc=ttest_ind(matrix12[4,:], matrix12[5,:])
+
+t_value_matrix12_pos=ttest_matrix12_pos[0]
+p_value_matrix12_pos=ttest_matrix12_pos[1]
+deg_freedom_matrix12_pos=ttest_matrix12_pos[2]
+
+t_value_matrix12_vel=ttest_matrix12_vel[0]
+p_value_matrix12_vel=ttest_matrix12_vel[1]
+deg_freedom_matrix12_vel=ttest_matrix12_vel[2]
+
+t_value_matrix12_acc=ttest_matrix12_acc[0]
+p_value_matrix12_acc=ttest_matrix12_acc[1]
+deg_freedom_matrix12_acc=ttest_matrix12_acc[2]
+
+print('***1 Position, 2 velocity, 3 acceleration, matrix12***')
+print('t_value=',round(t_value_matrix12_pos,3), ',',  round(t_value_matrix12_vel,3), ',',  round(t_value_matrix12_acc,3))
+print('p_value=',round(p_value_matrix12_pos,3), ',',  round(p_value_matrix12_vel,3), ',',  round(p_value_matrix12_acc,3))
+print('degrees of freedom:',deg_freedom_matrix12_pos)
+print('')
+
+
+print('***** Matrix 13 **********')
+ttest_matrix13_pos=ttest_ind(matrix13[0,:], matrix13[1,:])
+ttest_matrix13_vel=ttest_ind(matrix13[2,:], matrix13[3,:])
+ttest_matrix13_acc=ttest_ind(matrix13[4,:], matrix13[5,:])
+
+t_value_matrix13_pos=ttest_matrix13_pos[0]
+p_value_matrix13_pos=ttest_matrix13_pos[1]
+deg_freedom_matrix13_pos=ttest_matrix13_pos[2]
+
+t_value_matrix13_vel=ttest_matrix13_vel[0]
+p_value_matrix13_vel=ttest_matrix13_vel[1]
+deg_freedom_matrix13_vel=ttest_matrix13_vel[2]
+
+t_value_matrix13_acc=ttest_matrix13_acc[0]
+p_value_matrix13_acc=ttest_matrix13_acc[1]
+deg_freedom_matrix13_acc=ttest_matrix13_acc[2]
+
+print('***1 Position, 2 velocity, 3 acceleration, matrix13***')
+print('t_value=',round(t_value_matrix13_pos,3), ',',  round(t_value_matrix13_vel,3), ',',  round(t_value_matrix13_acc,3))
+print('p_value=',round(p_value_matrix13_pos,3), ',',  round(p_value_matrix13_vel,3), ',',  round(p_value_matrix13_acc,3))
+print('degrees of freedom:',deg_freedom_matrix13_pos)
+print('')
+
+
+print('***** Matrix 14 **********')
+ttest_matrix14_pos=ttest_ind(matrix14[0,:], matrix14[1,:])
+ttest_matrix14_vel=ttest_ind(matrix14[2,:], matrix14[3,:])
+ttest_matrix14_acc=ttest_ind(matrix14[4,:], matrix14[5,:])
+
+t_value_matrix14_pos=ttest_matrix14_pos[0]
+p_value_matrix14_pos=ttest_matrix14_pos[1]
+deg_freedom_matrix14_pos=ttest_matrix14_pos[2]
+
+t_value_matrix14_vel=ttest_matrix14_vel[0]
+p_value_matrix14_vel=ttest_matrix14_vel[1]
+deg_freedom_matrix14_vel=ttest_matrix14_vel[2]
+
+t_value_matrix14_acc=ttest_matrix14_acc[0]
+p_value_matrix14_acc=ttest_matrix14_acc[1]
+deg_freedom_matrix14_acc=ttest_matrix14_acc[2]
+
+print('***1 Position, 2 velocity, 3 acceleration, matrix14***')
+print('t_value=',round(t_value_matrix14_pos,3), ',',  round(t_value_matrix14_vel,3), ',',  round(t_value_matrix14_acc,3))
+print('p_value=',round(p_value_matrix14_pos,3), ',',  round(p_value_matrix14_vel,3), ',',  round(p_value_matrix14_acc,3))
+print('degrees of freedom:',deg_freedom_matrix14_pos)
+print('')
+
+
+print('***** Matrix 15 **********')
+ttest_matrix15_pos=ttest_ind(matrix15[0,:], matrix15[1,:])
+ttest_matrix15_vel=ttest_ind(matrix15[2,:], matrix15[3,:])
+ttest_matrix15_acc=ttest_ind(matrix15[4,:], matrix15[5,:])
+
+t_value_matrix15_pos=ttest_matrix15_pos[0]
+p_value_matrix15_pos=ttest_matrix15_pos[1]
+deg_freedom_matrix15_pos=ttest_matrix15_pos[2]
+
+t_value_matrix15_vel=ttest_matrix15_vel[0]
+p_value_matrix15_vel=ttest_matrix15_vel[1]
+deg_freedom_matrix15_vel=ttest_matrix15_vel[2]
+
+t_value_matrix15_acc=ttest_matrix15_acc[0]
+p_value_matrix15_acc=ttest_matrix15_acc[1]
+deg_freedom_matrix15_acc=ttest_matrix15_acc[2]
+
+print('***1 Position, 2 velocity, 3 acceleration, matrix15***')
+print('t_value=',round(t_value_matrix15_pos,3), ',',  round(t_value_matrix15_vel,3), ',',  round(t_value_matrix15_acc,3))
+print('p_value=',round(p_value_matrix15_pos,3), ',',  round(p_value_matrix15_vel,3), ',',  round(p_value_matrix15_acc,3))
+print('degrees of freedom:',deg_freedom_matrix15_pos)
+print('')
+
+#=======
+#>>>>>>> Stashed changes
