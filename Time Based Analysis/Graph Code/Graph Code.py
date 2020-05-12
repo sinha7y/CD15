@@ -5,7 +5,11 @@ import matplotlib.pyplot as plt
 import cmath
 import math
 from scipy.signal import correlate
+#<<<<<<< HEAD
 #from statsmodels.stats.weightstats import ttest_ind
+#=======
+#from statsmodels.stats.weightstats import ttest_ind
+#>>>>>>> ac5b7a6feddf200a261bf29207f5e30750184b21
 
 
 # Read Matlab file
@@ -4365,7 +4369,11 @@ ax.set_ylabel('Time delay [s]')
 plt.show()
 
 
+<<<<<<< HEAD
 """
+=======
+
+>>>>>>> ac5b7a6feddf200a261bf29207f5e30750184b21
 <<<<<<< Updated upstream
 
 =======
@@ -4406,4 +4414,8 @@ print('')
 =======
 print('')
 >>>>>>> Stashed changes
+<<<<<<< HEAD
+
+=======
+>>>>>>> ac5b7a6feddf200a261bf29207f5e30750184b21
 """
