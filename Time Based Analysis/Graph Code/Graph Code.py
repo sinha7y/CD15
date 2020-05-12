@@ -1,10 +1,15 @@
+
 import scipy.io
 import numpy as np
 import matplotlib.pyplot as plt
 import cmath
 import math
 from scipy.signal import correlate
-from statsmodels.stats.weightstats import ttest_ind
+#<<<<<<< HEAD
+#from statsmodels.stats.weightstats import ttest_ind
+#=======
+#from statsmodels.stats.weightstats import ttest_ind
+#>>>>>>> ac5b7a6feddf200a261bf29207f5e30750184b21
 
 
 # Read Matlab file
@@ -448,7 +453,6 @@ fd6_C6 = data6_C6['fd'][0][0].reshape(8192,1)
 
 """
 # ---------------------------- RMS and Variance for Error "e" --------------------------------
-
 # --- Subject 1 ---
 # single runs
 e1_C1_RMS = RMS_calculate_8192x5(e1_C1)
@@ -476,7 +480,6 @@ e1_C5_RMS_overall = RMS_calculate_1x5(e1_C5_RMS)
 e1_C5_VAR_overall = VAR_calculate_1x5(e1_C5_VAR)
 e1_C6_RMS_overall = RMS_calculate_1x5(e1_C6_RMS)
 e1_C6_VAR_overall = VAR_calculate_1x5(e1_C6_VAR)
-
 # --- Subject 2 ---
 # single runs
 e2_C1_RMS = RMS_calculate_8192x5(e2_C1)
@@ -504,7 +507,6 @@ e2_C5_RMS_overall = RMS_calculate_1x5(e2_C5_RMS)
 e2_C5_VAR_overall = VAR_calculate_1x5(e2_C5_VAR)
 e2_C6_RMS_overall = RMS_calculate_1x5(e2_C6_RMS)
 e2_C6_VAR_overall = VAR_calculate_1x5(e2_C6_VAR)
-
 # --- Subject 3 ---
 # single runs
 e3_C1_RMS = RMS_calculate_8192x5(e3_C1)
@@ -532,7 +534,6 @@ e3_C5_RMS_overall = RMS_calculate_1x5(e3_C5_RMS)
 e3_C5_VAR_overall = VAR_calculate_1x5(e3_C5_VAR)
 e3_C6_RMS_overall = RMS_calculate_1x5(e3_C6_RMS)
 e3_C6_VAR_overall = VAR_calculate_1x5(e3_C6_VAR)
-
 # --- Subject 4 ---
 # single runs
 e4_C1_RMS = RMS_calculate_8192x5(e4_C1)
@@ -560,7 +561,6 @@ e4_C5_RMS_overall = RMS_calculate_1x5(e4_C5_RMS)
 e4_C5_VAR_overall = VAR_calculate_1x5(e4_C5_VAR)
 e4_C6_RMS_overall = RMS_calculate_1x5(e4_C6_RMS)
 e4_C6_VAR_overall = VAR_calculate_1x5(e4_C6_VAR)
-
 # --- Subject 5 ---
 # single runs
 e5_C1_RMS = RMS_calculate_8192x5(e5_C1)
@@ -588,7 +588,6 @@ e5_C5_RMS_overall = RMS_calculate_1x5(e5_C5_RMS)
 e5_C5_VAR_overall = VAR_calculate_1x5(e5_C5_VAR)
 e5_C6_RMS_overall = RMS_calculate_1x5(e5_C6_RMS)
 e5_C6_VAR_overall = VAR_calculate_1x5(e5_C6_VAR)
-
 # --- Subject 6 ---
 # single runs
 e6_C1_RMS = RMS_calculate_8192x5(e6_C1)
@@ -616,7 +615,6 @@ e6_C5_RMS_overall = RMS_calculate_1x5(e6_C5_RMS)
 e6_C5_VAR_overall = VAR_calculate_1x5(e6_C5_VAR)
 e6_C6_RMS_overall = RMS_calculate_1x5(e6_C6_RMS)
 e6_C6_VAR_overall = VAR_calculate_1x5(e6_C6_VAR)
-
 # --- Rms and var across the different subjects ---
 # C1
 overall_array_e_C1_RMS = [e1_C1_RMS_overall, e2_C1_RMS_overall, e3_C1_RMS_overall, e4_C1_RMS_overall, e5_C1_RMS_overall, e6_C1_RMS_overall]
@@ -648,16 +646,13 @@ overall_array_e_C6_RMS = [e1_C6_RMS_overall, e2_C6_RMS_overall, e3_C6_RMS_overal
 e_C6_RMS = RMS_calculate_1x6(overall_array_e_C6_RMS)
 overall_array_e_C6_VAR = [e1_C6_VAR_overall, e2_C6_VAR_overall, e3_C6_VAR_overall, e4_C6_VAR_overall, e5_C6_VAR_overall, e6_C6_VAR_overall]
 e_C6_VAR = VAR_calculate_1x6(overall_array_e_C6_VAR)
-
 print("RMS of error in scenario 1 is:",e_C1_RMS,"VAR is:", e_C1_VAR)
 print("RMS of error in scenario 2 is:",e_C2_RMS,"VAR is:", e_C2_VAR)
 print("RMS of error in scenario 3 is:",e_C3_RMS,"VAR is:", e_C3_VAR)
 print("RMS of error in scenario 4 is:",e_C4_RMS,"VAR is:", e_C4_VAR)
 print("RMS of error in scenario 5 is:",e_C5_RMS,"VAR is:", e_C5_VAR)
 print("RMS of error in scenario 6 is:",e_C6_RMS,"VAR is:", e_C6_VAR)
-
 # ---------------------------- RMS and Variance for Human Input "u" --------------------------------
-
 # --- Subject 1 ---
 # single runs
 u1_C1_RMS = RMS_calculate_8192x5(u1_C1)
@@ -685,7 +680,6 @@ u1_C5_RMS_overall = RMS_calculate_1x5(u1_C5_RMS)
 u1_C5_VAR_overall = VAR_calculate_1x5(u1_C5_VAR)
 u1_C6_RMS_overall = RMS_calculate_1x5(u1_C6_RMS)
 u1_C6_VAR_overall = VAR_calculate_1x5(u1_C6_VAR)
-
 # --- Subject 2 ---
 # single runs
 u2_C1_RMS = RMS_calculate_8192x5(u2_C1)
@@ -713,7 +707,6 @@ u2_C5_RMS_overall = RMS_calculate_1x5(u2_C5_RMS)
 u2_C5_VAR_overall = VAR_calculate_1x5(u2_C5_VAR)
 u2_C6_RMS_overall = RMS_calculate_1x5(u2_C6_RMS)
 u2_C6_VAR_overall = VAR_calculate_1x5(u2_C6_VAR)
-
 # --- Subject 3 ---
 # single runs
 u3_C1_RMS = RMS_calculate_8192x5(u3_C1)
@@ -741,7 +734,6 @@ u3_C5_RMS_overall = RMS_calculate_1x5(u3_C5_RMS)
 u3_C5_VAR_overall = VAR_calculate_1x5(u3_C5_VAR)
 u3_C6_RMS_overall = RMS_calculate_1x5(u3_C6_RMS)
 u3_C6_VAR_overall = VAR_calculate_1x5(u3_C6_VAR)
-
 # --- Subject 4 ---
 # single runs
 u4_C1_RMS = RMS_calculate_8192x5(u4_C1)
@@ -769,7 +761,6 @@ u4_C5_RMS_overall = RMS_calculate_1x5(u4_C5_RMS)
 u4_C5_VAR_overall = VAR_calculate_1x5(u4_C5_VAR)
 u4_C6_RMS_overall = RMS_calculate_1x5(u4_C6_RMS)
 u4_C6_VAR_overall = VAR_calculate_1x5(u4_C6_VAR)
-
 # --- Subject 5 ---
 # single runs
 u5_C1_RMS = RMS_calculate_8192x5(u5_C1)
@@ -797,7 +788,6 @@ u5_C5_RMS_overall = RMS_calculate_1x5(u5_C5_RMS)
 u5_C5_VAR_overall = VAR_calculate_1x5(u5_C5_VAR)
 u5_C6_RMS_overall = RMS_calculate_1x5(u5_C6_RMS)
 u5_C6_VAR_overall = VAR_calculate_1x5(u5_C6_VAR)
-
 # --- Subject 6 ---
 # single runs
 u6_C1_RMS = RMS_calculate_8192x5(u6_C1)
@@ -825,7 +815,6 @@ u6_C5_RMS_overall = RMS_calculate_1x5(u6_C5_RMS)
 u6_C5_VAR_overall = VAR_calculate_1x5(u6_C5_VAR)
 u6_C6_RMS_overall = RMS_calculate_1x5(u6_C6_RMS)
 u6_C6_VAR_overall = VAR_calculate_1x5(u6_C6_VAR)
-
 # --- Rms and var across the different subjects ---
 # C1
 overall_array_u_C1_RMS = [u1_C1_RMS_overall, u2_C1_RMS_overall, u3_C1_RMS_overall, u4_C1_RMS_overall, u5_C1_RMS_overall, u6_C1_RMS_overall]
@@ -857,16 +846,13 @@ overall_array_u_C6_RMS = [u1_C6_RMS_overall, u2_C6_RMS_overall, u3_C6_RMS_overal
 u_C6_RMS = RMS_calculate_1x6(overall_array_u_C6_RMS)
 overall_array_u_C6_VAR = [u1_C6_VAR_overall, u2_C6_VAR_overall, u3_C6_VAR_overall, u4_C6_VAR_overall, u5_C6_VAR_overall, u6_C6_VAR_overall]
 u_C6_VAR = VAR_calculate_1x6(overall_array_u_C6_VAR)
-
 print("RMS of human input in scenario 1 is:",u_C1_RMS,"VAR is:", u_C1_VAR)
 print("RMS of human input in scenario 2 is:",u_C2_RMS,"VAR is:", u_C2_VAR)
 print("RMS of human input in scenario 3 is:",u_C3_RMS,"VAR is:", u_C3_VAR)
 print("RMS of human input in scenario 4 is:",u_C4_RMS,"VAR is:", u_C4_VAR)
 print("RMS of human input in scenario 5 is:",u_C5_RMS,"VAR is:", u_C5_VAR)
 print("RMS of human input in scenario 6 is:",u_C6_RMS,"VAR is:", u_C6_VAR)
-
 # ---------------------------- RMS and Variance for Vehicle Output "x" --------------------------------
-
 # --- Subject 1 ---
 # single runs
 x1_C1_RMS = RMS_calculate_8192x5(x1_C1)
@@ -894,7 +880,6 @@ x1_C5_RMS_overall = RMS_calculate_1x5(x1_C5_RMS)
 x1_C5_VAR_overall = VAR_calculate_1x5(x1_C5_VAR)
 x1_C6_RMS_overall = RMS_calculate_1x5(x1_C6_RMS)
 x1_C6_VAR_overall = VAR_calculate_1x5(x1_C6_VAR)
-
 # --- Subject 2 ---
 # single runs
 x2_C1_RMS = RMS_calculate_8192x5(x2_C1)
@@ -922,7 +907,6 @@ x2_C5_RMS_overall = RMS_calculate_1x5(x2_C5_RMS)
 x2_C5_VAR_overall = VAR_calculate_1x5(x2_C5_VAR)
 x2_C6_RMS_overall = RMS_calculate_1x5(x2_C6_RMS)
 x2_C6_VAR_overall = VAR_calculate_1x5(x2_C6_VAR)
-
 # --- Subject 3 ---
 # single runs
 x3_C1_RMS = RMS_calculate_8192x5(x3_C1)
@@ -950,7 +934,6 @@ x3_C5_RMS_overall = RMS_calculate_1x5(x3_C5_RMS)
 x3_C5_VAR_overall = VAR_calculate_1x5(x3_C5_VAR)
 x3_C6_RMS_overall = RMS_calculate_1x5(x3_C6_RMS)
 x3_C6_VAR_overall = VAR_calculate_1x5(x3_C6_VAR)
-
 # --- Subject 4 ---
 # single runs
 x4_C1_RMS = RMS_calculate_8192x5(x4_C1)
@@ -978,7 +961,6 @@ x4_C5_RMS_overall = RMS_calculate_1x5(x4_C5_RMS)
 x4_C5_VAR_overall = VAR_calculate_1x5(x4_C5_VAR)
 x4_C6_RMS_overall = RMS_calculate_1x5(x4_C6_RMS)
 x4_C6_VAR_overall = VAR_calculate_1x5(x4_C6_VAR)
-
 # --- Subject 5 ---
 # single runs
 x5_C1_RMS = RMS_calculate_8192x5(x5_C1)
@@ -1006,7 +988,6 @@ x5_C5_RMS_overall = RMS_calculate_1x5(x5_C5_RMS)
 x5_C5_VAR_overall = VAR_calculate_1x5(x5_C5_VAR)
 x5_C6_RMS_overall = RMS_calculate_1x5(x5_C6_RMS)
 x5_C6_VAR_overall = VAR_calculate_1x5(x5_C6_VAR)
-
 # --- Subject 6 ---
 # single runs
 x6_C1_RMS = RMS_calculate_8192x5(x6_C1)
@@ -1034,7 +1015,6 @@ x6_C5_RMS_overall = RMS_calculate_1x5(x6_C5_RMS)
 x6_C5_VAR_overall = VAR_calculate_1x5(x6_C5_VAR)
 x6_C6_RMS_overall = RMS_calculate_1x5(x6_C6_RMS)
 x6_C6_VAR_overall = VAR_calculate_1x5(x6_C6_VAR)
-
 # --- Rms and var across the different subjects ---
 # C1
 overall_array_x_C1_RMS = [x1_C1_RMS_overall, x2_C1_RMS_overall, x3_C1_RMS_overall, x4_C1_RMS_overall, x5_C1_RMS_overall, x6_C1_RMS_overall]
@@ -1066,7 +1046,6 @@ overall_array_x_C6_RMS = [x1_C6_RMS_overall, x2_C6_RMS_overall, x3_C6_RMS_overal
 x_C6_RMS = RMS_calculate_1x6(overall_array_x_C6_RMS)
 overall_array_x_C6_VAR = [x1_C6_VAR_overall, x2_C6_VAR_overall, x3_C6_VAR_overall, x4_C6_VAR_overall, x5_C6_VAR_overall, x6_C6_VAR_overall]
 x_C6_VAR = VAR_calculate_1x6(overall_array_x_C6_VAR)
-
 print("RMS of vehicle output in scenario 1 is:",x_C1_RMS,"VAR is:", x_C1_VAR)
 print("RMS of vehicle output in scenario 2 is:",x_C2_RMS,"VAR is:", x_C2_VAR)
 print("RMS of vehicle output in scenario 3 is:",x_C3_RMS,"VAR is:", x_C3_VAR)
@@ -1302,7 +1281,6 @@ plt.ylabel("e[-]")
 plt.legend(('1st try', '2nd try', '3rd try','4rd try','5rd try'),
            loc='upper right')
 plt.show()
-
 # Human operator control input as a function of time
 plt.subplot(231)
 plt.plot(t, u1_C1)
@@ -1347,7 +1325,6 @@ plt.ylabel("u[-]")
 plt.legend(('1st try', '2nd try', '3rd try','4rd try','5rd try'),
            loc='upper right')
 plt.show()
-
 # Pitch input (u) as a function of time
 plt.subplot(231)
 plt.plot(t, x1_C1)
@@ -1392,7 +1369,6 @@ plt.ylabel("x[m/s2]")
 plt.legend(('1st try', '2nd try', '3rd try','4rd try','5rd try'),
            loc='upper right')
 plt.show()
-
 # Target forcing function as a function of time
 plt.subplot(231)
 plt.plot(t,ft1_C1)
@@ -1425,7 +1401,6 @@ plt.title('Target forcing function; acceleration control; motion')
 plt.xlabel("t[s]")
 plt.ylabel("ft[N]")
 plt.show()
-
 # Disturbance forcing function as a function of time
 plt.subplot(231)
 plt.plot(t,fd1_C1)
@@ -4365,13 +4340,31 @@ boxplttab3 = [scattertab1[2],scattertab2[2],scattertab3[2],scattertab4[2],scatte
 boxplttab4 = [scattertab1[3],scattertab2[3],scattertab3[3],scattertab4[3],scattertab5[3],scattertab6[3]]
 boxplttab5 = [scattertab1[4],scattertab2[4],scattertab3[4],scattertab4[4],scattertab5[4],scattertab6[4]]
 boxplttab6 = [scattertab1[5],scattertab2[5],scattertab3[5],scattertab4[5],scattertab5[5],scattertab6[5]]
-finaltab = [boxplttab1,boxplttab2,boxplttab3,boxplttab4,boxplttab5,boxplttab6]
+finalnmtab = [boxplttab1,boxplttab2,boxplttab3]
+finalmtab = [boxplttab4,boxplttab5,boxplttab6]
 fig = plt.figure()
 ax = fig.add_subplot(111)
-boxplot = ax.boxplot(finaltab)
-ax.set_xticklabels(['p nm', 'v nm', 'a nm', 'p m', 'v m', 'a m'])
+
+boxplot1 = ax.boxplot(finalnmtab, positions = [1,4,7], widths = 0.6, patch_artist=True)
+boxplot2 = ax.boxplot(finalmtab, positions = [1.6,4.6,7.6], widths = 0.6, patch_artist=True)
+
+for box in boxplot1['boxes']:
+    # change outline color
+    box.set(color='black', linewidth=1)
+    # change fill color
+    box.set(facecolor = 'red' )
+    
+
+for box in boxplot2['boxes']:
+    box.set(color='black', linewidth=1)
+    box.set(facecolor = 'blue' )
+
+ax.legend([boxplot1["boxes"][0], boxplot2["boxes"][0]], ['No motion', 'Motion'], loc='upper right')
+ax.set_xlim(0,9)
+ax.set_xticklabels(['pos','vel', 'acc'])
+ax.set_xticks([1.3,4.3,7.3])
 ax.set_title('Average Time delay of pilots accros different combinations')
-ax.set_xlabel('Combination')
+ax.set_xlabel('Vehicle dynamic')
 ax.set_ylabel('Time delay [s]')
 print(np.average(boxplttab1))
 print(np.average(boxplttab2))
@@ -4382,8 +4375,16 @@ print(np.average(boxplttab6))
 plt.show()
 
 
+<<<<<<< HEAD
+"""
+=======
 
+<<<<<<< HEAD
 #<<<<<<< Updated upstream
+=======
+>>>>>>> ac5b7a6feddf200a261bf29207f5e30750184b21
+<<<<<<< Updated upstream
+>>>>>>> 21fad8dcdac6808b8dc7fd00bd96b875042a23b6
 
 #=======
 #>>>>>>> Stashed changes
@@ -4422,4 +4423,13 @@ print('degrees of freedom:',deg_freedom_TD_pos)
 print('')
 #=======
 print('')
+<<<<<<< HEAD
 #>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+<<<<<<< HEAD
+
+=======
+>>>>>>> ac5b7a6feddf200a261bf29207f5e30750184b21
+"""
+>>>>>>> 21fad8dcdac6808b8dc7fd00bd96b875042a23b6
