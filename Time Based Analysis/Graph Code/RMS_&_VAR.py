@@ -1097,7 +1097,7 @@ plt.scatter(["p-nm", "p-m", "v-nm", "v-m", "a-nm", "a-m"],[e6_C1_RMS_overall, e6
 plt.legend(('Pilot 1', 'Pilot 2', 'Pilot 3', 'Pilot 4', 'Pilot 5', 'Pilot 6', 'Pilot 7'), scatterpoints=1,loc='upper left',ncol=3,fontsize=8)
 plt.xlabel("Condition")
 plt.ylabel("Error RMS")
-
+print(np.average(e1_C3_RMS_overall),np.average(e5_C3_RMS_overall),e5_C6_RMS_overall,e3_C6_RMS_overall)
 plt.show()
 
 # Plot human input RMS
@@ -1136,6 +1136,7 @@ plt.scatter(["p-nm", "p-m", "v-nm", "v-m", "a-nm", "a-m"],[e6_C1_VAR_overall, e6
 plt.legend(('Pilot 1', 'Pilot 2', 'Pilot 3', 'Pilot 4', 'Pilot 5', 'Pilot 6', 'Pilot 7'), scatterpoints=1,loc='upper left',ncol=3,fontsize=8)
 plt.xlabel("Condition")
 plt.ylabel("Error VAR")
+print(np.average(e1_C3_VAR_overall),np.average(e5_C3_VAR_overall),e5_C6_VAR_overall,e2_C6_VAR_overall)
 
 plt.show()
 
