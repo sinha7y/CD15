@@ -4372,6 +4372,7 @@ print(np.average(boxplttab3))
 print(np.average(boxplttab4))
 print(np.average(boxplttab5))
 print(np.average(boxplttab6))
+plt.grid()
 plt.show()
 
 
