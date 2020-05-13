@@ -1,3 +1,4 @@
+import seaborn as sns
 import scipy.io
 import numpy as np
 import matplotlib.pyplot as plt
@@ -155,7 +156,7 @@ for i in range(6):
 #------------------------------------Graphs-----------------------------------------
 vectornames=['pos. control; no motion','vel. control; no motion','acc. control; no motion','pos. control; motion','vel. control; motion','acc. control; motion']
 namesboxplot=['p-nm','p-m','v-nm','v-m','a-nm','a-m']
-
+sns.set(style="whitegrid")
 #Peaks
 print("Average number of stick movements for every case")
 matrix11=[]
@@ -178,9 +179,31 @@ for i in range(6):
 plt.suptitle('Number of peaks for the human input function',fontsize=14)
 plt.show()
 
-matrix11=change(matrix11)
-plt.suptitle('Boxplot with the number of peaks of the input function')
-plt.boxplot(np.transpose(matrix11),labels=namesboxplot)
+finalnmtab = [matrix11[0],matrix11[1],matrix11[2]]
+finalmtab = [matrix11[3],matrix11[4],matrix11[5]]
+fig = plt.figure()
+ax = fig.add_subplot(111)
+
+boxplot1 = ax.boxplot(finalnmtab, positions = [1,4,7], widths = 0.6, patch_artist=True)
+boxplot2 = ax.boxplot(finalmtab, positions = [1.6,4.6,7.6], widths = 0.6, patch_artist=True)
+
+for box in boxplot1['boxes']:
+    # change outline color
+    box.set(color='black', linewidth=1)
+    # change fill color
+    box.set(facecolor = 'red' )
+    
+
+for box in boxplot2['boxes']:
+    box.set(color='black', linewidth=1)
+    box.set(facecolor = 'blue' )
+
+ax.legend([boxplot1["boxes"][0], boxplot2["boxes"][0]], ['No motion', 'Motion'], loc='upper right')
+ax.set_xlim(0,9)
+ax.set_xticklabels(['Pos','Vel', 'Acc'])
+ax.set_xticks([1.3,4.3,7.3])
+ax.set_xlabel('Control Mode')
+ax.set_ylabel('Number of peaks')
 plt.show()
 
 #Maximum and minimum
@@ -211,14 +234,58 @@ for i in range(6):
 plt.suptitle('Maximum and minimum of the error function',fontsize=14)    
 plt.show()
 
-matrix12=change(matrix12)
-plt.suptitle('Boxplot with the maximum of the error function')
-plt.boxplot(np.transpose(matrix12),labels=namesboxplot)
+finalnmtab = [matrix12[0],matrix12[1],matrix12[2]]
+finalmtab = [matrix12[3],matrix12[4],matrix12[5]]
+fig = plt.figure()
+ax = fig.add_subplot(111)
+
+boxplot1 = ax.boxplot(finalnmtab, positions = [1,4,7], widths = 0.6, patch_artist=True)
+boxplot2 = ax.boxplot(finalmtab, positions = [1.6,4.6,7.6], widths = 0.6, patch_artist=True)
+
+for box in boxplot1['boxes']:
+    # change outline color
+    box.set(color='black', linewidth=1)
+    # change fill color
+    box.set(facecolor = 'red' )
+    
+
+for box in boxplot2['boxes']:
+    box.set(color='black', linewidth=1)
+    box.set(facecolor = 'blue' )
+
+ax.legend([boxplot1["boxes"][0], boxplot2["boxes"][0]], ['No motion', 'Motion'], loc='upper right')
+ax.set_xlim(0,9)
+ax.set_xticklabels(['Pos','Vel', 'Acc'])
+ax.set_xticks([1.3,4.3,7.3])
+ax.set_xlabel('Control Mode')
+ax.set_ylabel('Maxima')
 plt.show()
 
-matrix13=change(matrix13)
-plt.suptitle('Boxplot with the minimum of the error function')
-plt.boxplot(np.transpose(matrix13),labels=namesboxplot)
+finalnmtab = [matrix13[0],matrix13[1],matrix13[2]]
+finalmtab = [matrix13[3],matrix13[4],matrix13[5]]
+fig = plt.figure()
+ax = fig.add_subplot(111)
+
+boxplot1 = ax.boxplot(finalnmtab, positions = [1,4,7], widths = 0.6, patch_artist=True)
+boxplot2 = ax.boxplot(finalmtab, positions = [1.6,4.6,7.6], widths = 0.6, patch_artist=True)
+
+for box in boxplot1['boxes']:
+    # change outline color
+    box.set(color='black', linewidth=1)
+    # change fill color
+    box.set(facecolor = 'red' )
+    
+
+for box in boxplot2['boxes']:
+    box.set(color='black', linewidth=1)
+    box.set(facecolor = 'blue' )
+
+ax.legend([boxplot1["boxes"][0], boxplot2["boxes"][0]], ['No motion', 'Motion'], loc='upper right')
+ax.set_xlim(0,9)
+ax.set_xticklabels(['Pos','Vel', 'Acc'])
+ax.set_xticks([1.3,4.3,7.3])
+ax.set_xlabel('Control Mode')
+ax.set_ylabel('Minima')
 plt.show()
 
 #Slope input
@@ -239,9 +306,31 @@ for i in range(6):
 plt.suptitle('Average slope for the human input function',fontsize=14)     
 plt.show()
 
-matrix14=change(matrix14)
-plt.suptitle('Boxplot with the average slope of the input function')
-plt.boxplot(np.transpose(matrix14),labels=namesboxplot)
+finalnmtab = [matrix14[0],matrix14[1],matrix14[2]]
+finalmtab = [matrix14[3],matrix14[4],matrix14[5]]
+fig = plt.figure()
+ax = fig.add_subplot(111)
+
+boxplot1 = ax.boxplot(finalnmtab, positions = [1,4,7], widths = 0.6, patch_artist=True)
+boxplot2 = ax.boxplot(finalmtab, positions = [1.6,4.6,7.6], widths = 0.6, patch_artist=True)
+
+for box in boxplot1['boxes']:
+    # change outline color
+    box.set(color='black', linewidth=1)
+    # change fill color
+    box.set(facecolor = 'red' )
+    
+
+for box in boxplot2['boxes']:
+    box.set(color='black', linewidth=1)
+    box.set(facecolor = 'blue' )
+
+ax.legend([boxplot1["boxes"][0], boxplot2["boxes"][0]], ['No motion', 'Motion'], loc='upper right')
+ax.set_xlim(0,9)
+ax.set_xticklabels(['Pos','Vel', 'Acc'])
+ax.set_xticks([1.3,4.3,7.3])
+ax.set_xlabel('Control Mode')
+ax.set_ylabel('Slope')
 plt.show()
 
 #Slope output
@@ -262,9 +351,31 @@ for i in range(6):
 plt.suptitle('Average slope for the output function',fontsize=14)      
 plt.show()
 
-matrix15=change(matrix15)
-plt.suptitle('Boxplot with the average slope of the output function')
-plt.boxplot(np.transpose(matrix15),labels=namesboxplot)
+finalnmtab = [matrix15[0],matrix15[1],matrix15[2]]
+finalmtab = [matrix15[3],matrix15[4],matrix15[5]]
+fig = plt.figure()
+ax = fig.add_subplot(111)
+
+boxplot1 = ax.boxplot(finalnmtab, positions = [1,4,7], widths = 0.6, patch_artist=True)
+boxplot2 = ax.boxplot(finalmtab, positions = [1.6,4.6,7.6], widths = 0.6, patch_artist=True)
+
+for box in boxplot1['boxes']:
+    # change outline color
+    box.set(color='black', linewidth=1)
+    # change fill color
+    box.set(facecolor = 'red' )
+    
+
+for box in boxplot2['boxes']:
+    box.set(color='black', linewidth=1)
+    box.set(facecolor = 'blue' )
+
+ax.legend([boxplot1["boxes"][0], boxplot2["boxes"][0]], ['No motion', 'Motion'], loc='upper right')
+ax.set_xlim(0,9)
+ax.set_xticklabels(['Pos','Vel', 'Acc'])
+ax.set_xticks([1.3,4.3,7.3])
+ax.set_xlabel('Control Mode')
+ax.set_ylabel('Slope')
 plt.show()
 
 
