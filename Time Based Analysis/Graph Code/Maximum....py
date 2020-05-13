@@ -192,8 +192,13 @@ for box in boxplot1['boxes']:
     box.set(color='black', linewidth=1)
     # change fill color
     box.set(facecolor = 'red' )
-    
 
+for box in boxplot1['medians']:
+    box.set(color='black')
+    
+for box in boxplot2['medians']:
+    box.set(color='black')
+    
 for box in boxplot2['boxes']:
     box.set(color='black', linewidth=1)
     box.set(facecolor = 'blue' )
@@ -247,7 +252,12 @@ for box in boxplot1['boxes']:
     box.set(color='black', linewidth=1)
     # change fill color
     box.set(facecolor = 'red' )
+
+for box in boxplot1['medians']:
+    box.set(color='black')
     
+for box in boxplot2['medians']:
+    box.set(color='black')  
 
 for box in boxplot2['boxes']:
     box.set(color='black', linewidth=1)
@@ -274,7 +284,12 @@ for box in boxplot1['boxes']:
     box.set(color='black', linewidth=1)
     # change fill color
     box.set(facecolor = 'red' )
+
+for box in boxplot1['medians']:
+    box.set(color='black')
     
+for box in boxplot2['medians']:
+    box.set(color='black')    
 
 for box in boxplot2['boxes']:
     box.set(color='black', linewidth=1)
@@ -319,7 +334,12 @@ for box in boxplot1['boxes']:
     box.set(color='black', linewidth=1)
     # change fill color
     box.set(facecolor = 'red' )
+
+for box in boxplot1['medians']:
+    box.set(color='black')
     
+for box in boxplot2['medians']:
+    box.set(color='black')    
 
 for box in boxplot2['boxes']:
     box.set(color='black', linewidth=1)
@@ -364,7 +384,12 @@ for box in boxplot1['boxes']:
     box.set(color='black', linewidth=1)
     # change fill color
     box.set(facecolor = 'red' )
+
+for box in boxplot1['medians']:
+    box.set(color='black')
     
+for box in boxplot2['medians']:
+    box.set(color='black')    
 
 for box in boxplot2['boxes']:
     box.set(color='black', linewidth=1)
