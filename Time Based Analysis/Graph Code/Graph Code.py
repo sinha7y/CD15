@@ -4361,10 +4361,9 @@ for box in boxplot2['boxes']:
 
 ax.legend([boxplot1["boxes"][0], boxplot2["boxes"][0]], ['No motion', 'Motion'], loc='upper right')
 ax.set_xlim(0,9)
-ax.set_xticklabels(['pos','vel', 'acc'])
+ax.set_xticklabels(['Pos','Vel','Acc'])
 ax.set_xticks([1.3,4.3,7.3])
-ax.set_title('Average Time delay of pilots accros different combinations')
-ax.set_xlabel('Vehicle dynamic')
+ax.set_xlabel('Control Mode')
 ax.set_ylabel('Time delay [s]')
 print(np.average(boxplttab1))
 print(np.average(boxplttab2))
