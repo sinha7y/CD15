@@ -166,7 +166,7 @@ for i in range(6):
     f=0
     for j in range(6):
         for k in range(5):
-            vectorpeaks.append(matrix1[6*j+i][k])
+            vectorpeaks.append(matrix1[6*i+j][k])
             f+=1
             tpeak.append(f)
     constant=231+i
@@ -183,6 +183,14 @@ finalnmtab = [matrix11[0],matrix11[1],matrix11[2]]
 finalmtab = [matrix11[3],matrix11[4],matrix11[5]]
 fig = plt.figure()
 ax = fig.add_subplot(111)
+ax.spines['bottom'].set_color('0')
+ax.spines['top'].set_color('0')
+ax.spines['right'].set_color('0')
+ax.spines['left'].set_color('0')
+ax.spines['bottom'].set_linewidth('1')
+ax.spines['top'].set_linewidth('1')
+ax.spines['right'].set_linewidth('1')
+ax.spines['left'].set_linewidth('1')
 
 boxplot1 = ax.boxplot(finalnmtab, positions = [1,4,7], widths = 0.6, patch_artist=True)
 boxplot2 = ax.boxplot(finalmtab, positions = [1.6,4.6,7.6], widths = 0.6, patch_artist=True)
@@ -191,24 +199,24 @@ for box in boxplot1['boxes']:
     # change outline color
     box.set(color='black', linewidth=1)
     # change fill color
-    box.set(facecolor = 'red' )
+    box.set(facecolor = 'red')
 
 for box in boxplot1['medians']:
     box.set(color='black')
-    
+
 for box in boxplot2['medians']:
     box.set(color='black')
-    
+
 for box in boxplot2['boxes']:
     box.set(color='black', linewidth=1)
     box.set(facecolor = 'blue' )
-
+  
 ax.legend([boxplot1["boxes"][0], boxplot2["boxes"][0]], ['No motion', 'Motion'], loc='upper right')
 ax.set_xlim(0,9)
 ax.set_xticklabels(['Pos','Vel', 'Acc'])
 ax.set_xticks([1.3,4.3,7.3])
 ax.set_xlabel('Control Mode')
-ax.set_ylabel('Number of peaks')
+ax.set_ylabel('Number of peaks [-]')
 plt.show()
 
 #Maximum and minimum
@@ -216,26 +224,25 @@ print("Average of the maximum absolute error for every case")
 matrix12=[]
 matrix13=[]
 for i in range(6):
-    vectormax=[]
+    vectormax1=[]
+    vectormax2=[]
     tmax=[]
     f=0
     for j in range(6):
         for k in range(5):
-            vectormax.append(matrix2[6*j+i][k])
+            vectormax1.append(matrix2[6*i+j][k])
             f+=1
             tmax.append(f)
-            vectormax.append(matrix3[6*j+i][k])
-            f+=1
-            tmax.append(f)
+            vectormax2.append(matrix3[6*i+j][k])
     constant=231+i
-    matrix12.append(vectormax[0:len(vectormax)-1:2])
-    matrix13.append(vectormax[1:len(vectormax):2])
+    matrix12.append(vectormax1)
+    matrix13.append(vectormax2)
     plt.subplot(constant)
-    plt.plot(tmax, vectormax,'r+')
+    plt.plot(tmax, vectormax1,'r+')
     plt.title(vectornames[i])
     plt.ylabel("e[-]")
-    vectormax=np.absolute(vectormax)
-    print(vectornames[i],np.average(vectormax))
+    print(vectornames[i],np.average(vectormax1))
+    print(vectornames[i],np.average(vectormax2))
 plt.suptitle('Maximum and minimum of the error function',fontsize=14)    
 plt.show()
 
@@ -243,6 +250,14 @@ finalnmtab = [matrix12[0],matrix12[1],matrix12[2]]
 finalmtab = [matrix12[3],matrix12[4],matrix12[5]]
 fig = plt.figure()
 ax = fig.add_subplot(111)
+ax.spines['bottom'].set_color('0')
+ax.spines['top'].set_color('0')
+ax.spines['right'].set_color('0')
+ax.spines['left'].set_color('0')
+ax.spines['bottom'].set_linewidth('1')
+ax.spines['top'].set_linewidth('1')
+ax.spines['right'].set_linewidth('1')
+ax.spines['left'].set_linewidth('1')
 
 boxplot1 = ax.boxplot(finalnmtab, positions = [1,4,7], widths = 0.6, patch_artist=True)
 boxplot2 = ax.boxplot(finalmtab, positions = [1.6,4.6,7.6], widths = 0.6, patch_artist=True)
@@ -251,11 +266,11 @@ for box in boxplot1['boxes']:
     # change outline color
     box.set(color='black', linewidth=1)
     # change fill color
-    box.set(facecolor = 'red' )
+    box.set(facecolor = 'red')
 
 for box in boxplot1['medians']:
     box.set(color='black')
-    
+
 for box in boxplot2['medians']:
     box.set(color='black')  
 
@@ -275,6 +290,14 @@ finalnmtab = [matrix13[0],matrix13[1],matrix13[2]]
 finalmtab = [matrix13[3],matrix13[4],matrix13[5]]
 fig = plt.figure()
 ax = fig.add_subplot(111)
+ax.spines['bottom'].set_color('0')
+ax.spines['top'].set_color('0')
+ax.spines['right'].set_color('0')
+ax.spines['left'].set_color('0')
+ax.spines['bottom'].set_linewidth('1')
+ax.spines['top'].set_linewidth('1')
+ax.spines['right'].set_linewidth('1')
+ax.spines['left'].set_linewidth('1')
 
 boxplot1 = ax.boxplot(finalnmtab, positions = [1,4,7], widths = 0.6, patch_artist=True)
 boxplot2 = ax.boxplot(finalmtab, positions = [1.6,4.6,7.6], widths = 0.6, patch_artist=True)
@@ -283,7 +306,7 @@ for box in boxplot1['boxes']:
     # change outline color
     box.set(color='black', linewidth=1)
     # change fill color
-    box.set(facecolor = 'red' )
+    box.set(facecolor = 'red')
 
 for box in boxplot1['medians']:
     box.set(color='black')
@@ -310,7 +333,7 @@ for i in range(6):
     vectorslope=[]
     for j in range(6):
         for k in range(5):
-            vectorslope.append(matrix4[6*j+i][k])
+            vectorslope.append(matrix4[6*i+j][k])
     constant=231+i
     matrix14.append(vectorslope)
     plt.subplot(constant)
@@ -325,6 +348,14 @@ finalnmtab = [matrix14[0],matrix14[1],matrix14[2]]
 finalmtab = [matrix14[3],matrix14[4],matrix14[5]]
 fig = plt.figure()
 ax = fig.add_subplot(111)
+ax.spines['bottom'].set_color('0')
+ax.spines['top'].set_color('0')
+ax.spines['right'].set_color('0')
+ax.spines['left'].set_color('0')
+ax.spines['bottom'].set_linewidth('1')
+ax.spines['top'].set_linewidth('1')
+ax.spines['right'].set_linewidth('1')
+ax.spines['left'].set_linewidth('1')
 
 boxplot1 = ax.boxplot(finalnmtab, positions = [1,4,7], widths = 0.6, patch_artist=True)
 boxplot2 = ax.boxplot(finalmtab, positions = [1.6,4.6,7.6], widths = 0.6, patch_artist=True)
@@ -333,7 +364,7 @@ for box in boxplot1['boxes']:
     # change outline color
     box.set(color='black', linewidth=1)
     # change fill color
-    box.set(facecolor = 'red' )
+    box.set(facecolor = 'red')
 
 for box in boxplot1['medians']:
     box.set(color='black')
@@ -343,7 +374,7 @@ for box in boxplot2['medians']:
 
 for box in boxplot2['boxes']:
     box.set(color='black', linewidth=1)
-    box.set(facecolor = 'blue' )
+    box.set(facecolor = 'blue')
 
 ax.legend([boxplot1["boxes"][0], boxplot2["boxes"][0]], ['No motion', 'Motion'], loc='upper right')
 ax.set_xlim(0,9)
@@ -360,7 +391,7 @@ for i in range(6):
     vectorslopex=[]
     for j in range(6):
         for k in range(5):
-            vectorslopex.append(matrix5[6*j+i][k])
+            vectorslopex.append(matrix5[6*i+j][k])
     constant=231+i
     matrix15.append(vectorslopex)
     plt.subplot(constant)
@@ -375,6 +406,14 @@ finalnmtab = [matrix15[0],matrix15[1],matrix15[2]]
 finalmtab = [matrix15[3],matrix15[4],matrix15[5]]
 fig = plt.figure()
 ax = fig.add_subplot(111)
+ax.spines['bottom'].set_color('0')
+ax.spines['top'].set_color('0')
+ax.spines['right'].set_color('0')
+ax.spines['left'].set_color('0')
+ax.spines['bottom'].set_linewidth('1')
+ax.spines['top'].set_linewidth('1')
+ax.spines['right'].set_linewidth('1')
+ax.spines['left'].set_linewidth('1')
 
 boxplot1 = ax.boxplot(finalnmtab, positions = [1,4,7], widths = 0.6, patch_artist=True)
 boxplot2 = ax.boxplot(finalmtab, positions = [1.6,4.6,7.6], widths = 0.6, patch_artist=True)
@@ -383,7 +422,7 @@ for box in boxplot1['boxes']:
     # change outline color
     box.set(color='black', linewidth=1)
     # change fill color
-    box.set(facecolor = 'red' )
+    box.set(facecolor = 'red')
 
 for box in boxplot1['medians']:
     box.set(color='black')
@@ -393,7 +432,7 @@ for box in boxplot2['medians']:
 
 for box in boxplot2['boxes']:
     box.set(color='black', linewidth=1)
-    box.set(facecolor = 'blue' )
+    box.set(facecolor = 'blue')
 
 ax.legend([boxplot1["boxes"][0], boxplot2["boxes"][0]], ['No motion', 'Motion'], loc='upper right')
 ax.set_xlim(0,9)
@@ -413,9 +452,9 @@ matrix14 = np.array(matrix14)
 matrix15 = np.array(matrix15)
 
 print('***** Matrix 11 **********')
-ttest_matrix11_pos=ttest_ind(matrix11[0,:], matrix11[1,:])
-ttest_matrix11_vel=ttest_ind(matrix11[2,:], matrix11[3,:])
-ttest_matrix11_acc=ttest_ind(matrix11[4,:], matrix11[5,:])
+ttest_matrix11_pos=ttest_ind(matrix11[0,:], matrix11[3,:])
+ttest_matrix11_vel=ttest_ind(matrix11[1,:], matrix11[4,:])
+ttest_matrix11_acc=ttest_ind(matrix11[2,:], matrix11[5,:])
 
 t_value_matrix11_pos=ttest_matrix11_pos[0]
 p_value_matrix11_pos=ttest_matrix11_pos[1]
@@ -436,9 +475,9 @@ print('degrees of freedom:',deg_freedom_matrix11_pos)
 print('')
 
 print('***** Matrix 12 **********')
-ttest_matrix12_pos=ttest_ind(matrix12[0,:], matrix12[1,:])
-ttest_matrix12_vel=ttest_ind(matrix12[2,:], matrix12[3,:])
-ttest_matrix12_acc=ttest_ind(matrix12[4,:], matrix12[5,:])
+ttest_matrix12_pos=ttest_ind(matrix12[0,:], matrix12[3,:])
+ttest_matrix12_vel=ttest_ind(matrix12[1,:], matrix12[4,:])
+ttest_matrix12_acc=ttest_ind(matrix12[2,:], matrix12[5,:])
 
 t_value_matrix12_pos=ttest_matrix12_pos[0]
 p_value_matrix12_pos=ttest_matrix12_pos[1]
@@ -460,9 +499,9 @@ print('')
 
 
 print('***** Matrix 13 **********')
-ttest_matrix13_pos=ttest_ind(matrix13[0,:], matrix13[1,:])
-ttest_matrix13_vel=ttest_ind(matrix13[2,:], matrix13[3,:])
-ttest_matrix13_acc=ttest_ind(matrix13[4,:], matrix13[5,:])
+ttest_matrix13_pos=ttest_ind(matrix13[0,:], matrix13[3,:])
+ttest_matrix13_vel=ttest_ind(matrix13[1,:], matrix13[4,:])
+ttest_matrix13_acc=ttest_ind(matrix13[2,:], matrix13[5,:])
 
 t_value_matrix13_pos=ttest_matrix13_pos[0]
 p_value_matrix13_pos=ttest_matrix13_pos[1]
@@ -484,9 +523,9 @@ print('')
 
 
 print('***** Matrix 14 **********')
-ttest_matrix14_pos=ttest_ind(matrix14[0,:], matrix14[1,:])
-ttest_matrix14_vel=ttest_ind(matrix14[2,:], matrix14[3,:])
-ttest_matrix14_acc=ttest_ind(matrix14[4,:], matrix14[5,:])
+ttest_matrix14_pos=ttest_ind(matrix14[0,:], matrix14[3,:])
+ttest_matrix14_vel=ttest_ind(matrix14[1,:], matrix14[4,:])
+ttest_matrix14_acc=ttest_ind(matrix14[2,:], matrix14[5,:])
 
 t_value_matrix14_pos=ttest_matrix14_pos[0]
 p_value_matrix14_pos=ttest_matrix14_pos[1]
@@ -508,9 +547,9 @@ print('')
 
 
 print('***** Matrix 15 **********')
-ttest_matrix15_pos=ttest_ind(matrix15[0,:], matrix15[1,:])
-ttest_matrix15_vel=ttest_ind(matrix15[2,:], matrix15[3,:])
-ttest_matrix15_acc=ttest_ind(matrix15[4,:], matrix15[5,:])
+ttest_matrix15_pos=ttest_ind(matrix15[0,:], matrix15[3,:])
+ttest_matrix15_vel=ttest_ind(matrix15[1,:], matrix15[4,:])
+ttest_matrix15_acc=ttest_ind(matrix15[2,:], matrix15[5,:])
 
 t_value_matrix15_pos=ttest_matrix15_pos[0]
 p_value_matrix15_pos=ttest_matrix15_pos[1]
@@ -532,3 +571,4 @@ print('')
 
 #=======
 #>>>>>>> Stashed changes
+
