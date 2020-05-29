@@ -6,7 +6,7 @@ import cmath
 import math
 from scipy.signal import correlate
 #<<<<<<< HEAD
-#from statsmodels.stats.weightstats import ttest_ind
+from statsmodels.stats.weightstats import ttest_ind
 #=======
 #from statsmodels.stats.weightstats import ttest_ind
 #>>>>>>> ac5b7a6feddf200a261bf29207f5e30750184b21
@@ -4344,6 +4344,14 @@ finalnmtab = [boxplttab1,boxplttab2,boxplttab3]
 finalmtab = [boxplttab4,boxplttab5,boxplttab6]
 fig = plt.figure()
 ax = fig.add_subplot(111)
+ax.spines['bottom'].set_color('0')
+ax.spines['top'].set_color('0')
+ax.spines['right'].set_color('0')
+ax.spines['left'].set_color('0')
+ax.spines['bottom'].set_linewidth('1')
+ax.spines['top'].set_linewidth('1')
+ax.spines['right'].set_linewidth('1')
+ax.spines['left'].set_linewidth('1')
 
 boxplot1 = ax.boxplot(finalnmtab, positions = [1,4,7], widths = 0.6, patch_artist=True)
 boxplot2 = ax.boxplot(finalmtab, positions = [1.6,4.6,7.6], widths = 0.6, patch_artist=True)
@@ -4354,10 +4362,15 @@ for box in boxplot1['boxes']:
     # change fill color
     box.set(facecolor = 'red' )
     
-
 for box in boxplot2['boxes']:
     box.set(color='black', linewidth=1)
     box.set(facecolor = 'blue' )
+
+for box in boxplot1['medians']:
+    box.set(color='black')
+    
+for box in boxplot2['medians']:
+    box.set(color='black')
 
 ax.legend([boxplot1["boxes"][0], boxplot2["boxes"][0]], ['No motion', 'Motion'], loc='upper right')
 ax.set_xlim(0,9)
@@ -4374,9 +4387,9 @@ print(np.average(boxplttab6))
 plt.grid()
 plt.show()
 
-
-#<<<<<<< HEAD
 """
+#<<<<<<< HEAD
+
 =======
 
 <<<<<<< HEAD
@@ -4385,7 +4398,7 @@ plt.show()
 >>>>>>> ac5b7a6feddf200a261bf29207f5e30750184b21
 <<<<<<< Updated upstream
 >>>>>>> 21fad8dcdac6808b8dc7fd00bd96b875042a23b6
-
+"""
 #=======
 #>>>>>>> Stashed changes
 # =============================================================================
@@ -4423,6 +4436,7 @@ print('degrees of freedom:',deg_freedom_TD_pos)
 print('')
 #=======
 print('')
+"""
 <<<<<<< HEAD
 #>>>>>>> Stashed changes
 =======
@@ -4431,5 +4445,6 @@ print('')
 
 =======
 >>>>>>> ac5b7a6feddf200a261bf29207f5e30750184b21
-"""
+
 #>>>>>>> 21fad8dcdac6808b8dc7fd00bd96b875042a23b6
+"""
