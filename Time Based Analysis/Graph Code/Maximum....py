@@ -192,8 +192,10 @@ ax.spines['top'].set_linewidth('1')
 ax.spines['right'].set_linewidth('1')
 ax.spines['left'].set_linewidth('1')
 
-boxplot1 = ax.boxplot(finalnmtab, positions = [0.8,3.8,6.8], widths = 1.2, patch_artist=True)
-boxplot2 = ax.boxplot(finalmtab, positions = [2,5,8], widths = 1.2, patch_artist=True)
+boxplot1 = ax.boxplot(finalnmtab, 0, 'kD', positions = [0.8,3.8,6.8], widths = 1.2, patch_artist=True)
+boxplot2 = ax.boxplot(finalmtab, 0, 'kD', positions = [2,5,8], widths = 1.2, patch_artist=True)
+ax.yaxis.grid(True, linestyle='-', which='major', color='lightgrey',alpha=0.5)
+ax.xaxis.grid(None)
 
 for box in boxplot1['boxes']:
     # change outline color
@@ -214,9 +216,9 @@ for box in boxplot2['boxes']:
 ax.legend([boxplot1["boxes"][0], boxplot2["boxes"][0]], ['No motion', 'Motion'], loc='upper right')
 ax.set_xlim(0,8.8)
 ax.set_xticklabels(['Pos','Vel', 'Acc'])
-ax.set_xticks([1.3,4.3,7.3])
+ax.set_xticks([1.4,4.4,7.4])
 ax.set_xlabel('Control Mode')
-ax.set_ylabel('Number of peaks [-]')
+ax.set_ylabel('Number of peaks')
 plt.show()
 
 #Maximum and minimum
@@ -259,29 +261,31 @@ ax.spines['top'].set_linewidth('1')
 ax.spines['right'].set_linewidth('1')
 ax.spines['left'].set_linewidth('1')
 
-boxplot1 = ax.boxplot(finalnmtab, positions = [1,4,7], widths = 0.6, patch_artist=True)
-boxplot2 = ax.boxplot(finalmtab, positions = [1.6,4.6,7.6], widths = 0.6, patch_artist=True)
+boxplot1 = ax.boxplot(finalnmtab, 0, 'kD', positions = [0.8,3.8,6.8], widths = 1.2, patch_artist=True)
+boxplot2 = ax.boxplot(finalmtab, 0, 'kD', positions = [2,5,8], widths = 1.2, patch_artist=True)
+ax.yaxis.grid(True, linestyle='-', which='major', color='lightgrey',alpha=0.5)
+ax.xaxis.grid(None)
 
 for box in boxplot1['boxes']:
     # change outline color
     box.set(color='black', linewidth=1)
     # change fill color
-    box.set(facecolor = 'red')
+    box.set(facecolor = (0.894117647,0.109607843,0.10980392))
 
 for box in boxplot1['medians']:
     box.set(color='black')
 
 for box in boxplot2['medians']:
-    box.set(color='black')  
+    box.set(color='black')
 
 for box in boxplot2['boxes']:
     box.set(color='black', linewidth=1)
-    box.set(facecolor = 'blue' )
+    box.set(facecolor = (0.21568627451,0.494117647,0.721568627451))
 
 ax.legend([boxplot1["boxes"][0], boxplot2["boxes"][0]], ['No motion', 'Motion'], loc='upper right')
-ax.set_xlim(0,9)
+ax.set_xlim(0,8.8)
 ax.set_xticklabels(['Pos','Vel', 'Acc'])
-ax.set_xticks([1.3,4.3,7.3])
+ax.set_xticks([1.4,4.4,7.4])
 ax.set_xlabel('Control Mode')
 ax.set_ylabel('Maxima')
 plt.show()
@@ -299,29 +303,31 @@ ax.spines['top'].set_linewidth('1')
 ax.spines['right'].set_linewidth('1')
 ax.spines['left'].set_linewidth('1')
 
-boxplot1 = ax.boxplot(finalnmtab, positions = [1,4,7], widths = 0.6, patch_artist=True)
-boxplot2 = ax.boxplot(finalmtab, positions = [1.6,4.6,7.6], widths = 0.6, patch_artist=True)
+boxplot1 = ax.boxplot(finalnmtab, 0, 'kD', positions = [0.8,3.8,6.8], widths = 1.2, patch_artist=True)
+boxplot2 = ax.boxplot(finalmtab, 0, 'kD', positions = [2,5,8], widths = 1.2, patch_artist=True)
+ax.yaxis.grid(True, linestyle='-', which='major', color='lightgrey',alpha=0.5)
+ax.xaxis.grid(None)
 
 for box in boxplot1['boxes']:
     # change outline color
     box.set(color='black', linewidth=1)
     # change fill color
-    box.set(facecolor = 'red')
+    box.set(facecolor = (0.894117647,0.109607843,0.10980392))
 
 for box in boxplot1['medians']:
     box.set(color='black')
-    
+
 for box in boxplot2['medians']:
-    box.set(color='black')    
+    box.set(color='black')
 
 for box in boxplot2['boxes']:
     box.set(color='black', linewidth=1)
-    box.set(facecolor = 'blue' )
+    box.set(facecolor = (0.21568627451,0.494117647,0.721568627451))
 
 ax.legend([boxplot1["boxes"][0], boxplot2["boxes"][0]], ['No motion', 'Motion'], loc='upper right')
-ax.set_xlim(0,9)
+ax.set_xlim(0,8.8)
 ax.set_xticklabels(['Pos','Vel', 'Acc'])
-ax.set_xticks([1.3,4.3,7.3])
+ax.set_xticks([1.4,4.4,7.4])
 ax.set_xlabel('Control Mode')
 ax.set_ylabel('Minima')
 plt.show()
@@ -357,29 +363,31 @@ ax.spines['top'].set_linewidth('1')
 ax.spines['right'].set_linewidth('1')
 ax.spines['left'].set_linewidth('1')
 
-boxplot1 = ax.boxplot(finalnmtab, positions = [1,4,7], widths = 0.6, patch_artist=True)
-boxplot2 = ax.boxplot(finalmtab, positions = [1.6,4.6,7.6], widths = 0.6, patch_artist=True)
+boxplot1 = ax.boxplot(finalnmtab, 0, 'kD', positions = [0.8,3.8,6.8], widths = 1.2, patch_artist=True)
+boxplot2 = ax.boxplot(finalmtab, 0, 'kD', positions = [2,5,8], widths = 1.2, patch_artist=True)
+ax.yaxis.grid(True, linestyle='-', which='major', color='lightgrey',alpha=0.5)
+ax.xaxis.grid(None)
 
 for box in boxplot1['boxes']:
     # change outline color
     box.set(color='black', linewidth=1)
     # change fill color
-    box.set(facecolor = 'red')
+    box.set(facecolor = (0.894117647,0.109607843,0.10980392))
 
 for box in boxplot1['medians']:
     box.set(color='black')
-    
+
 for box in boxplot2['medians']:
-    box.set(color='black')    
+    box.set(color='black')
 
 for box in boxplot2['boxes']:
     box.set(color='black', linewidth=1)
-    box.set(facecolor = 'blue')
+    box.set(facecolor = (0.21568627451,0.494117647,0.721568627451))
 
 ax.legend([boxplot1["boxes"][0], boxplot2["boxes"][0]], ['No motion', 'Motion'], loc='upper right')
-ax.set_xlim(0,9)
+ax.set_xlim(0,8.8)
 ax.set_xticklabels(['Pos','Vel', 'Acc'])
-ax.set_xticks([1.3,4.3,7.3])
+ax.set_xticks([1.4,4.4,7.4])
 ax.set_xlabel('Control Mode')
 ax.set_ylabel('Slope')
 plt.show()
@@ -415,29 +423,31 @@ ax.spines['top'].set_linewidth('1')
 ax.spines['right'].set_linewidth('1')
 ax.spines['left'].set_linewidth('1')
 
-boxplot1 = ax.boxplot(finalnmtab, positions = [1,4,7], widths = 0.6, patch_artist=True)
-boxplot2 = ax.boxplot(finalmtab, positions = [1.6,4.6,7.6], widths = 0.6, patch_artist=True)
+boxplot1 = ax.boxplot(finalnmtab, 0, 'kD', positions = [0.8,3.8,6.8], widths = 1.2, patch_artist=True)
+boxplot2 = ax.boxplot(finalmtab, 0, 'kD', positions = [2,5,8], widths = 1.2, patch_artist=True)
+ax.yaxis.grid(True, linestyle='-', which='major', color='lightgrey',alpha=0.5)
+ax.xaxis.grid(None)
 
 for box in boxplot1['boxes']:
     # change outline color
     box.set(color='black', linewidth=1)
     # change fill color
-    box.set(facecolor = 'red')
+    box.set(facecolor = (0.894117647,0.109607843,0.10980392))
 
 for box in boxplot1['medians']:
     box.set(color='black')
-    
+
 for box in boxplot2['medians']:
-    box.set(color='black')    
+    box.set(color='black')
 
 for box in boxplot2['boxes']:
     box.set(color='black', linewidth=1)
-    box.set(facecolor = 'blue')
+    box.set(facecolor = (0.21568627451,0.494117647,0.721568627451))
 
 ax.legend([boxplot1["boxes"][0], boxplot2["boxes"][0]], ['No motion', 'Motion'], loc='upper right')
-ax.set_xlim(0,9)
+ax.set_xlim(0,8.8)
 ax.set_xticklabels(['Pos','Vel', 'Acc'])
-ax.set_xticks([1.3,4.3,7.3])
+ax.set_xticks([1.4,4.4,7.4])
 ax.set_xlabel('Control Mode')
 ax.set_ylabel('Slope')
 plt.show()
