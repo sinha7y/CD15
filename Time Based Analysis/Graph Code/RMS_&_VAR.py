@@ -1088,12 +1088,12 @@ x_C6_VAR = VAR_calculate_1x6(overall_array_x_C6_RMS)
 
 
 # Plot error RMS
-plt.scatter(["p-nm", "p-m", "v-nm", "v-m", "a-nm", "a-m"],[e1_C1_RMS_overall, e1_C4_RMS_overall, e1_C2_RMS_overall,  e1_C5_RMS_overall,  e1_C3_RMS_overall,  e1_C6_RMS_overall], marker="," , color="blue")
-plt.scatter(["p-nm", "p-m", "v-nm", "v-m", "a-nm", "a-m"],[e2_C1_RMS_overall, e2_C4_RMS_overall, e2_C2_RMS_overall,  e2_C5_RMS_overall,  e2_C3_RMS_overall,  e2_C6_RMS_overall], marker="s" , color="green")
-plt.scatter(["p-nm", "p-m", "v-nm", "v-m", "a-nm", "a-m"],[e3_C1_RMS_overall, e3_C4_RMS_overall, e3_C2_RMS_overall,  e3_C5_RMS_overall,  e3_C3_RMS_overall,  e3_C6_RMS_overall], marker="*" , color="orange")
-plt.scatter(["p-nm", "p-m", "v-nm", "v-m", "a-nm", "a-m"],[e4_C1_RMS_overall, e4_C4_RMS_overall, e4_C2_RMS_overall,  e4_C5_RMS_overall,  e4_C3_RMS_overall,  e4_C6_RMS_overall], marker="X" , color="red")
-plt.scatter(["p-nm", "p-m", "v-nm", "v-m", "a-nm", "a-m"],[e5_C1_RMS_overall, e5_C4_RMS_overall, e5_C2_RMS_overall,  e5_C5_RMS_overall,  e5_C3_RMS_overall,  e5_C6_RMS_overall], marker="+" , color="fuchsia")
-plt.scatter(["p-nm", "p-m", "v-nm", "v-m", "a-nm", "a-m"],[e6_C1_RMS_overall, e6_C4_RMS_overall, e6_C2_RMS_overall,  e6_C5_RMS_overall,  e6_C3_RMS_overall,  e6_C6_RMS_overall], marker="^" , color="black")
+plt.scatter([1, 2, 5, 6, 9, 10],[e1_C1_RMS_overall, e1_C4_RMS_overall, e1_C2_RMS_overall,  e1_C5_RMS_overall,  e1_C3_RMS_overall,  e1_C6_RMS_overall], marker="," , color="blue")
+plt.scatter([1, 2, 5, 6, 9, 10],[e2_C1_RMS_overall, e2_C4_RMS_overall, e2_C2_RMS_overall,  e2_C5_RMS_overall,  e2_C3_RMS_overall,  e2_C6_RMS_overall], marker="s" , color="green")
+plt.scatter([1, 2, 5, 6, 9, 10],[e3_C1_RMS_overall, e3_C4_RMS_overall, e3_C2_RMS_overall,  e3_C5_RMS_overall,  e3_C3_RMS_overall,  e3_C6_RMS_overall], marker="*" , color="orange")
+plt.scatter([1, 2, 5, 6, 9, 10],[e4_C1_RMS_overall, e4_C4_RMS_overall, e4_C2_RMS_overall,  e4_C5_RMS_overall,  e4_C3_RMS_overall,  e4_C6_RMS_overall], marker="X" , color="red")
+plt.scatter([1, 2, 5, 6, 9, 10],[e5_C1_RMS_overall, e5_C4_RMS_overall, e5_C2_RMS_overall,  e5_C5_RMS_overall,  e5_C3_RMS_overall,  e5_C6_RMS_overall], marker="+" , color="fuchsia")
+plt.scatter([1, 2, 5, 6, 9, 10],[e6_C1_RMS_overall, e6_C4_RMS_overall, e6_C2_RMS_overall,  e6_C5_RMS_overall,  e6_C3_RMS_overall,  e6_C6_RMS_overall], marker="^" , color="black")
 plt.legend(('Pilot 1', 'Pilot 2', 'Pilot 3', 'Pilot 4', 'Pilot 5', 'Pilot 6', 'Pilot 7'), scatterpoints=1,loc='upper left',ncol=3,fontsize=8)
 plt.xlabel("Condition")
 plt.ylabel("Error RMS")
