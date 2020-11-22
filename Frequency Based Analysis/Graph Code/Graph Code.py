@@ -101,3 +101,6 @@ plt.semilogx(w_FC, np.angle(Hpxd_FC_C6, deg=True))
 plt.xlabel("ω (rad/s)")
 plt.ylabel("U+2220")
 plt.show()
+
+plt.semilogx(w_FC, np.abs(Hpxd_FC_C4))
+plt.show()
